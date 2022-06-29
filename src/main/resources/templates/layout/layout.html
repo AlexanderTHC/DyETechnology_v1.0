@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ICONO DE LA PAGINA -->
+    <link rel="icon" type="image/png" th:href="@{/img/icondye.png}" />
+
+
+    <!--///////////////////////////// SECCIÓN CSS /////////////////////////////////////////-->
+
+    <!-- MI CSS-->
+    <link th:href="@{/css/mystyle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/sajsolutions.css}" rel="stylesheet" type="text/css" />
+
+    <!-- CSS  BS5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- CSS  FONTAWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS  SLICK -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    <!-- DATATABLE CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" />
+
+    <!-- SELECT 2 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css" /> 
+CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- ICON BOOSTRAP CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+    <!-- BOXICONS CDN -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+
+
+    <!--///////////////////////////// FIN SECCIÓN CSS /////////////////////////////////////////-->
+
+</head>
+
+<body>
+<!--bg-headnavdye-->
+    <header class="p-3 bg-headnavdye text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a th:href="@{/}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none sajlogo">
+                    <img src="/img/icondye.png" alt="logo" class="bi me-1" width="60" height="60">
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ms-3">
+
+                    <div class="dropdown">
+                        <a class="nav-link px-2 text-cat-saj dropdown-toggle" href="#" role="button"
+                            id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            ACCESORIOS & PERIFICOS
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a class="nav-link px-2 text-cat-saj  dropdown-toggle" href="#" role="button"
+                            id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            CELULARES
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a class="nav-link px-2 text-cat-saj  dropdown-toggle" href="#" role="button"
+                            id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            AUDIO Y VIDEO
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                    <li><a href="#" class="nav-link px-2 text-cat-saj ">CONTACTOS</a></li>
+
+
+                    <!-- PRUEBAS DE ERROR (ADMINSITRADOR)-->
+                    <div class="dropdown">
+                        <a class="nav-link px-2 text-cat-saj  dropdown-toggle" href="#" role="button"
+                            id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            OPCIONES
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" th:href="@{/administrador/home}">Admin</a></li>
+                            <li><a class="dropdown-item" th:href="@{/productos/listado}">Productos Show</a></li>
+                            <li><a class="dropdown-item" th:href="@{/categorias/listado}">Categorias Show</a></li>
+                        </ul>
+                    </div>
+                    <!-- PRUEBAS DE ERROR (ADMINSITRADOR)-->
+                </ul>
+
+                <form action="#" class="searchform col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <div class="form-group d-flex">
+                        <input type="text" class="form-control form-control-lg pl-3" placeholder="Buscar Articulos...">
+                        <button type="submit" placeholder="" class="form-control search"><span
+                                class="fa fa-search"></span></button>
+                    </div>
+                </form>
+
+                <div class="text-end">
+                    <a type="button" class="btn btn-outline-dark me-2" th:href="@{/login}"><i
+                            class="fas fa-user"></i>
+                        INGRESAR</a>
+                    <button id="button" type="button" class="btn btn-warning btn-cart"><i
+                            class="fas fa-shopping-cart"></i></button>
+
+                </div>
+                <div id="tooltip" role="tooltip">0
+                    <div id="arrow" data-popper-arrow></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ALERTAS -->
+    <span id="success" th:text="${success}" hidden="true"></span>
+    <span id="error" th:text="${error}" hidden="true"></span>
+    <span id="warning" th:text="${warning}" hidden="true"></span>
+    <!-- ALERTAS -->
+
+    <!-- END nav -->
+    <div class="contenido p-4" layout:fragment="contenido">
+        <p>Contenido principal de las páginas</p>
+    </div>
+
+    <!-- FIN CONTENIDO DE LA PAGINA --> 
+
+    <!--//////////////////////// FOOTER //////////////////////////////-->
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-white bg-headnavdye">
+        <!-- Grid container -->
+        <div class="container p-4">
+
+            <!-- Section: Text -->
+            <section class="mb-4">
+            </section>
+            <!-- Section: Text -->
+
+
+            <!-- Section: Links -->
+            <section class="mb-4">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-head-footer text-dark">INFORMACIÓN</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#!" class="text-informacion">HOME</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-informacion">CONTACTO</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-informacion">¿DÓNDE NOS UBICAMOS?</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-head-footer text-dark">REDES SOCIALES</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a id="facebook" class="iconoSocial" href="https://www.facebook.com/DyE-Technology-102355051364795"
+                                    data-toggle="tooltip" data-placement="top" title="Facebook"><span
+                                        class="fab fa-facebook color-facebook"></span>
+                                </a>
+                                <a id="instagram" class="iconoSocial" href="https://www.instagram.com/dyetechnology/"
+                                    data-toggle="tooltip" data-placement="top" title="Instagram">
+                                    <span class="fab fa-instagram color-instagram"></span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-head-footer text-dark">DIRECCIÓN</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li class="provFot"> Resistencia, Chaco.
+                            </li>
+                            <li><a class="direccFot" href="https://goo.gl/maps/UcyxJotCqjGcFhBq6" target="_blank">
+                                    Lustringuer 3086, Barberan.
+                                </a></li>
+                            <li class="horaFot">Horario - Lunes a Domingo</li>
+                            <li class="horaFot">09:00 a.m. - 21:00 p.m.</li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-head-footer text-dark">SUSCRIBETE</h5>
+
+                        <form action="#" class="searchform col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control pl-3 " placeholder="Ingrese su Correo...">
+                                <button type="submit" placeholder="" class="form-control search"><span
+                                        class="fas fa-check"></span></button>
+                            </div>
+                        </form>
+                        <p class="mt-2 text-dark">¡Suscribete para recibir notificación de todos nuestros productos nuevos!</p>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            Todos los Derechos Reservado © 2022 Copyright:
+            <a class="copySAJ" href="https://www.facebook.com/saj.servtec/">SAJSolutions</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+    <!--//////////////////77 FIN FOOTER ////////////////////7777-->
+
+    <!--///////////////////////// SECCIÓN SCRIPT's ///////////////////-->
+    <!-- JavaScript BS5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    
+
+    <!-- DATATABLE JS -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- SELECT 2 JS
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> comment -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
+
+    <!-- JQUERY UI JS -->
+    <!-- script src="/js/jquery-ui.min.js" type="text/javascript"></script -->
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+        integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+
+       
+     
+     <!-- JQUERY MASK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <!-- SLICK JS -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <!-- CDN POPPER JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"
+        integrity="sha512-8cU710tp3iH9RniUh6fq5zJsGnjLzOWLWdZqBMLtqaoZUA6AWIE34lwMB3ipUNiTBP5jEZKY95SfbNnQ8cCKvA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- DARK MODE -->
+    <script src="/js/sajsolutions.js" type="text/javascript"></script>
+
+    <!-- BOXI ICONS JS-->
+    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+
+
+    <!-- Mis JS (TODA CLASE QUE SE LLAME JS, SE REEMPLAZA ESA BARRA, SE PODRA AGREGAR ESTILOS PROPIOS DE LA PAGINA Y QUE VA HACER CARGADOR EN LA SIGUIENTE LINEA) -->
+    <script th:replace=":: js"></script>
+
+
+    <!--///////////////////////// FIN SECCIÓN SCRIPT's ///////////////////-->
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+<head>
+    <title th:text="${titulo}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/css/logindye.css}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <div layout:fragment="contenido" class="conntenido mb-3 mt-3">
+        <main class="form-signin w-100 m-auto h-auto">
+            <div class="card text-center border border-info shadow-0">
+                <div class="card-header fs-3 fw-bold">Nueva Cuenta</div>
+                <div class="card-body">
+                    <form>
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <label for="basic-url" class="form-label text-start">Nombre</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-id-card'></i></span>
+                                    <input type="text" class="form-control" id="basic-url"
+                                        aria-describedby="basic-addon3">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <label for="basic-url" class="form-label text-start">Apellido</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-id-card'></i></span>
+                                    <input type="text" class="form-control" id="basic-url"
+                                        aria-describedby="basic-addon3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="basic-url" class="form-label text-start">Username</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-user-pin' ></i></span>
+                                    <input type="text" class="form-control" id="basic-url"
+                                        aria-describedby="basic-addon3">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <label for="basic-url" class="form-label text-start">Password</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-key' ></i></span>
+                                    <input type="text" class="form-control" id="basic-url"
+                                        aria-describedby="basic-addon3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="basic-url" class="form-label text-start">E-Mail</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-envelope' ></i></span>
+                                    <input type="text" class="form-control" id="basic-url"
+                                        aria-describedby="basic-addon3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkbox mb-3 mt-2 text-start">
+                            <label>
+                                <input type="checkbox" value="remember-me">
+                                Aceptar las <label class="text-info">Condiciones del servicio</label> y <label
+                                    class="text-info">Politica de privacidad</label> de DyE Technology.
+                            </label>
+                        </div>
+
+                        <button class="w-100 btn btn-lg btn-info" type="submit">Registrarse</button>
+
+                        <div class="text-info">
+                            <hr>
+                        </div>
+
+                        <div>
+                            <p class="fs-5">O Registrate con</p>
+                            <div class="text-center mb-2">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a id="facebook" class="iconoSocial fs-1"
+                                            href="https://www.facebook.com/saj.servtec/" data-toggle="tooltip"
+                                            data-placement="top" title="Facebook"><span
+                                                class="fab fa-facebook color-facebook"></span>
+                                        </a>
+                                        <a id="instagram" class="iconoSocial fs-1"
+                                            href="https://www.instagram.com/iti.servtec/" data-toggle="tooltip"
+                                            data-placement="top" title="Google">
+                                            <span class="fab fa-google-plus color-google"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                </div>
+                </form>
+
+            <div class="card-footer text-start fs-5">¿Ya tienes cuenta?
+                <a class="btn btn-info" th:href="@{/login}">Iniciar Sesión</a>
+            </div>
+    </div>
+
+    </main>
+
+
+    </div>
+
+    <script th:fragment="js"></script>
+</body>
+
+</html>

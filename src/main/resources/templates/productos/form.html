@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+<head>
+    <title th:text="${titulo}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div layout:fragment="contenido" class="conntenido">
+
+        <!-- Page Content -->
+        <div class="container mb-5">
+            <!-- Page Heading/Breadcrumbs -->
+            <h1 class="mt-4 mb-3">
+                DyE Technology <small>Productos</small>
+            </h1>
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/administrador/home}">Home Administrador</a></li>
+                <li class="breadcrumb-item active">Formulario Productos</li>
+            </ol>
+
+
+            <div class="card bg-light">
+                <form th:action="@{/productos/nuevo}" method="post" th:object="${producto}" class="was-validated">
+                    <div class="card-header">
+                        <h5 th:text="${subtitulo}" class="fw-bold">Nuevo Producto</h5>
+                    </div>
+                    <fieldset>
+                        <div class="card-body bg-light">
+
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="upc" class="form-label text-black">Código de Barras</label>
+                                    <div class="input-group form">
+                                        <span class="input-group-text bg-light"><i
+                                                class="fas fa-barcode text-black"></i></span>
+                                        <input id="upc" maxlength="13" data-mask="###########"
+                                            data-mask-reverse="true" type="text" class="form-control"
+                                            th:field="*{upc}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="nomProd" class="form-label text-black">Nombre</label>
+                                    <div class="input-group form">
+                                        <span class="input-group-text bg-light"><i
+                                                class="fas fa-book-open text-black"></i></span>
+                                        <input id="nomProd" type="text" class="form-control" th:field="*{nombre}"
+                                            th:errorclass="'form-control alert-danger'" />
+                                        <small class="form-text text-danger" th:errors="*{nombre}"
+                                            th:if="${#fields.hasErrors('nombre')}"></small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="desProd" class="form-label text-black">Descripción</label>
+                                    <div class="input-group form">
+                                        <span class="input-group-text bg-light"><i
+                                                class="fas fa-book-open text-black"></i></span>
+                                        <textarea id="desProd" type="text" class="form-control" th:field="*{descripcion}"
+                                            th:errorclass="'form-control alert-danger'"></textarea>
+                                        <small class="form-text text-danger" th:errors="*{descripcion}"
+                                            th:if="${#fields.hasErrors('descripcion')}"></small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="precio" class="form-label text-black">Precio</label>
+                                    <div class="input-group form">
+                                        <span class="input-group-text bg-light"><i
+                                                class="fas fa-dollar-sign text-black"></i></span>
+                                        <input id="precio" type="text" class="form-control" th:field="*{precio}"
+                                            th:errorclass="'form-control alert-danger'" data-mask="#.##0,00"
+                                            data-mask-reverse="true" />
+                                        <small class="form-text text-danger" th:errors="*{precio}"
+                                            th:if="${#fields.hasErrors('precio')}"></small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="catProd" class="form-labe text-black">Categoria</label>
+                                    <div class="input-group form-group">
+                                        <span class="input-group-text bg-light"><i
+                                                class="fas fa-table text-black"></i></span>
+                                        <select class="form-select select2" th:field="*{categoria}">
+                                            <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="cantidad" class="form-label text-black">Existencia</label>
+                                    <div class="input-group form">
+                                        <span class="input-group-text bg-light"><i
+                                                class="fas fa-boxes text-black"></i></span>
+                                        <input id="cantidad" type="text" class="form-control" th:field="*{cantidad}"
+                                            th:errorclass="'form-control alert-danger'" data-mask="#0"
+                                            data-mask-reverse="true" />
+                                        <small class="form-text text-danger" th:errors="*{cantidad}"
+                                            th:if="${#fields.hasErrors('cantidad')}"></small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- UTILIZAR POR EL MOMENTO -->
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="img" class="form-label text-black">Imagen</label>
+                                    <div class="input-group form">
+                                        <span class="input-group-text bg-light"> <i class="far fa-file-image text-black"></i></span>
+                                        <input id="img" type="url" class="form-control" 
+                                               placeholder="Ejemplo: https://www.google.com/tu-imagen.png or https://www.google.com/tu-imagen.jpg"
+                                               th:field="*{imagen}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NO FUNCIONA ! 
+                                div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="img" class="form-label text-black">Imagen</label>
+                                    <div class="input-group form">
+                                        <span class="input-group-text bg-light"> <i
+                                                class="far fa-file-image text-black"></i></span>
+                                        <input id="img" name="img" type="file" class="form-control-file"/>
+                                    </div>
+                                </div>
+                            </div -->
+                        </div>
+                    </fieldset>
+                    <div class="card-footer bg-light">
+                        <a th:href="@{/productos/ver}" class="btn btn-danger"><i class="fas fa-times"></i>
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i>
+                            Guardar Producto
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- /.container -->
+
+    <script th:fragment="js"></script>
+</body>
+
+</html>

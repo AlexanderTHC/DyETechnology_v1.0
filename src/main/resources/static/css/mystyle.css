@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+
+.olvCon:hover {
+  cursor: pointer;
+}
+.color-facebook {
+  color: #0066ff !important;
+}
+
+.color-instagram {
+  color: #f700ff !important;
+}
+.color-google {
+  color: #ff0000 !important;
+}
+
+.footer-heading {
+  color: #00DE40 !important;
+}
+
+.list-effect-saj:hover {
+  color: #00DE40 !important;
+}
+
+.logo-center {
+  text-align: center !important;
+}
+
+.logoSAJ {
+  border-radius: 100%;
+  margin-top: 20px;
+  width: 130px;
+  height: 130px;
+}
+
+.logoSAJ:hover {
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.438);
+}
+
+.fontSAJ {
+  font-family: 'Zen Dots', cursive !important;
+  font-size: 30px !important;
+  color: black !important;
+}
+
+.fontST {
+  font-size: 50px;
+}
+
+.notificacion {
+  font-size: 2px !important;
+}
+
+.mt-2 {
+  margin-top: 100px;
+}
+
+.imgHome {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  border-style: double;
+  border-color: rgb(0, 230, 38);
+  border-width: 10px;
+  box-shadow: 4px 4px 30px black;
+}
+
+.carousel-saj {
+  background-image: url('https://cf.shopee.com.ar/file/93f880b1bd6fca1212629ad28b5834d9');
+  padding-left: 300px;
+  background-repeat: no-repeat;
+  background-color: #e5e5e5;
+  border-radius: .25rem;
+  overflow: hidden;
+  padding-top: 15px;
+  background-size: contain;
+  padding-bottom: 15px;
+  padding-right: 10px;
+  max-height: 460px;
+}
+
+.carousel-saj-2 {
+  width: 1000px;
+  height: 1000px;
+}
+
+#carousel_saj .slick-prev {
+  left: 295px;
+}
+
+#carousel_saj .slick-next {
+  right: 10px;
+}
+
+#carousel_saj .card {
+  margin-bottom: 0px;
+}
+
+.link-carrousel {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
+  padding-left: 14px;
+  background: #fff;
+  position: absolute;
+  z-index: 3;
+  bottom: 7px;
+  left: 110px;
+}
+
+.link-carrousel i {
+  font-size: 16px !important;
+  color: #cc3300 !important;
+}
+
+

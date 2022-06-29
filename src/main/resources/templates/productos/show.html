@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+<head>
+    <title th:text="${titulo}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div layout:fragment="contenido" class="contenido ">
+
+        <!-- Page Content -->
+        <div class="container">
+
+
+            <!-- Page Heading/Breadcrumbs -->
+            <h1 class="mt-4 mb-3">
+                DyE Technologys <small>Productos</small>
+            </h1>
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/administrador/home}">Home Administrador</a></li>
+                <li class="breadcrumb-item active">Ver Productos</li>
+            </ol>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card m-1">
+                        <div class="card-header bg-light">
+                            <div class="mt-2">
+
+                                <a th:href="@{/productos/nuevo}" type="button" class="btn btn-success"><i
+                                        class="far fa-file-alt"></i> Nuevo Producto</a>
+
+                            </div>
+                            <hr />
+                            <h5 class="card-title fw-bold text-black">Listado de Productos</h5>
+
+                        </div>
+
+                        <div class="card-body bg-light">
+                            <table id="tablaProductos" class="table table-striped table-hover table-bordered table-sm"
+                                style="width: 100%;">
+                                <thead>
+
+                                    <!-- Tablas -->
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="noExl" style="width: 10%;">Imagen</th>
+                                        <th>Cód. Barras</th>
+                                        <th>Nombre</th>
+                                        <th>Categoria</th>
+                                        <th>Precio</th>
+                                        <th>Existencias</th>
+                                        <th class="noExl">Estado</th>
+                                        <th class="noExl">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="p : ${productos}">
+                                        <td th:text="${p.id}"></td>
+                                        <td class="noExl">
+                                            <img alt="Sin Imagen" th:src="@{${p.imagen}}" height="100px" />
+                                        </td>
+                                        <td th:text="${p.upc}" class="text-codebarJLN"></td>
+                                        <td th:text="${p.nombre}"></td>
+                                        <td th:text="${p.categoria}"></td>
+                                        <td th:text="${p.precio}"></td>
+                                        <td th:text="${p.cantidad}"></td>
+                                        <td class="noExl" th:text="${p.activo} ? 'Activo' : 'Inactivo'"></td>
+                                        <td class="noExl">
+
+                                            <!-- th:href="@{/productos/del/} + ${p.id}"
+                                            <a onclick="return confirm('¿Estas seguro de realizar esta acción?')" 
+                                               th:href="@{/productos/cambiar-estado/} + ${p.id}" 
+                                               class="btn btn-danger float-end text-light ms-2
+                                               shadow rounded border border-dark"
+                                               data-bs-toggle="tooltip" data-bs-placement="bottom" title="Borrar"
+                                               >
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>  -->
+
+                                            <!--a onclick="return confirm('¿Estas seguro de realizar esta acción?')" 
+                                               th:href="@{/productos/activo/} + ${p.id}"
+                                               class="btn btn-danger float-end text-light ms-2
+                                               shadow rounded border border-dark"
+                                               data-bs-toggle="tooltip" data-bs-placement="bottom" title="Borrar">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span th:text="${p.activo} ? 'Tachar' : 'Habilitar'"></span>
+                                            </a-->
+
+                                            <a th:onclick="borrar([[${p.id}]])"
+                                                class="btn btn-danger float-end text-light shadow rounded border border-1 border-dark ms-2"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Borrar">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+
+                                            <a th:href="@{/productos/editar/} + ${p.id}"
+                                                class="btn btn-warning float-end text-light shadow rounded border border-1 border-dark"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+
+    <script th:src="@{/js/productos.js}" th:fragment="js"></script>
+</body>
+
+</html>

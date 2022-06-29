@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html 
+    lang="es"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}"
+    >
+    <head>
+        <title th:text="${titulo}"></title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link th:href="@{/css/logindye.css}" rel="stylesheet">
+    </head>
+    <body class="text-center">
+        <div layout:fragment="contenido" class="conntenido mb-3 mt-3">
+            <main class="form-signin w-100 m-auto h-auto">
+            <div class="card text-center border border-info shadow-0">
+                <div class="card-header fs-3 fw-bold">Iniciar Sesión</div>
+                <div class="card-body">
+                  <form th:action="@{/login}" method="post" class="form">
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="email" class="form-label">E-Mail</label>
+                                <div class="input-group form-group">
+                                    <span class="input-group-text bg-light iconFormColor"><i class='bx bxs-envelope' ></i></span>
+                                    <input id="password" class="form-control form-color-saj bg-light text-black"
+                                        type="text" required />
+                                    <div id="error-email"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="form-group">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <div class="input-group form-group">
+                                    <span class="input-group-text bg-light iconFormColor"><i class='bx bxs-key' ></i></span>
+                                    <input id="password" class="form-control form-color-saj bg-light text-black"
+                                        type="password" required />
+                                    <div id="error-email"></div>
+                                </div>
+                            </div>
+                        </div>
+                    <a class="text-end mb-2 mt-2 olvCon">
+                      ¿Olvidaste la Contraseña?
+                    </a>
+  
+                    <div class="checkbox mb-3 text-start">
+                      <label>
+                        <input type="checkbox" value="remember-me"> Recordarme
+                      </label>
+                    </div>
+                    
+                    <button class="w-100 btn btn-lg btn-info" type="submit">Ingresar</button>
+  
+                    <div class="text-info">
+                      <hr>
+                      <hr>
+                    </div>  
+                    
+                    <div>
+                        <p class="fs-5">O inicia sesión utilizando</p>
+                        <div class="text-center mb-2">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a id="facebook" class="iconoSocial fs-1" href="https://www.facebook.com/saj.servtec/"
+                                        data-toggle="tooltip" data-placement="top" title="Facebook"><span
+                                            class="fab fa-facebook color-facebook"></span>
+                                    </a>
+                                    <a id="instagram" class="iconoSocial fs-1" href="https://www.instagram.com/iti.servtec/"
+                                        data-toggle="tooltip" data-placement="top" title="Google">
+                                        <span class="fab fa-google-plus color-google"></span>
+                                    </a>
+                                </li>
+                            </ul>
+    
+                        </div>
+                    </div>
+                </div>
+                  </form>
+                </div>
+                <div class="card-footer text-start fs-5">¿No tienes cuenta? 
+                    <a class="btn btn-info" th:href="@{/register}">Registrarse</a>
+                </div>
+              </div>
+
+              </main>
+              
+            
+        </div>
+        
+        <script th:fragment="js"></script>
+    </body>
+</html>
