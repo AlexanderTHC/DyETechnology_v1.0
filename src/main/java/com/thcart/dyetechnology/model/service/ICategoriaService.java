@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.thcart.dyetechnology.model.entities.Categoria;
 
-public interface ICategoriaService {
+public interface ICategoriaService { 
+    
     public List<Categoria> buscarTodos();
     
     public List<Categoria> buscarPor(String criterio);
