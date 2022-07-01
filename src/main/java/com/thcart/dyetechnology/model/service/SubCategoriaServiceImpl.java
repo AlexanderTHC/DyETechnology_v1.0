@@ -4,6 +4,7 @@
  */
 package com.thcart.dyetechnology.model.service;
 
+
 import com.thcart.dyetechnology.model.entities.SubCategoria;
 import com.thcart.dyetechnology.model.repository.ISubCategoriaRepository;
 import java.util.List;
@@ -37,19 +38,19 @@ public class SubCategoriaServiceImpl implements ISubCategoriaService {
     }
 
     @Override
-    public void guardar(SubCategoria SubCategoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void guardar(SubCategoria subcategoria) {
+        subcategoriaRepo.save(subcategoria);
     }
 
     @Override
     public void borrarPorId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        subcategoriaRepo.deleteById(id);
     }
 
     @Override
     public void activo(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        subcategoriaRepo.activo(id);
     }
-    
-    
+
+
 }

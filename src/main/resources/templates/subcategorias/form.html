@@ -30,7 +30,7 @@ and open the template in the editor.
 
 
             <div class="card bg-light">
-                <form th:action="@{/subcategorias/nuevo}" method="post" th:object="${categoria}" class="was-validated">
+                <form th:action="@{/subcategorias/nuevo}" method="post" th:object="${subcategoria}" class="was-validated">
                     <div class="card-header">
                         <h5 th:text="${subtitulo}" class="fw-bold">Nueva Sub Categoria</h5>
                     </div>
@@ -44,15 +44,27 @@ and open the template in the editor.
                                         <span class="input-group-text bg-light"><i
                                                 class="fas fa-book-open text-black"></i></span>
                                         <input id="nomProd" type="text" class="form-control" th:field="*{nombre}"
-                                            th:errorclass="'form-control alert-danger'" />
+                                               th:errorclass="'form-control alert-danger'" />
                                         <small class="form-text text-danger" th:errors="*{nombre}"
-                                            th:if="${#fields.hasErrors('nombre')}"></small>
+                                               th:if="${#fields.hasErrors('nombre')}"></small>
                                     </div>
                                 </div>
                             </div>
 
-                        
-                        
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="nomCat" class="form-labe text-black">¿Ah que categoria pertenece?</label>
+                                    <div class="input-group form-group">
+                                        <span class="input-group-text bg-light"><i
+                                                class="fas fa-table text-black"></i></span>
+                                        <select class="form-select select2" th:field="*{categoria}">
+                                            <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </fieldset>
                     <div class="card-footer bg-light">

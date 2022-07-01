@@ -1,4 +1,4 @@
-// TABLA PRODUCTOS
+// TABLA CATEGORIAS
 $(document).ready(function () {
     $('#tablaCategorias').DataTable({
         lengthMenu: [5, 10, 15, 20],

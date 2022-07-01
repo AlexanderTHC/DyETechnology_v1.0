@@ -4,10 +4,13 @@
  */
 package com.thcart.dyetechnology.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,8 +26,15 @@ public class SubCategoria {
     private Long id;
     private String nombre;
     private boolean activo;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id")
+    @JsonIgnore
+    private Categoria categoria;
+    
 
     public SubCategoria() {
+        activo = true;
     }
 
     public Long getId() {
@@ -50,6 +60,17 @@ public class SubCategoria {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+    
+    
+    
 
     @Override
     public String toString() {

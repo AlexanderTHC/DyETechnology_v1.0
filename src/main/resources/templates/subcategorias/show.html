@@ -46,7 +46,7 @@ and open the template in the editor.
                         </div>
 
                         <div class="card-body bg-light">
-                            <table id="tablaCategorias" class="table table-striped table-hover table-bordered table-sm"
+                            <table id="tablaSubCategorias" class="table table-striped table-hover table-bordered table-sm"
                                 style="width: 100%;">
                                 <thead>
 
@@ -57,7 +57,7 @@ and open the template in the editor.
                                         <th class="noExl">Estado</th>
                                         <th class="noExl">Acciones</th>
                                     </tr>
-                                </thead>
+                                </thead> 
                                 <tbody>
                                     <tr th:each="c : ${subcategorias}">
                                         <td th:text="${c.id}"></td>                                  
@@ -90,7 +90,7 @@ and open the template in the editor.
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
 
-                                            <a th:href="@{/categoria/editar/} + ${c.id}"
+                                            <a th:href="@{/subcategoria/editar/} + ${c.id}"
                                                 class="btn btn-warning float-end text-light shadow rounded border border-1 border-dark"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar">
                                                 <i class="fas fa-edit"></i>
