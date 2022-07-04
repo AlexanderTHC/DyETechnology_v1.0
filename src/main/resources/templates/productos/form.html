@@ -100,7 +100,7 @@ and open the template in the editor.
                                         <span class="input-group-text bg-light"><i
                                                 class="fas fa-table text-black"></i></span>
                                         <select class="form-select select2" th:field="*{categoria}">
-                                            <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c}">
+                                            <option th:each="c : ${subcategorias}" th:value="${c.id}" th:text="${c}">
                                             </option>
                                         </select>
                                     </div>

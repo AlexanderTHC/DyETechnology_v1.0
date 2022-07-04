@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.thcart.dyetechnology.model.entities.Producto;
-import com.thcart.dyetechnology.model.service.ICategoriaService;
 import com.thcart.dyetechnology.model.service.IProductoService;
+import com.thcart.dyetechnology.model.service.ISubCategoriaService;
 
 
 @Controller
@@ -40,7 +40,7 @@ public class ProductoController {
     @Autowired
     IProductoService productoService;
     @Autowired
-    ICategoriaService categoriaService;
+    ISubCategoriaService subcategoriaService;
 
     @GetMapping("/listado")
     public String verProducto(Model model) {
@@ -49,7 +49,7 @@ public class ProductoController {
 
         model.addAttribute("productos", productoService.buscarTodos());
 
-        model.addAttribute("categorias", categoriaService.buscarTodos());
+        model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
 
         return "productos/show";
     }
@@ -63,7 +63,7 @@ public class ProductoController {
 
         model.addAttribute("producto", new Producto());
 
-        model.addAttribute("categorias", categoriaService.buscarTodos());
+        model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
 
         return "productos/form";
     }
@@ -77,7 +77,7 @@ public class ProductoController {
 
         model.addAttribute("producto", producto);
 
-        model.addAttribute("departamentos", categoriaService.buscarTodos());
+        model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
 
         model.addAttribute("productAct", true);
 
@@ -97,7 +97,7 @@ public class ProductoController {
 
             model.addAttribute("danger", "¡Datos erróneos!");
 
-            model.addAttribute("categorias", categoriaService.buscarTodos());
+            model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
 
             return "productos/form";
         }

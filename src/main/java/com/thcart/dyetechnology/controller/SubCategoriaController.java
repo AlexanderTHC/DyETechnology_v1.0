@@ -40,6 +40,8 @@ public class SubCategoriaController {
     
     @GetMapping("/listado")
     public String listadoSubCategorias(Model model) {
+
+        model.addAttribute("titulo", "DyE Technology - SubCategorias");
         
         model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
         
