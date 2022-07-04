@@ -29,12 +29,12 @@ public class SubCategoriaServiceImpl implements ISubCategoriaService {
 
     @Override
     public List<SubCategoria> buscarPor(String criterio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return subcategoriaRepo.buscarPorCriterio(criterio);
     }
 
     @Override
     public SubCategoria buscarPorId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return subcategoriaRepo.findById(id).orElse(null);
     }
 
     @Override

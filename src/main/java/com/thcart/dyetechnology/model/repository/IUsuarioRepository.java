@@ -4,8 +4,8 @@
  */
 package com.thcart.dyetechnology.model.repository;
 
+import com.thcart.dyetechnology.model.entities.Usuario;
 
-import com.thcart.dyetechnology.model.entities.SubCategoria;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,10 +15,10 @@ import org.springframework.data.repository.query.Param;
  *
  * @author Micholini
  */
-public interface ISubCategoriaRepository extends JpaRepository<SubCategoria, Long> {
+public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    @Query("select scg from SubCategoria scg where scg.nombre like %:criterio% and scg.activo = true") // == CONSULTA
-    List<SubCategoria> buscarPorCriterio(@Param("criterio") String criterio);
+    @Query("select us from Usuario us where us.nombre like %:criterio% and us.activo = true") // == CONSULTA
+    List<Usuario> buscarPorCriterio(@Param("criterio") String criterio);
     
-    public SubCategoria activo(long id);
+    public Usuario activo(long id);
 }
