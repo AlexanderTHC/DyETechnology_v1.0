@@ -66,6 +66,26 @@ public class Usuario {
         activo = true;
     }
 
+    public Usuario(Long id, @NotEmpty @Size(max = 30) String nombre, @NotEmpty @Size(max = 30) String apellido,
+            @NotEmpty @Size(max = 30) String username, @NotEmpty String email, @NotEmpty String direccion,
+            @NotEmpty String dni, @NotEmpty String telefono,
+            @NotEmpty @Size(max = 110, min = 1, message = "La contraseña debe tener al menos 6 caracteres") String clave,
+            Rol rol, boolean activo, List<Producto> producto, List<Orden> ordenes) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.username = username;
+        this.email = email;
+        this.direccion = direccion;
+        this.dni = dni;
+        this.telefono = telefono;
+        this.clave = clave;
+        this.rol = rol;
+        this.activo = activo;
+        this.producto = producto;
+        this.ordenes = ordenes;
+    }
+
     public Long getId() {
         return id;
     }

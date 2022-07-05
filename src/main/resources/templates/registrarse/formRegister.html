@@ -18,54 +18,60 @@ and open the template in the editor.
     <div layout:fragment="contenido" class="conntenido mb-3 mt-3">
         <main class="form-signin w-100 m-auto h-auto">
             <div class="card text-center border border-info shadow-0">
+                <form th:action="@{/registrarse/nuevo}" method="post" th:object="${usuario}">
                 <div class="card-header fs-3 fw-bold">Nueva Cuenta</div>
                 <div class="card-body">
                     <form>
                         <div class="row mt-4">
                             <div class="col-6">
-                                <label for="basic-url" class="form-label text-start">Nombre</label>
-                                <div class="input-group mb-3">
+                                <label for="nombreUser" class="form-label text-start">Nombre</label>
+                                <div class="input-group form mb-3">
                                     <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-id-card'></i></span>
-                                    <input type="text" class="form-control" id="basic-url"
-                                        aria-describedby="basic-addon3">
+                                    <input id="nombreUser" type="text" class="form-control" th:field="*{nombre}">
+                                    <small class="form-text text-danger" th:errors="*{nombre}" 
+                                               th:if="${#fields.hasErrors('nombre')}"></small>
                                 </div>
                             </div>
 
                             <div class="col-6">
-                                <label for="basic-url" class="form-label text-start">Apellido</label>
-                                <div class="input-group mb-3">
+                                <label for="apellidoUser" class="form-label text-start">Apellido</label>
+                                <div class="input-group form mb-3">
                                     <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-id-card'></i></span>
-                                    <input type="text" class="form-control" id="basic-url"
-                                        aria-describedby="basic-addon3">
+                                    <input id="apellidoUser" type="text" class="form-control" th:field="*{apellido}">
+                                    <small class="form-text text-danger" th:errors="*{apellido}" 
+                                               th:if="${#fields.hasErrors('apellido')}"></small>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <label for="basic-url" class="form-label text-start">Username</label>
-                                <div class="input-group mb-3">
+                                <label for="username" class="form-label text-start">Username</label>
+                                <div class="input-group form mb-3">
                                     <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-user-pin' ></i></span>
-                                    <input type="text" class="form-control" id="basic-url"
-                                        aria-describedby="basic-addon3">
+                                    <input id="username" type="text" class="form-control" th:field="*{username}">
+                                    <small class="form-text text-danger" th:errors="*{username}" 
+                                                   th:if="${#fields.hasErrors('username')}"></small>
                                 </div>
                             </div>
 
                             <div class="col-6">
-                                <label for="basic-url" class="form-label text-start">Password</label>
-                                <div class="input-group mb-3">
+                                <label for="passwordUser" class="form-label text-start">Password</label>
+                                <div class="input-group form mb-3">
                                     <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-key' ></i></span>
-                                    <input type="text" class="form-control" id="basic-url"
-                                        aria-describedby="basic-addon3">
+                                    <input id="passwordUser" type="password" class="form-control" th:field="*{clave}">
+                                        <small class="form-text text-danger" th:errors="*{clave}" 
+                                                       th:if="${#fields.hasErrors('clave')}"></small>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <label for="basic-url" class="form-label text-start">E-Mail</label>
-                                <div class="input-group mb-3">
+                                <label for="email" class="form-label text-start">E-Mail</label>
+                                <div class="input-group form mb-3">
                                     <span class="input-group-text iconFormColor" id="basic-addon3"><i class='bx bxs-envelope' ></i></span>
-                                    <input type="text" class="form-control" id="basic-url"
-                                        aria-describedby="basic-addon3">
+                                    <input type="text" class="form-control" id="email" th:field="*{email}">
+                                        <small class="form-text text-danger" th:errors="*{email}" 
+                                                       th:if="${#fields.hasErrors('email')}"></small>
                                 </div>
                             </div>
                         </div>
@@ -110,6 +116,7 @@ and open the template in the editor.
             <div class="card-footer text-start fs-5">¿Ya tienes cuenta?
                 <a class="btn btn-info" th:href="@{/login}">Iniciar Sesión</a>
             </div>
+        </form>
     </div>
 
     </main>
