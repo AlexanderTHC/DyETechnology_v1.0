@@ -54,14 +54,13 @@ public class CategoriaController {
     @GetMapping("/editar/{id}")
     public String editarCategoria(@PathVariable("id") long id, Model model){
         
-    Categoria categoria = (Categoria) categoriaService.buscarPorId(id);
-        
-    model.addAttribute("subtitulo", "Editar Categoria");
-    
-    model.addAttribute("departamento", categoria);
-    
-    
-    return "categorias/form";
+        Categoria categoria = (Categoria) categoriaService.buscarPorId(id);
+
+        model.addAttribute("subtitulo", "Editar Categoria");
+
+        model.addAttribute("categoria", categoria);
+
+        return "categorias/form";
     }
 
     @PostMapping("/nuevo") //AGREGAR
@@ -79,7 +78,7 @@ public class CategoriaController {
             return "categorias/form";
         }
 
-      if (categoria.getId() == null) {
+      if (categoria.getId()== null) {
             redirect.addFlashAttribute("success", "¡Categoria añadido con éxito!");
         } else {
             redirect.addFlashAttribute("warning", "¡Categoria modificado con éxito!");
