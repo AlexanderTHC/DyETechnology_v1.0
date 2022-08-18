@@ -4,6 +4,7 @@
  */
 package com.thcart.dyetechnology.controller;
 
+import com.thcart.dyetechnology.model.entities.Categoria;
 import com.thcart.dyetechnology.model.entities.SubCategoria;
 import com.thcart.dyetechnology.model.service.ICategoriaService;
 import com.thcart.dyetechnology.model.service.ISubCategoriaService;
@@ -67,7 +68,7 @@ public class SubCategoriaController {
     } 
     
     @GetMapping("/editar/{id}")
-    public String editarSubCategoria(@PathVariable("id") long id, Model model){
+    public String editarSubCategoria(@PathVariable("id") long id, Model model, Categoria categoria){
         
         SubCategoria subcategoria = (SubCategoria) subcategoriaService.buscarPorId(id);
 
