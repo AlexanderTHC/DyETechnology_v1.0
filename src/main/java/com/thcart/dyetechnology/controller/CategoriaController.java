@@ -16,10 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thcart.dyetechnology.model.entities.Categoria;
 import com.thcart.dyetechnology.model.service.ICategoriaService;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 @Controller
 @RequestMapping("/categorias")
+@SessionAttributes({"categoria"})
 public class CategoriaController {
     
     // Para visualiar en consola, para un log de todo lo que se ejecuta en el programa::
