@@ -16,7 +16,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -29,10 +28,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebSecurityConfig implements WebMvcConfigurer {
 
     //PERMITE INGRESAR Y VISUALIZAR LAS IMAGENES QUE SE ENCUENTRAN DENTRO DE ESE DIRECTORIO EN EL HOME
-    @Override
+/*     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/**").addResourceLocations("file:img/");
-    }
+    } */
     
     //INYECTAR EL ORIGEN DE DATOS LA CONEXIÓN A LA DB
     @Autowired

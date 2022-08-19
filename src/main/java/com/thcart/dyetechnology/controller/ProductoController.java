@@ -131,7 +131,7 @@ public class ProductoController {
         */
 
         LOGGER.info("Este es el objeto producto {}", producto);
-
+        producto.setUsuario(producto.getUsuario()); // No funca
         productoService.guardar(producto);
         status.isComplete();
         redirect.addFlashAttribute("success", " Articulo Guardado con Éxitos...");
