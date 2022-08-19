@@ -4,6 +4,8 @@
  */
 package com.thcart.dyetechnology.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -14,7 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.thcart.dyetechnology.model.entities.DetalleOrden;
+import com.thcart.dyetechnology.model.entities.Orden;
 import com.thcart.dyetechnology.model.entities.Producto;
 import com.thcart.dyetechnology.model.service.IProductoService;
 
@@ -30,6 +35,12 @@ public class HomeController {
 
     @Autowired
     IProductoService productoService;
+
+    //Para almacenar los detalles de la Orden.
+    List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
+
+    //Almacena la Orden: Datos de la orden.
+    Orden orden = new Orden();
     
     @GetMapping({"/", "/home"})
     public String home(Model model){
@@ -51,9 +62,34 @@ public class HomeController {
         return "detalleProducto";
     }
 
+    //CAMBIAR ESTE METODO POR ALGUNO NUEVO UTILIZADO EN LAS CLASES - ESTO ES PARA PRUEBA!!!
     @PostMapping("/carrito")
-    public String addCarrito(){
+    public String addCarrito(@RequestParam Long id, @RequestParam Integer cantidad, Model model){
 
+        DetalleOrden detalleOrden = new DetalleOrden();
+        Producto producto = new Producto();
+        double sumaTotal = 0;
+
+        Optional<Producto> optionalProducto = productoService.get(id);
+        LOGGER.info("Producto agrego al Carrito: {}", optionalProducto.get());
+        LOGGER.info("Cantidad: {}", cantidad);
+
+        producto = optionalProducto.get();
+            //
+        detalleOrden.setCantidad(cantidad);
+        detalleOrden.setPrecio(producto.getPrecio());
+        detalleOrden.setNombre(producto.getNombre());
+        detalleOrden.setTotal(producto.getPrecio()*cantidad);
+        detalleOrden.setProducto(producto);
+
+        detalles.add(detalleOrden);
+
+        sumaTotal = detalles.stream().mapToDouble(dt->dt.getTotal()).sum();
+
+        orden.setTotal(sumaTotal);
+        model.addAttribute("carrito", detalles);
+        model.addAttribute("orden", orden);
+    
         return "carrito";
     }
 }

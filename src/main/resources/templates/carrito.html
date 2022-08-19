@@ -48,11 +48,11 @@ and open the template in the editor.
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td >Nombre</td>
-                            <td >Precio</td>
-                            <td>Cantidad</td>
-                            <td >Total</td>
+                          <tr th:each="detOrd : ${carrito}">
+                            <td th:text="${detOrd.nombre}"></td>
+                            <td th:text="${detOrd.precio}"></td>
+                            <td th:text="${detOrd.cantidad}"></td>
+                            <td th:text="${detOrd.total}"></td>
                             <td><a href="#" class="btn btn-danger">Quitar</a></td>
                           </tr>
                         </tbody>
@@ -63,7 +63,7 @@ and open the template in the editor.
                       <h2 class="card-title">SUBTOTAL</h2>
           
                       <ul class="list-group">
-                        <li class="list-group-item"><h5>Total: $ 10</h5></li>
+                        <li class="list-group-item"><h5 th:text="${orden.total}">Total: $ 10</h5></li>
                         <a href="resumenorden.html" class="btn btn-dark">Ver Orden</a>
                       </ul>
                     </div>

@@ -34,6 +34,8 @@ and open the template in the editor.
                         </div>
                         <div class="col-lg-6">
                             <form th:action="@{/carrito}" method="POST">
+                                <!-- METODO POR OCULTAR EL ID, MODIFICAR MAS ADELANTE SOLO DE PRUEBA!-->
+                                <input type="hidden" th:value="${p.id}" name="id">
                                 <h2 class="card-title fw-bold" th:text="${p.nombre}">
                                     Nombre producto
                                 </h2>
