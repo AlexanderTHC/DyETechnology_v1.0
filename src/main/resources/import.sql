@@ -4,4 +4,5 @@ INSERT INTO `dyetechnology_db`.`roles` (`activo`, `nombre`) VALUES (1, 'ROLE_CAJ
 INSERT INTO `dyetechnology_db`.`roles` (`activo`, `nombre`) VALUES (1, 'ROLE_USER');
 
 
-INSERT INTO `dyetechnology_db`.`usuarios` (`activo`, `apellido`, `clave`, `direccion`, `dni`, `email`, `nombre`, `telefono`, `username`, `id_rol`) VALUES (1, 'sosa', '$10$XuZ6w5vCrWPYRrcZxt3NKOFOP4IY0vE1d5dmbbDgkJt1m3NL5ptC6', 'yatay', '42986303', 'sosaalexander.joamail.com', 'alexander', '3625153078', 'zaxthc', '1');
+INSERT INTO `dyetechnology_db`.`productos` (`activo`, `cantidad`, `descripcion`, `imagen`, `nombre`, `precio`, `upc`) VALUES (1, '245455', 'Teclado Noga Gamer NKB-233Teclado Noga Gamer NKB-233Teclado Noga Gamer NKB-233Teclado Noga Gamer NKB-233Teclado Noga Gamer NKB-233', 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/593/734/products/nkb-233-teclado11-897562ccbd6936895316299985198497-640-0.jpg', 'Teclado Noga Gamer NKB-233', '25555.55', '234234234342');
+
