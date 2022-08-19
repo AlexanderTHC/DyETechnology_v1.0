@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.thcart.dyetechnology.model.entities.Producto;
 import com.thcart.dyetechnology.model.service.IProductoService;
@@ -44,8 +45,15 @@ public class HomeController {
     @GetMapping("detalleproducto/{id}")
     public String detalleProducto(@PathVariable("id") long id, Model model){
         LOGGER.info("ID producto enviado como parametro {}", id);
+        model.addAttribute("titulo", "DyE Technology - Detalles");
         
         model.addAttribute("productos", productoService.buscarPorId(id));
         return "detalleProducto";
+    }
+
+    @PostMapping("/carrito")
+    public String addCarrito(){
+
+        return "carrito";
     }
 }
