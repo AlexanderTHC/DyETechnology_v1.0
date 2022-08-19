@@ -77,10 +77,11 @@
   
                   <div class="col-lg-3 col-md-6 mb-4" th:each="p: ${productos}">
                       <div class="card h-100">
-                          <img class="card-img-top" th:src="@{${p.imagen}}" alt="">
+                          <img class="card-img-top" th:src="@{${p.imagen}}" alt="Imagen Producto">
                           <div class="card-body">
-                              <p class="card-text" th:text="${p.nombre}"></p>
-                              <p class="card-text" th:text="${p.activo}"></p>
+                              <p class="card-text fs-5 fw-bold" th:text="${p.nombre}"></p>
+                              <p class="card-text fs-5 fw-bold" th:text="'$'+${p.precio}"></p>
+                              <p class="card-text fs-5 fw-bold" th:text="${p.activo} ? 'En Stock' : 'Sin Stock'"  th:classappend="${p.activo} ? 'text-success' : 'text-danger'"></p>
                           </div>
                           <div class="card-footer">
                               <a th:href="@{/detalleproducto/} + ${p.id}" class="btn btn-success">Ver producto</a>

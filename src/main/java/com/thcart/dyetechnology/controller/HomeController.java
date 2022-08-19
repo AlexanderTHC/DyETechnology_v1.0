@@ -4,6 +4,8 @@
  */
 package com.thcart.dyetechnology.controller;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.thcart.dyetechnology.model.entities.Producto;
 import com.thcart.dyetechnology.model.service.IProductoService;
 
 
@@ -40,9 +43,9 @@ public class HomeController {
 
     @GetMapping("detalleproducto/{id}")
     public String detalleProducto(@PathVariable("id") long id, Model model){
-
         LOGGER.info("ID producto enviado como parametro {}", id);
-
+        
+        model.addAttribute("productos", productoService.buscarPorId(id));
         return "detalleProducto";
     }
 }
