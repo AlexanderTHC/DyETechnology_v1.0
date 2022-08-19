@@ -55,13 +55,14 @@ public class Usuario {
     
     private boolean activo;
 
-    // ?? 
+    // 
     @OneToMany(mappedBy = "usuario")
     private List<Producto> producto;
     
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
-    // ??
+    // 
+    
     public Usuario() {
         activo = true;
     }

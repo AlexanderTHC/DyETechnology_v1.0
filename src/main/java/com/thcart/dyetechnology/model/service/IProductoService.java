@@ -10,13 +10,15 @@ public interface IProductoService {
     
     public List<Producto> buscarPor(String criterio);
 
-    // ??
+    // Nos da la opcion de validar si el objeto que obtenemos si existe o no, dentro de la base de datos
     public Optional<Producto> get(Long id);
-    // ??
+    // 
     
     public Producto buscarPorId(Long id);
     
     public void guardar(Producto producto);
+
+    public void actualizar(Producto producto);
     
     public void borrarPorId(Long id);
 

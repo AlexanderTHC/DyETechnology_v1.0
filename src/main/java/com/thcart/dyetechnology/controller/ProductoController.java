@@ -43,7 +43,7 @@ public class ProductoController {
     ISubCategoriaService subcategoriaService;
 
     @GetMapping("/listado")
-    public String verProducto(Model model) {
+    public String verListadoProductos(Model model) {
 
         model.addAttribute("titulo", "DyE Technology - Productos");
 
@@ -81,7 +81,7 @@ public class ProductoController {
 
         model.addAttribute("productAct", true);
 
-        return "productos/new";
+        return "productos/form";
     }
 
     @PostMapping("/nuevo") // AGREGAR "" sin utilizar no funciona ---> @RequestParam("img") MultipartFile file

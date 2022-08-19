@@ -57,10 +57,10 @@ public class Producto {
     
     private boolean activo;
 
-    // ??
+    // 
     @ManyToOne
     private Usuario usuario;
-    // ??
+    // 
     
     public Producto() {
         activo = true;
