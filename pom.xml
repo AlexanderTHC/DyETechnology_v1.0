@@ -53,7 +53,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-       <!-- SPRING SECURITY -->
+        <!-- SPRING SECURITY -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -70,7 +70,6 @@
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
