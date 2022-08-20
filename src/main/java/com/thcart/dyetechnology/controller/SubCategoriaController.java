@@ -80,6 +80,8 @@ public class SubCategoriaController {
 
         model.addAttribute("subcategorias", subcategoria);
         
+        model.addAttribute("subcategoriaAct", true);
+        
         return "subcategorias/form";
     } 
     

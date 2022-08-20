@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.thcart.dyetechnology.model.entities.Producto;
 import com.thcart.dyetechnology.model.repository.IProductoRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductoServiceImpl implements IProductoService {
@@ -16,26 +17,31 @@ public class ProductoServiceImpl implements IProductoService {
     IProductoRepository productoRepo;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Producto> buscarTodos() {
       return productoRepo.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Producto> buscarPor(String criterio) {
         return productoRepo.buscarPorCriterio(criterio);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Producto buscarPorId(Long id) {
         return productoRepo.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional
     public void guardar(Producto producto) {
        productoRepo.save(producto);      
     }
 
     @Override
+    @Transactional
     public void borrarPorId(Long id) {
        productoRepo.deleteById(id);
         
