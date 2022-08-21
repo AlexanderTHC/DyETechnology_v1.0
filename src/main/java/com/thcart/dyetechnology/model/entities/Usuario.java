@@ -36,13 +36,10 @@ public class Usuario {
     @NotEmpty
     private String email;
     
-    @NotEmpty
     private String direccion;
     
-    @NotEmpty
     private String dni;
     
-    @NotEmpty
     private String telefono;
    
     @NotEmpty
