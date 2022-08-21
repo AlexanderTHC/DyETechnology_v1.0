@@ -37,12 +37,12 @@ and open the template in the editor.
                   <div class="card-body">
                     <div class="row">
                      <div class="col-lg-9">
-                      <table class="table">
+                      <table id="tablaCarritos" class="table table-striped table-hover table-bordered table-sm">
                         <thead>
                           <tr>
                             <th scope="col">Producto</th>
                             <th scope="col">Precio</th>
-                            <th scope="col">Cantidad</th>
+                            <th style="width:20%;" scope="col">Cantidad</th>
                             <th scope="col">Total</th>
                             <th scope="col">Acción</th>
                           </tr>
@@ -53,7 +53,7 @@ and open the template in the editor.
                             <td th:text="${detOrd.precio}"></td>
                             <td th:text="${detOrd.cantidad}"></td>
                             <td th:text="${detOrd.total}"></td>
-                            <td><a href="#" class="btn btn-danger">Quitar</a></td>
+                            <td><a th:href="@{/delete/carrito/} + ${detOrd.producto.id}" class="btn btn-danger">Quitar</a></td>
                           </tr>
                         </tbody>
                       </table>
@@ -64,7 +64,7 @@ and open the template in the editor.
           
                       <ul class="list-group">
                         <li class="list-group-item"><h5 th:text="${orden.total}">Total: $ 10</h5></li>
-                        <a href="resumenorden.html" class="btn btn-dark">Ver Orden</a>
+                        <a th:href="@{/orden}" class="btn btn-dark">Ver Orden</a>
                       </ul>
                     </div>
           

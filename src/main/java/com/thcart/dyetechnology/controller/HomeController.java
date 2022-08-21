@@ -23,9 +23,6 @@ import com.thcart.dyetechnology.model.entities.Orden;
 import com.thcart.dyetechnology.model.entities.Producto;
 import com.thcart.dyetechnology.model.service.IProductoService;
 
-
-
-
 @Controller
 public class HomeController {
 
@@ -36,36 +33,40 @@ public class HomeController {
     @Autowired
     IProductoService productoService;
 
-    //Para almacenar los detalles de la Orden.
+    // Para almacenar los detalles de la Orden.
+    // Y utilizar como variable Global...
     List<DetalleOrden> detalles = new ArrayList<DetalleOrden>();
 
-    //Almacena la Orden: Datos de la orden.
+    // Almacena la Orden: Datos de la orden.
     Orden orden = new Orden();
-    
-    @GetMapping({"/", "/home"})
-    public String home(Model model){
 
+    @GetMapping({ "/", "/home" })
+    public String home(Model model) {//
+        model.addAttribute("carrito", detalles);
+		model.addAttribute("orden", orden);
         model.addAttribute("titulo", "DyE Technology - Inicio");
         model.addAttribute("subtitle", "Tienda DyE Technology Oficial");
         model.addAttribute("productos", productoService.buscarTodos());
-        
+
         return "home";
     }
 
-
     @GetMapping("detalleproducto/{id}")
-    public String detalleProducto(@PathVariable("id") long id, Model model){
+    public String detalleProducto(@PathVariable("id") long id, Model model) {
         LOGGER.info("ID producto enviado como parametro {}", id);
         model.addAttribute("titulo", "DyE Technology - Detalles");
-        
+
         model.addAttribute("productos", productoService.buscarPorId(id));
         return "detalleProducto";
     }
 
-    //CAMBIAR ESTE METODO POR ALGUNO NUEVO UTILIZADO EN LAS CLASES - ESTO ES PARA PRUEBA!!!
+    // CAMBIAR ESTE METODO POR ALGUNO NUEVO UTILIZADO EN LAS CLASES - ESTO ES PARA
+    // PRUEBA!!!
+    // AGREGAR PRODUCTOS AL CARRITO
     @PostMapping("/carrito")
-    public String addCarrito(@RequestParam Long id, @RequestParam Integer cantidad, Model model){
+    public String addCarrito(@RequestParam Long id, @RequestParam Integer cantidad, Model model) {
 
+        model.addAttribute("titulo", "DyE Technology - Carrito");
         DetalleOrden detalleOrden = new DetalleOrden();
         Producto producto = new Producto();
         double sumaTotal = 0;
@@ -75,21 +76,101 @@ public class HomeController {
         LOGGER.info("Cantidad: {}", cantidad);
 
         producto = optionalProducto.get();
-            //
+        //
         detalleOrden.setCantidad(cantidad);
         detalleOrden.setPrecio(producto.getPrecio());
         detalleOrden.setNombre(producto.getNombre());
-        detalleOrden.setTotal(producto.getPrecio()*cantidad);
+        detalleOrden.setTotal(producto.getPrecio() * cantidad);
         detalleOrden.setProducto(producto);
 
-        detalles.add(detalleOrden);
+        // validar que le producto no se añada 2 veces
+        Long idProducto = producto.getId();
+        boolean ingresado = detalles.stream().anyMatch(p -> p.getProducto().getId() == idProducto);
 
-        sumaTotal = detalles.stream().mapToDouble(dt->dt.getTotal()).sum();
+        if (!ingresado) {
+            detalles.add(detalleOrden);
+        }
+
+        sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
+        orden.setTotal(sumaTotal);
+        model.addAttribute("carrito", detalles);
+        model.addAttribute("orden", orden);
+
+        return "carrito";
+    }
+
+    @GetMapping("/verCarrito")
+	public String verCarrito(Model model) {
+
+        model.addAttribute("titulo", "DyE Technology - Carrito");
+		
+		model.addAttribute("carrito", detalles);
+		model.addAttribute("orden", orden);
+		
+
+		return "carrito";
+	}
+
+    // PARA QUITAR PRODUCTOS DE LA LISTA DE CARRITO
+    @GetMapping("/delete/carrito/{id}")
+    public String delProdCarrito(@PathVariable("id") long id, Model model) {
+
+        // lista nueva de prodcutos
+        List<DetalleOrden> ordenesNueva = new ArrayList<DetalleOrden>();
+
+        for (DetalleOrden detalleOrden : detalles) {
+            if (detalleOrden.getProducto().getId() != id) {
+                ordenesNueva.add(detalleOrden);
+            }
+        }
+
+        // poner la nueva lista con los productos restantes
+        detalles = ordenesNueva;
+
+        double sumaTotal = 0;
+        sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
 
         orden.setTotal(sumaTotal);
         model.addAttribute("carrito", detalles);
         model.addAttribute("orden", orden);
-    
+
         return "carrito";
     }
+
+
+    //VERORDEN
+	@GetMapping("/orden")
+	public String verOrden(Model model) {
+		
+		model.addAttribute("carrito", detalles);
+		model.addAttribute("orden", orden);
+		
+		return "resumenorden";
+	}
+	
+	/* guardar la orden
+	@GetMapping("/guardarOrden")
+	public String guardarOrden() {
+		Date fechaCreacion = new Date();
+		orden.setFechaCreacion(fechaCreacion);
+		orden.setNumero(ordenService.generarNumeroOrden());
+		
+		//usuario
+		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())  ).get();
+		
+		orden.setUsuario(usuario);
+		ordenService.save(orden);
+		
+		//guardar detalles
+		for (DetalleOrden dt:detalles) {
+			dt.setOrden(orden);
+			detalleOrdenService.save(dt);
+		}
+		
+		///limpiar lista y orden
+		orden = new Orden();
+		detalles.clear();
+		
+		return "redirect:/";
+	}*/
 }
