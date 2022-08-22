@@ -71,17 +71,15 @@ public class SubCategoriaController {
     public String editarSubCategoria(@PathVariable("id") long id, Model model, Categoria categoria){
         
         SubCategoria subcategoria = (SubCategoria) subcategoriaService.buscarPorId(id);
-
-        model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
-
-        model.addAttribute("categorias", categoriaService.buscarTodos());
-
+        
         model.addAttribute("subtitulo", "Editar Sub Categoria");
 
         model.addAttribute("subcategorias", subcategoria);
         
-        model.addAttribute("subcategoriaAct", true);
-        
+        model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
+
+        model.addAttribute("categorias", categoriaService.buscarTodos());
+                
         return "subcategorias/form";
     } 
     
