@@ -10,7 +10,6 @@ import com.thcart.dyetechnology.model.repository.ISubCategoriaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -24,31 +23,26 @@ public class SubCategoriaServiceImpl implements ISubCategoriaService {
     ISubCategoriaRepository subcategoriaRepo;
     
     @Override
-    @Transactional(readOnly = true)
     public List<SubCategoria> buscarTodos() {
         return subcategoriaRepo.findAll();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<SubCategoria> buscarPor(String criterio) {
         return subcategoriaRepo.buscarPorCriterio(criterio);
     }
 
     @Override
-    @Transactional(readOnly = true)
     public SubCategoria buscarPorId(Long id) {
         return subcategoriaRepo.findById(id).orElse(null);
     }
 
     @Override
-    @Transactional
     public void guardar(SubCategoria subcategoria) {
         subcategoriaRepo.save(subcategoria);
     }
 
     @Override
-    @Transactional
     public void borrarPorId(Long id) {
         subcategoriaRepo.deleteById(id);
     }

@@ -4,7 +4,6 @@
  */
 package com.thcart.dyetechnology.model.service;
 
-import com.thcart.dyetechnology.model.entities.Categoria;
 import com.thcart.dyetechnology.model.entities.SubCategoria;
 import java.util.List;
 

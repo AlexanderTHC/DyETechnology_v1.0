@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html 
+    lang="es"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}"
+    >
+    <head>
+        <title th:text="${titulo}"></title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <div layout:fragment="contenido" class="conntenido">
+            
+           <!-- Page Content -->
+    <div class="container mt-3">
+        <!-- Page Heading/Breadcrumbs -->
+  
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+          <li class="breadcrumb-item active">Orden</li>
+        </ol>
+  
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+             <div class="col-lg-9">
+               <div class="card-body">
+                <h5 class="card-title">
+                  DATOS ORDEN
+                </h5>
+                <h6>Nombre:</h6>
+                <h6>Telefono:</h6>
+                <h6>Dirección:</h6>
+  
+                <h5 class="card-title">
+                  PRODUCTOS
+                </h5>
+                <div class="alert alert-light" role="alert">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="detOrden : ${carrito}">
+                       <td th:text="${detOrden.nombre}"></td>
+                       <td th:text="${detOrden.precio}"></td>
+                       <td th:text="${detOrden.cantidad}"></td>
+                       <td th:text="${detOrden.total}"></td>
+  
+                     </tr>
+                   </tbody>
+                 </table>
+               </div>
+  
+             </div>
+           </div>
+  
+  
+           <div class="col-lg-3">
+            <h2 class="card-title">Resumen Orden</h2>
+  
+            <ul class="list-group">
+              <li class="list-group-item"><h5 th:text=" 'Total: $'+ ${orden.total} "> </h5></li>
+              <a th:href="@{saveOrder}" class="btn btn-dark">Generar</a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- /.container -->
+            
+        </div>
+        
+        <script th:fragment="js"></script>
+    </body>
+</html>

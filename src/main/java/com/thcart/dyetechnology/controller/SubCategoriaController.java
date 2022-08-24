@@ -4,7 +4,6 @@
  */
 package com.thcart.dyetechnology.controller;
 
-import com.thcart.dyetechnology.model.entities.Categoria;
 import com.thcart.dyetechnology.model.entities.SubCategoria;
 import com.thcart.dyetechnology.model.service.ICategoriaService;
 import com.thcart.dyetechnology.model.service.ISubCategoriaService;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,7 +28,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/subcategorias")
-@SessionAttributes({"subcategoria"})
 public class SubCategoriaController {
     
     @Autowired
@@ -43,6 +40,8 @@ public class SubCategoriaController {
     
     @GetMapping("/listado")
     public String listadoSubCategorias(Model model) {
+
+        model.addAttribute("titulo", "DyE Technology - SubCategorias");
         
         model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
         
@@ -68,19 +67,20 @@ public class SubCategoriaController {
     } 
     
     @GetMapping("/editar/{id}")
-    public String editarSubCategoria(@PathVariable("id") long id, Model model, Categoria categoria){
+    public String editarSubCategoria(@PathVariable("id") long id, Model model){
         
-        SubCategoria subcategoria = (SubCategoria) subcategoriaService.buscarPorId(id);
-        
-        model.addAttribute("subtitulo", "Editar Sub Categoria");
-
-        model.addAttribute("subcategorias", subcategoria);
-        
-        model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
-
-        model.addAttribute("categorias", categoriaService.buscarTodos());
-                
-        return "subcategorias/form";
+    SubCategoria subcategoria = (SubCategoria) subcategoriaService.buscarPorId(id);
+    
+    model.addAttribute("subcategorias", subcategoriaService.buscarTodos());
+    
+    model.addAttribute("categorias", categoriaService.buscarTodos());
+    
+    model.addAttribute("subtitulo", "Editar Sub Categoria");
+    
+    model.addAttribute("departamento", subcategoria);
+    
+    
+    return "subcategorias/form";
     } 
     
     @PostMapping("/nuevo") //AGREGAR

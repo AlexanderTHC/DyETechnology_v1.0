@@ -12,7 +12,7 @@ public interface ICategoriaService {
     
     public Categoria buscarPorId(Long id);
     
-    public void guardar(Categoria Categoria);
+    public void guardar(Categoria categoria);
     
     public void borrarPorId(Long id);
 

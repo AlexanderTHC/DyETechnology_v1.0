@@ -66,15 +66,36 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+
     <hr>
-    <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores reprehenderit ratione quo similique nisi
-      neque, omnis ea eius accusantium nobis error sunt fuga. Repellendus sit placeat atque corporis quaerat nihil.</h2>
+    
+            <!-- Page Content -->
+            <div class="container">
+  
+              <!-- Page Features -->
+              <div class="row text-center">
+  
+                  <div class="col-lg-3 col-md-6 mb-4" th:each="p: ${productos}">
+                      <div class="card h-100">
+                          <img class="card-img-top" th:src="@{${p.imagen}}" alt="Imagen Producto">
+                          <div class="card-body">
+                              <p class="card-text fs-5 fw-bold" th:text="${p.nombre}"></p>
+                              <p class="card-text fs-5 fw-bold" th:text="'$'+${p.precio}"></p>
+                              <p class="card-text fs-5 fw-bold" th:text="${p.activo} ? 'En Stock' : 'Sin Stock'"  th:classappend="${p.activo} ? 'text-success' : 'text-danger'"></p>
+                          </div>
+                          <div class="card-footer">
+                              <a th:href="@{/detalleproducto/} + ${p.id}" class="btn btn-success">Ver producto</a>
+                          </div>
+                      </div>
+                  </div>
+  
+              </div>
+              <!-- /.row -->
+  
+          </div>
+          <!-- /.container -->
 
     <br>
-
-    <a class="d-flex align-items-center text-dark text-decoration-none text-black">
-      <span class="fs-2">Bienvenido 👋🥰, <span sec:authentication="name" style="color: rgb(0, 203, 0);"></span>. </span>
-    </a>
 
   </div>
 

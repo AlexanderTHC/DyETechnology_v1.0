@@ -37,7 +37,7 @@ public class CategoriaServiceImpl implements ICategoriaService {
 
     @Override
     public List<Categoria> buscarPor(String criterio) {
-        return null;
+        return categoriaRepo.buscarPorCriterio(criterio);
     }
 
     @Override

@@ -26,12 +26,12 @@ and open the template in the editor.
                     <div class="row mt-4">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="email" class="form-label">E-Mail</label>
+                                <label for="nombre" class="form-label">E-Mail</label>
                                 <div class="input-group form-group">
                                     <span class="input-group-text bg-light iconFormColor"><i class='bx bxs-envelope' ></i></span>
-                                    <input id="password" class="form-control form-color-saj bg-light text-black"
+                                    <input id="nombre" class="form-control form-color-saj bg-light text-black"
                                         type="text" required />
-                                    <div id="error-email"></div>
+                                    <div id="error-nombre"></div>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@ and open the template in the editor.
                                     <span class="input-group-text bg-light iconFormColor"><i class='bx bxs-key' ></i></span>
                                     <input id="password" class="form-control form-color-saj bg-light text-black"
                                         type="password" required />
-                                    <div id="error-email"></div>
+                                    <div id="error-password"></div>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@ and open the template in the editor.
                       </label>
                     </div>
                     
-                    <button class="w-100 btn btn-lg btn-info" type="submit">Ingresar</button>
+                        <button class="w-100 btn btn-lg btn-info" type="submit">Iniciar Sesión</button>
   
                     <div class="text-info">
                       <hr>
@@ -84,8 +84,8 @@ and open the template in the editor.
                 </div>
                   </form>
                 </div>
-                <div class="card-footer text-start fs-5">¿No tienes cuenta? 
-                    <a class="btn btn-info" th:href="@{/register}">Registrarse</a>
+                <div class="card-footer text-start fs-5">¿No tienes una cuenta? 
+                    <a class="btn btn-info" th:href="@{/registrarse/nuevo}">Registrarse</a>
                 </div>
               </div>
 

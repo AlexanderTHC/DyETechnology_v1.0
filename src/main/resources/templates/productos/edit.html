@@ -25,14 +25,14 @@ and open the template in the editor.
 
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a th:href="@{/administrador/home}">Home Administrador</a></li>
-                <li class="breadcrumb-item active">Formulario Productos</li>
+                <li class="breadcrumb-item active">Actualizar Productos</li>
             </ol>
 
 
             <div class="card bg-light">
-                <form th:action="@{/productos/nuevo}" method="post" th:object="${producto}" class="was-validated">
+                <form th:action="@{/productos/editar}" method="post" th:object="${producto}" class="was-validated">
                     <div class="card-header">
-                        <h5 th:text="${subtitulo}" class="fw-bold">Nuevo Producto</h5>
+                        <h5 th:text="${subtitulo}" class="fw-bold">Actualizar Producto</h5>
                     </div>
                     <fieldset>
                         <div class="card-body bg-light">
