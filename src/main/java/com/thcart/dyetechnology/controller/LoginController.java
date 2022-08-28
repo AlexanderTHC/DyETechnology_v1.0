@@ -2,23 +2,16 @@ package com.thcart.dyetechnology.controller;
 
 import java.security.Principal;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.thcart.dyetechnology.model.service.IRolService;
-import com.thcart.dyetechnology.model.service.IUsuarioService;
-
 @Controller
 public class LoginController {
-    
-    @Autowired
-    IUsuarioService userService;
-    @Autowired
-    IRolService rolService;
+
     
     @GetMapping("/login")
     public String iniciarSesion(
@@ -33,12 +26,13 @@ public class LoginController {
         }
 
         if(principal != null){
-            attribute.addFlashAttribute("bienvenida", "BIENVENIDO");
+            attribute.addFlashAttribute("sesionIniciada", "INICIADO");
             return "redirect:/home";
         }
 
         if(logout != null){
-            model.addAttribute("success", "FINALIZADO");
+            attribute.addFlashAttribute("sesionFinalizada", "FINALIZADO");
+            return "redirect:/";
         }
 
         return "login";

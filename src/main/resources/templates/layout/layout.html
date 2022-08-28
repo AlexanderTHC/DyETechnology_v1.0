@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>TODO supply a title</title>
@@ -55,11 +56,12 @@ CSS -->
 </head>
 
 <body>
-<!--bg-headnavdye-->
+    <!--bg-headnavdye-->
     <header class="p-3 bg-headnavdye text-white">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a th:href="@{/}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none sajlogo">
+                <a th:href="@{/}"
+                    class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none sajlogo">
                     <img src="/img/icondye.png" alt="logo" class="bi me-1" width="60" height="60">
                 </a>
 
@@ -118,7 +120,8 @@ CSS -->
                             <li><a class="dropdown-item" th:href="@{/administrador/home}">Admin</a></li>
                             <li><a class="dropdown-item" th:href="@{/productos/listado}">Productos Show</a></li>
                             <li><a class="dropdown-item" th:href="@{/categorias/listado}">Categorias Show</a></li>
-                            <li><a class="dropdown-item" th:href="@{/subcategorias/listado}">Sub Categorias Show</a></li>
+                            <li><a class="dropdown-item" th:href="@{/subcategorias/listado}">Sub Categorias Show</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- PRUEBAS DE ERROR (ADMINSITRADOR)-->
@@ -133,8 +136,18 @@ CSS -->
                 </form>
 
                 <div class="text-end">
-                    <a type="button" class="btn btn-outline-dark me-2" th:href="@{/login}"><i
-                            class="fas fa-user"></i>
+
+                    <button sec:authorize="isAuthenticated()" class="btn btn-outline-dark dropdown-toggle me-2 rounded-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Mis Ordenes</a></li>
+                        <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
+                      </ul>
+                    
+
+                    <a sec:authorize="!isAuthenticated()" type="button" class="btn btn-outline-dark me-2" th:href="@{/login}"><i class="fas fa-user"></i>
                         INGRESAR</a>
                     <a th:href="@{/verCarrito}" id="button" type="button" class="btn btn-warning btn-cart"><i
                             class="fas fa-shopping-cart"></i></a>
@@ -151,6 +164,9 @@ CSS -->
     <span id="success" th:text="${success}" hidden="true"></span>
     <span id="error" th:text="${error}" hidden="true"></span>
     <span id="warning" th:text="${warning}" hidden="true"></span>
+    <span id="sesionIniciada" th:text="${sesionIniciada}" hidden="true"></span>
+    <span id="sesionFinalizada" th:text="${sesionFinalizada}" hidden="true"></span>
+
     <!-- ALERTAS -->
 
     <!-- END nav -->
@@ -158,7 +174,7 @@ CSS -->
         <p>Contenido principal de las páginas</p>
     </div>
 
-    <!-- FIN CONTENIDO DE LA PAGINA --> 
+    <!-- FIN CONTENIDO DE LA PAGINA -->
 
     <!--//////////////////////// FOOTER //////////////////////////////-->
 
@@ -201,8 +217,9 @@ CSS -->
 
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a id="facebook" class="iconoSocial" href="https://www.facebook.com/DyE-Technology-102355051364795"
-                                    data-toggle="tooltip" data-placement="top" title="Facebook"><span
+                                <a id="facebook" class="iconoSocial"
+                                    href="https://www.facebook.com/DyE-Technology-102355051364795" data-toggle="tooltip"
+                                    data-placement="top" title="Facebook"><span
                                         class="fab fa-facebook color-facebook"></span>
                                 </a>
                                 <a id="instagram" class="iconoSocial" href="https://www.instagram.com/dyetechnology/"
@@ -242,7 +259,8 @@ CSS -->
                                         class="fas fa-check"></span></button>
                             </div>
                         </form>
-                        <p class="mt-2 text-dark">¡Suscribete para recibir notificación de todos nuestros productos nuevos!</p>
+                        <p class="mt-2 text-dark">¡Suscribete para recibir notificación de todos nuestros productos
+                            nuevos!</p>
                     </div>
                     <!--Grid column-->
                 </div>
@@ -271,10 +289,10 @@ CSS -->
         crossorigin="anonymous"></script>
 
     <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
     <!-- DATATABLE JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -292,9 +310,9 @@ CSS -->
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
         integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 
-       
-     
-     <!-- JQUERY MASK -->
+
+
+    <!-- JQUERY MASK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <!-- SLICK JS -->
