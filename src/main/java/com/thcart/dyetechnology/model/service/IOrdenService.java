@@ -1,5 +1,7 @@
 package com.thcart.dyetechnology.model.service;
 
+import java.util.List;
+
 import com.thcart.dyetechnology.model.entities.Orden;
 
 public interface IOrdenService { 
