@@ -17,4 +17,5 @@ public interface IUsuarioService {
     public void borrarPorId(Long id);
 
     public void activo(long id);
+
 }

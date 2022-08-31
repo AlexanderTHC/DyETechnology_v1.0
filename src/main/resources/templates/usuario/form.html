@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html 
+lang="es"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+layout:decorate="~{layout/layout}"
+>
+<head>
+        <title th:text="${titulo}"></title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Style -->
+        <link th:href="@{/css/userStyle.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div layout:fragment="contenido" class="conntenido">
+        
+    <div class="container">
+        <div class="main-body">
+
+            <nav aria-label="breadcrumb" class="main-breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Perfil de Usuario</li>
+                </ol>
+            </nav>
+    
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img alt="logo" th:src="@{/img/pngwing.com.png}" width="119"
+                                     class="d-flex mx-auto"/>
+                                <div class="mt-3">
+                                    <h4>Usuario</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <box-icon name='shopping-bag' ></box-icon>
+                                <h6 class="mb-0">Mis órdenes</h6>
+                                
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <box-icon name='heart' ></box-icon>
+                                <h6 class="mb-0">Mis favoritos</h6>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Nombre y apellido</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    Nombre y apellido
+                                </div>
+                            </div>
+                            <hr>                                
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    fip@jukmuh.al
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Nro de celular</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    (239) 816-9029
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">DNI</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    43.125.123
+                                </div>
+                            </div>
+                            <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Direccion</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        Chaco, Resistencia
+                                    </div>
+                                </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a class="btn btn-info float-end">
+                                        Editar Datos
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>       
+
+    <script th:fragment="js"></script>
+</body>
+</html>
