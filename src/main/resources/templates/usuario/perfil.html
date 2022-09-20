@@ -26,11 +26,11 @@ layout:decorate="~{layout/layout}"
             <nav aria-label="breadcrumb" class="main-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"> <a>Home</a> </li>
-                    <li class="breadcrumb-item active" aria-current="page">Perfil de Usuario</li>
+                    <li class="breadcrumb-item active" aria-current="page">Perfil</li>
                 </ol>
             </nav>
     
-            <div class="row gutters-sm">
+            <div class="row gutters-sm" th:each="u : ${usuario}">
                 <div class="col-md-4 mb-3" >
                     <div class="card" >
                         <div class="card-body">
@@ -38,7 +38,7 @@ layout:decorate="~{layout/layout}"
                                 <img alt="logo" th:src="@{/img/pngwing.com.png}" width="119"
                                      class="d-flex mx-auto"/>
                                 <div class="mt-3">
-                                    <h4>Usuario</h4>
+                                    <h4 th:text="${u.username}" >Usuario</h4>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,8 @@ layout:decorate="~{layout/layout}"
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-8" th:each="u : ${usuario}">
+                
+                <div class="col-md-8" >
                     <div class="card mb-3">
                         <div class="card-body">
                             <div class="row">
@@ -92,7 +93,7 @@ layout:decorate="~{layout/layout}"
                                     <h6 class="mb-0" >DNI</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <h6 th:text="${u.dni}" >123213</h6>
+                                    <h6 th:text="${u.dni}" ></h6>
                                 </div>
                             </div>
                             <hr>
@@ -106,18 +107,20 @@ layout:decorate="~{layout/layout}"
                                 </div>
                             <hr>
                             <div class="row">
+                                
                                 <div class="col-sm-12">
                                     <a class="btn btn-info float-end" data-bs-toogle="tooltip" 
-                                       data-bs-placement="bottom" th:href="@{/usuario/editar} + ${u.id}">
+                                       data-bs-placement="bottom" th:href="@{/editar/} + ${u.id}">
                                         Editar Datos
                                     </a>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
-
         </div>
     </div>
 

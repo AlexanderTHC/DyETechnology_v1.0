@@ -22,11 +22,11 @@ public class Usuario {
     private Long id;
     
     @NotEmpty
-    @Size(max = 30)
+    @Size(max = 30, min = 3, message = "El nombre debe de contener un minimo de 3 caracteres")
     private String nombre;
     
     @NotEmpty
-    @Size(max = 30)
+    @Size(max = 30, min = 4, message = "El apellido debe de contener un minimo de 4 caracteres")
     private String apellido;
     
     @NotEmpty
