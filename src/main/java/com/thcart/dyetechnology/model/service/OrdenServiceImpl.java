@@ -27,8 +27,8 @@ public class OrdenServiceImpl implements IOrdenService {
     }
 
     @Override
-    public List<Orden> buscarPor(String criterio) {
-        return null;
+    public List<Orden> buscarPorUsuarioOrden(String criterio) {
+        return ordenRepo.buscarPorUsuarioOrden(criterio);
     }
 
     @Override

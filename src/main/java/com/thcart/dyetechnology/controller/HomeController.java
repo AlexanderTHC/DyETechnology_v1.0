@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thcart.dyetechnology.model.entities.DetalleOrden;
 import com.thcart.dyetechnology.model.entities.Orden;
@@ -161,7 +162,7 @@ public class HomeController {
 	
 	 //Guardar la orden
 	@GetMapping("/guardarOrden")
-	public String guardarOrden(Principal principal) {
+	public String guardarOrden(Principal principal,RedirectAttributes attribute) {
 		Date fechaCreacion = new Date();
 		orden.setFechaCreacion(fechaCreacion);
 		orden.setNumero(ordenService.generarNumeroOrden());
@@ -179,8 +180,21 @@ public class HomeController {
 		//Limpiar lista y orden, para luego visualizarlo limpio.
 		orden = new Orden();
 		detalles.clear();
-		
+
+		attribute.addFlashAttribute("ordenGenerada", "ORDEN GENERADA");
 		return "redirect:/";
+	}
+
+    //Visualizar mis Ordenes
+	@GetMapping("/misOrdenes")
+	public String misOrdenes(Model model, Principal principal) {
+
+        model.addAttribute("titulo", "DyE Technology - Mis Ordenes");
+        model.addAttribute("ordenes", ordenService.buscarTodos());
+        //TODO: No funciona, buscar un metodo para visualizar las ordenes del usuario.
+        //model.addAttribute("ordenes", ordenService.buscarPorUsuarioOrden(principal.getName()));
+
+		return "misOrdenes";
 	}
 
 

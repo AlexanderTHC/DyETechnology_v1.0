@@ -9,7 +9,7 @@ public interface IOrdenService {
     
     public List<Orden> buscarTodos();
     
-    public List<Orden> buscarPor(String criterio);
+    public List<Orden> buscarPorUsuarioOrden(String criterio);
     
     public Orden buscarPorId(Long id);
     

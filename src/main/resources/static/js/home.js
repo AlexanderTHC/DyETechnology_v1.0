@@ -39,4 +39,20 @@ $(document).ready(function () {
             confirmButtonText: 'Aceptar'
         });
     }
+    //* CAMBIAR LUEGO PARA QUE SEA CON TEMPORIZADOR, PARA NO PRESIONAR EL BOTON ACEPTAR.
+    if ($("#ordenGenerada").text() !== "") {
+        Swal.fire({
+            icon: 'success',
+            text: 'La orden se genero con éxito',
+            backdrop: true,
+            title: '¡Éxito!',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            stopKeydownPropagation: false,
+            showConfirmButton: true,
+            confirmButtonColor: '#218838',
+            confirmButtonText: 'Aceptar'
+        });
+    }
  });
