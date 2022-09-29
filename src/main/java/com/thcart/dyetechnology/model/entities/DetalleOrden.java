@@ -25,8 +25,8 @@ public class DetalleOrden {
     private double total;
     private boolean activo;
     
-    // ??
-    @OneToOne
+    // Muchos detalles atados una Orden
+    @ManyToOne
     private Orden orden;
     
     @ManyToOne

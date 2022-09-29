@@ -150,7 +150,7 @@ public class HomeController {
     }
 
 
-    //VERORDEN
+    //ver orden
 	@GetMapping("/orden")
 	public String verOrden(Model model) {
 		
@@ -160,7 +160,7 @@ public class HomeController {
 		return "resumenorden";
 	}
 	
-	 //Guardar la orden
+	 //Guardar la compra
 	@GetMapping("/guardarOrden")
 	public String guardarOrden(Principal principal,RedirectAttributes attribute) {
 		Date fechaCreacion = new Date();
@@ -185,14 +185,31 @@ public class HomeController {
 		return "redirect:/";
 	}
 
-    //Visualizar mis Ordenes
-	@GetMapping("/misOrdenes")
-	public String misOrdenes(Model model, Principal principal) {
+    //Visualizar mis Compras
+	@GetMapping("/misCompras")
+	public String misCompras(Model model, Principal principal) {
 
     model.addAttribute("titulo", "DyE Technology - Mis Ordenes");
+    //Busca la orden por el Usuario que se encuentra logueado en ese momento.
     model.addAttribute("ordenes", ordenService.buscarOrdenUsuario(getUsuario(principal)));
 
-		return "misOrdenes";
+		return "misCompra";
+	}
+
+    //Visualizar Detalles de Compras
+	@GetMapping("/detalle/compra/{id}")
+	public String detalleCompra(@PathVariable("id") long id,Model model, Principal principal) {
+
+    model.addAttribute("titulo", "DyE Technology - Detalle de la Compra");
+    Orden orden = ordenService.buscarPorId(id);
+
+    //Para visualizar el Nro de Orden:
+    model.addAttribute("ordenes", ordenService.buscarPorId(id));
+
+    //Para visualizar el detalle de la orden:
+    model.addAttribute("detalles", orden.getDetalle());
+
+		return "detalleCompra";
 	}
 
 
