@@ -9,8 +9,6 @@ public interface IOrdenService {
     
     public List<Orden> buscarTodos();
     
-    public List<Orden> buscarPorUsuarioOrden(String criterio);
-    
     public Orden buscarPorId(Long id);
     
     public void guardar(Orden orden);
@@ -23,6 +21,9 @@ public interface IOrdenService {
 
     //OBTENER USUARIO POR
     public Usuario obtenerUsuarioPor(String emailUsuario);
+
+    //BUSCAR ORDEN DEL USUARIO 
+    public List<Orden> buscarOrdenUsuario(Usuario usuario);
 
 
 }

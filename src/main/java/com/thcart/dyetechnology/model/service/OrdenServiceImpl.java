@@ -27,11 +27,6 @@ public class OrdenServiceImpl implements IOrdenService {
     }
 
     @Override
-    public List<Orden> buscarPorUsuarioOrden(String criterio) {
-        return ordenRepo.buscarPorUsuarioOrden(criterio);
-    }
-
-    @Override
     public Orden buscarPorId(Long id) {
         return ordenRepo.findById(id).orElse(null);
     }
@@ -111,6 +106,11 @@ public class OrdenServiceImpl implements IOrdenService {
     @Transactional(readOnly = true)
     public Usuario obtenerUsuarioPor(String emailUsuario) {
         return usuarioRepo.findByEmail(emailUsuario);
+    }
+
+    @Override
+    public List<Orden> buscarOrdenUsuario(Usuario usuario) {
+        return ordenRepo.findByUsuario(usuario);
     }
     
 

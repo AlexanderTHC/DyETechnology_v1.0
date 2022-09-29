@@ -3,11 +3,10 @@ package com.thcart.dyetechnology.model.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.thcart.dyetechnology.model.entities.Orden;
+import com.thcart.dyetechnology.model.entities.Usuario;
 
 @Repository
 public interface IOrdenRepository extends JpaRepository<Orden, Long> {
@@ -16,8 +15,7 @@ public interface IOrdenRepository extends JpaRepository<Orden, Long> {
     // List<Orden> buscarPorCriterio(@Param("criterio") String criterio);
     
     // BUSCAR POR USUARIO LAS ORDENES:
-    @Query("select ord from Orden ord where ord.usuario like %:criterio%") // == CONSULTA
-    public List<Orden> buscarPorUsuarioOrden(@Param("criterio") String criterio);
+    public List<Orden> findByUsuario(Usuario usuario);
 
     public Orden activo(long id);
 

@@ -189,10 +189,8 @@ public class HomeController {
 	@GetMapping("/misOrdenes")
 	public String misOrdenes(Model model, Principal principal) {
 
-        model.addAttribute("titulo", "DyE Technology - Mis Ordenes");
-        model.addAttribute("ordenes", ordenService.buscarTodos());
-        //TODO: No funciona, buscar un metodo para visualizar las ordenes del usuario.
-        //model.addAttribute("ordenes", ordenService.buscarPorUsuarioOrden(principal.getName()));
+    model.addAttribute("titulo", "DyE Technology - Mis Ordenes");
+    model.addAttribute("ordenes", ordenService.buscarOrdenUsuario(getUsuario(principal)));
 
 		return "misOrdenes";
 	}
