@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thcart.dyetechnology.model.entities.Orden;
+import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.repository.IOrdenRepository;
+import com.thcart.dyetechnology.model.repository.IUsuarioRepository;
 
 
 @Service
@@ -15,6 +18,9 @@ public class OrdenServiceImpl implements IOrdenService {
     @Autowired
     IOrdenRepository ordenRepo;
 
+    @Autowired
+    IUsuarioRepository usuarioRepo;
+
     @Override
     public List<Orden> buscarTodos() {
         return ordenRepo.findAll();
@@ -22,7 +28,6 @@ public class OrdenServiceImpl implements IOrdenService {
 
     @Override
     public List<Orden> buscarPor(String criterio) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -100,6 +105,12 @@ public class OrdenServiceImpl implements IOrdenService {
 		}			
 		
 		return numeroConcatenado;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario obtenerUsuarioPor(String emailUsuario) {
+        return usuarioRepo.findByEmail(emailUsuario);
     }
     
 

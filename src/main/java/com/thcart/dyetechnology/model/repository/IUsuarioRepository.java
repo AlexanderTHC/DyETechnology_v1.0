@@ -20,5 +20,8 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("select us from Usuario us where us.nombre like %:criterio% and us.activo = true") // == CONSULTA
     List<Usuario> buscarPorCriterio(@Param("criterio") String criterio);
     
+    /* UTILIZADO PARA BUSCAR POR EMAIL */
+    public Usuario findByEmail(String emailUsuario);
+    
     public Usuario activo(long id);
 }

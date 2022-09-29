@@ -4,7 +4,9 @@
  */
 package com.thcart.dyetechnology.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.thcart.dyetechnology.model.entities.DetalleOrden;
 import com.thcart.dyetechnology.model.entities.Orden;
 import com.thcart.dyetechnology.model.entities.Producto;
+import com.thcart.dyetechnology.model.entities.Usuario;
+import com.thcart.dyetechnology.model.service.IDetalleOrdenService;
+import com.thcart.dyetechnology.model.service.IOrdenService;
 import com.thcart.dyetechnology.model.service.IProductoService;
 
 @Controller
@@ -32,6 +37,12 @@ public class HomeController {
 
     @Autowired
     IProductoService productoService;
+
+    @Autowired
+    IOrdenService ordenService;
+
+    @Autowired  
+    IDetalleOrdenService detalleOrdenService;
 
     // Para almacenar los detalles de la Orden.
     // Y utilizar como variable Global...
@@ -148,29 +159,34 @@ public class HomeController {
 		return "resumenorden";
 	}
 	
-	/* guardar la orden
+	 //Guardar la orden
 	@GetMapping("/guardarOrden")
-	public String guardarOrden() {
+	public String guardarOrden(Principal principal) {
 		Date fechaCreacion = new Date();
 		orden.setFechaCreacion(fechaCreacion);
 		orden.setNumero(ordenService.generarNumeroOrden());
 		
-		//usuario
-		Usuario usuario =usuarioService.findById( Integer.parseInt(session.getAttribute("idusuario").toString())  ).get();
+		//Obtener usuario y guardar los datos en la Orden
+		orden.setUsuario(getUsuario(principal));
+		ordenService.guardar(orden);
 		
-		orden.setUsuario(usuario);
-		ordenService.save(orden);
-		
-		//guardar detalles
+		//Guardar los detalles
 		for (DetalleOrden dt:detalles) {
 			dt.setOrden(orden);
-			detalleOrdenService.save(dt);
+			detalleOrdenService.guardar(dt);
 		}
 		
-		///limpiar lista y orden
+		//Limpiar lista y orden, para luego visualizarlo limpio.
 		orden = new Orden();
 		detalles.clear();
 		
 		return "redirect:/";
-	}*/
+	}
+
+
+    //OBTENER USUARIO LOGUEADO:
+    private Usuario getUsuario(Principal principal) {
+        Usuario usuario = ordenService.obtenerUsuarioPor(principal.getName());
+        return usuario;
+    }
 }
