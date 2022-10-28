@@ -17,8 +17,11 @@ import org.springframework.data.repository.query.Param;
  */
 public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    @Query("select us from Usuario us where us.nombre like %:criterio% and us.activo = true") // == CONSULTA
+    @Query("select u from Usuario u where u.nombre like %:criterio% and u.activo = true") // == CONSULTA
     List<Usuario> buscarPorCriterio(@Param("criterio") String criterio);
+    
+    @Query("select u from Usuario u where u.email = :email")
+    Usuario buscarPorEmail(@Param("email") String email);
     
     public Usuario activo(long id);
 }

@@ -7,8 +7,10 @@ package com.thcart.dyetechnology.controller;
 import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.service.IUsuarioService;
 import java.security.Principal;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.server.Http2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,9 +35,11 @@ public class UsuarioController {
     IUsuarioService usuarioService;
     
     @GetMapping("/perfil")
-    public String perfil(Model model, Principal principal){
+    public String perfil(Model model, Principal principal, HttpSession session){
         
-        Usuario usuario = usuarioService.buscarPorId((long)1);
+        Long idUser = Long.parseLong(session.getAttribute("usuario.id").toString());
+        Usuario usuario = usuarioService.buscarPorId(idUser);
+        
         model.addAttribute("usuario", usuario);        
         principal.getName();
 

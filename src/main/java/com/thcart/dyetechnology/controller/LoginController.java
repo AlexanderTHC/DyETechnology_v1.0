@@ -1,6 +1,13 @@
 package com.thcart.dyetechnology.controller;
 
+import com.thcart.dyetechnology.model.entities.Usuario;
+import com.thcart.dyetechnology.model.service.UsuarioServiceImpl;
 import java.security.Principal;
+import java.util.Optional;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
-
+    
+    @Autowired
+    private UsuarioServiceImpl usuarioService;
     
     @GetMapping("/login")
     public String iniciarSesion(
@@ -37,5 +46,18 @@ public class LoginController {
 
         return "login";
     }
+    
+    @GetMapping("/login_success")
+    public String sesionIniciada(HttpSession session, Authentication auth, Principal principal){
+        
+        auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        Usuario usuario = usuarioService.buscarPorEmail(email);
+        session.setAttribute("usuario.id", usuario.getId());
+                
+        return"redirect:/";
+    }
+    
+
        
 }

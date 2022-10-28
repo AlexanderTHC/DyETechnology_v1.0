@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.service.IRolService;
 import com.thcart.dyetechnology.model.service.IUsuarioService;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/registrarse")

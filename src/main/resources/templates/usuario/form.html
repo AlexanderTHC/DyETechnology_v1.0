@@ -178,17 +178,18 @@ and open the template in the editor.
 
                                     </div>
                                     <div class="row">
-
+                                        
                                         <div class="col-md-6 mb-4">
                                             <div class="form">
-                                                <label for="dir" class="form-label" >Direccion</label>
+                                                <label for="dir" class="form-label" >Dirección</label>
                                                 <input id="dir" type="text" class="form-control" th:field="*{direccion}"
-                                                       th:errorclass="'form-control alert-danger'" placeholder="Ej: Vedia 21xx"/>
+                                                       th:errorclass="'form-control alert-danger'"/>
                                                 <small class="form-text text-danger" th:errors="*{direccion}" 
                                                        th:if="${#fields.hasErrors('direccion')}"></small>
 
                                             </div>
                                         </div>
+                                        
                                         <div class="col-md-6 mb-4">
                                             <div class="form">
                                                 <label for="dni" class="form-label" >DNI</label>
