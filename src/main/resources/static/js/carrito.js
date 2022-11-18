@@ -15,7 +15,7 @@ async function cambiarCantidadasheee(e)
     const cantidad = e.target.value;
 
     const form = new FormData();
-    form.append("carritoId", carritoId);
+    form.append("id", carritoId);
     form.append("cantidad", cantidad);
 
     const api = await fetch(`${window.location.origin}/carrito/sumarcantidaddenasheeeee`,
@@ -25,5 +25,7 @@ async function cambiarCantidadasheee(e)
     });
 
     const response = await api.json();
+
+    console.log(response);
 
 }

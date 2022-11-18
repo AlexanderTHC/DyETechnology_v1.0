@@ -35,6 +35,8 @@ import com.thcart.dyetechnology.model.service.UsuarioServiceImpl;
 @RequestMapping(value = "/carrito", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CarritoController
 {
+    private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
+
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
@@ -75,12 +77,15 @@ public class CarritoController
     }
 
     @PostMapping("/sumarcantidaddenasheeeee")
-    public @ResponseBody Map<String, Object> sumarcantidaddenasheeeee(@RequestBody String body)
+    public @ResponseBody Carrito sumarcantidaddenasheeeee(Carrito fromJs)
     {
-        Map<String, Object> json = new HashMap<>();
-        json.put("carritoId", body);
-        //json.put("cantidad", cantidad);
-        return json;
+        Carrito carrito = carritoRepository.findById(fromJs.getId()).get();
+
+        carrito.setCantidad(fromJs.getCantidad());
+        carritoRepository.save(carrito);
+
+        //LOGGER.info("CARRITO: {}", carrito);
+        return carrito;
     }
 
     private String getEmail()
