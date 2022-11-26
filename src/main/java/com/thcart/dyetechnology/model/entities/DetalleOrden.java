@@ -24,7 +24,10 @@ public class DetalleOrden {
     private double precio;
     private double total;
     private boolean activo;
-    
+    //
+    @OneToOne
+    private Usuario usuario;
+
     // Muchos detalles atados una Orden
     @ManyToOne
     private Orden orden;
@@ -101,10 +104,20 @@ public class DetalleOrden {
         this.producto = producto;
     }
     
+    //Prueba de obtener usuario y almecenar el usuario.
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
     
     @Override
     public String toString() {
         return "DetalleOrden{" + "id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", total=" + total + ", activo=" + activo + '}';
     }
+
+    
     
 }

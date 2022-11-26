@@ -3,12 +3,13 @@ package com.thcart.dyetechnology.model.service;
 import java.util.List;
 
 import com.thcart.dyetechnology.model.entities.DetalleOrden;
+import com.thcart.dyetechnology.model.entities.Usuario;
 
 public interface IDetalleOrdenService { 
     
     public List<DetalleOrden> buscarTodos();
     
-    public List<DetalleOrden> buscarPor(String criterio);
+    public List<DetalleOrden> buscarPor(String usuario);
     
     public DetalleOrden buscarPorId(Long id);
     
@@ -17,5 +18,7 @@ public interface IDetalleOrdenService {
     public void borrarPorId(Long id);
 
     public void activo(long id);
+
+    public boolean existeUsuario(Usuario nomUsuario);
 
 }

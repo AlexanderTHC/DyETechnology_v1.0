@@ -29,6 +29,8 @@ import com.thcart.dyetechnology.model.service.IDetalleOrdenService;
 import com.thcart.dyetechnology.model.service.IOrdenService;
 import com.thcart.dyetechnology.model.service.IProductoService;
 
+import javafx.scene.control.Alert;
+
 @Controller
 public class HomeController {
 
@@ -76,17 +78,23 @@ public class HomeController {
     // PRUEBA!!!
     // AGREGAR PRODUCTOS AL CARRITO
     @PostMapping("/carrito")
-    public String addCarrito(@RequestParam Long id, @RequestParam Integer cantidad, Model model) {
+    public String addCarrito(@RequestParam Long productId, @RequestParam Integer cantidad, Model model, Principal principal) {
 
         model.addAttribute("titulo", "DyE Technology - Carrito");
         DetalleOrden detalleOrden = new DetalleOrden();
         Producto producto = new Producto();
         double sumaTotal = 0;
 
-        Optional<Producto> optionalProducto = productoService.get(id);
+        Optional<Producto> optionalProducto = productoService.get(productId);
         LOGGER.info("Producto agrego al Carrito: {}", optionalProducto.get());
         LOGGER.info("Cantidad: {}", cantidad);
 
+        
+        if(principal == null) {
+            LOGGER.info("Debe iniciar sesión");
+            //AQUI COLOCAR UN MENSAGE DE SWEET ALERT !!
+            return "redirect:/home";
+         }
         producto = optionalProducto.get();
         //
         detalleOrden.setCantidad(cantidad);
@@ -94,6 +102,9 @@ public class HomeController {
         detalleOrden.setNombre(producto.getNombre());
         detalleOrden.setTotal(producto.getPrecio() * cantidad);
         detalleOrden.setProducto(producto);
+        detalleOrden.setActivo(true);
+        detalleOrden.setUsuario(getUsuario(principal));
+        
 
         // validar que le producto no se añada 2 veces
         Long idProducto = producto.getId();
@@ -105,6 +116,8 @@ public class HomeController {
 
         sumaTotal = detalles.stream().mapToDouble(dt -> dt.getTotal()).sum();
         orden.setTotal(sumaTotal);
+        detalleOrdenService.guardar(detalleOrden);
+        //prueba de z4x.
         model.addAttribute("carrito", detalles);
         model.addAttribute("orden", orden);
 
@@ -112,15 +125,24 @@ public class HomeController {
     }
 
     @GetMapping("/verCarrito")
-	public String verCarrito(Model model) {
+	public String verCarrito(Model model, Principal principal) {
 
         model.addAttribute("titulo", "DyE Technology - Carrito");
 		
-		model.addAttribute("carrito", detalles);
-		model.addAttribute("orden", orden);
-		
+        //if()
+       
+        if(!detalleOrdenService.existeUsuario(getUsuario(principal))){
+            Usuario usuario = getUsuario(principal);
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println(usuario);
+            model.addAttribute("carrito", detalles);
+            model.addAttribute("orden", orden);
+            return "carrito";
+        }
 
-		return "carrito";
+		return "home";
 	}
 
     // PARA QUITAR PRODUCTOS DE LA LISTA DE CARRITO
@@ -153,7 +175,7 @@ public class HomeController {
     //ver orden
 	@GetMapping("/orden")
 	public String verOrden(Model model) {
-		
+	
 		model.addAttribute("carrito", detalles);
 		model.addAttribute("orden", orden);
 		
@@ -174,6 +196,7 @@ public class HomeController {
 		//Guardar los detalles
 		for (DetalleOrden dt:detalles) {
 			dt.setOrden(orden);
+            dt.setActivo(false); //prueba 1
 			detalleOrdenService.guardar(dt);
 		}
 		

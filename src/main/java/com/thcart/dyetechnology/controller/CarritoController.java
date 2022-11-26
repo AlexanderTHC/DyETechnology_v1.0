@@ -2,6 +2,7 @@ package com.thcart.dyetechnology.controller;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.MediaType;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thcart.dyetechnology.model.entities.Carrito;
 import com.thcart.dyetechnology.model.entities.Orden;
@@ -31,7 +34,7 @@ import com.thcart.dyetechnology.model.service.ProductoServiceImpl;
 import com.thcart.dyetechnology.model.service.UsuarioServiceImpl;
 
 
-@Controller
+/*@Controller
 @RequestMapping(value = "/carrito", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CarritoController
 {
@@ -45,9 +48,9 @@ public class CarritoController
 
     @Autowired
     private ICarritoRepository carritoRepository;
-
+*/
     
-    @GetMapping("/verCarrito")
+   /* @GetMapping("/verCarrito")
 	public String verCarrito(Model model) 
     {
         Usuario usuario = usuarioRepository.findByEmail(getEmail());
@@ -57,14 +60,15 @@ public class CarritoController
 		return "carrito2";
 	}
 
+   
     @PostMapping("/añadir")
     public String add(@RequestParam Long productId, @RequestParam Integer cantidad)
     {
         Usuario usuario = usuarioRepository.findByEmail(getEmail());
         Producto producto = productService.buscarPorId(productId);
-        usuario.setRol(null); // Sino tira error xd
+        //usuario.setRol(null); // Sino tira error xd
 
-        if(carritoRepository.isProductInCart(usuario.getId(), producto.getId()).isEmpty())
+        if(carritoRepository.isProductInCart(usuario.getId(), producto.getId()) == null)
         {
             Carrito carrito = new Carrito();
             carrito.setProducto(producto);
@@ -76,6 +80,7 @@ public class CarritoController
         return "redirect:/carrito/verCarrito";
     }
 
+
     @PostMapping("/sumarcantidaddenasheeeee")
     public @ResponseBody Carrito sumarcantidaddenasheeeee(Carrito fromJs)
     {
@@ -86,11 +91,12 @@ public class CarritoController
 
         //LOGGER.info("CARRITO: {}", carrito);
         return carrito;
-    }
+    }*/
 
     private String getEmail()
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
+    
 }

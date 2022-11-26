@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thcart.dyetechnology.model.entities.DetalleOrden;
+import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.repository.IDetalleOrdenRepository;
 
 
@@ -48,6 +49,12 @@ public class DetalleOrdenServiceImpl implements IDetalleOrdenService {
     public void activo(long id) {
        detalleRepo.activo(id);
         
+    }
+
+    @Override
+    public boolean existeUsuario(Usuario nomUsuario) {
+        // TODO Auto-generated method stub
+        return false;
     }
     
 }
