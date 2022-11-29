@@ -13,8 +13,9 @@ import com.thcart.dyetechnology.model.entities.Usuario;
 @Repository
 public interface IDetalleOrdenRepository extends JpaRepository<DetalleOrden, Long> {
     
-    /*@Query("select do from DetalleOrden do where do.usuario like %:usuario% and do.activo = true") // == CONSULTA
-    List<DetalleOrden> buscarPor(@Param("usuario") String usuario);*/
+    //CONSULTA Y TRAER LOS DATOS DEL DETALLE ORDEN DEL USUARIO.
+    @Query("select do from DetalleOrden do where do.usuario like %:usuario% and do.activo = true") // == CONSULTA
+    List<DetalleOrden> buscarPor(@Param("usuario") Usuario usuario);
     
     public DetalleOrden activo(long id);
 

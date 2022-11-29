@@ -10,15 +10,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.SessionEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thcart.dyetechnology.model.entities.DetalleOrden;
@@ -28,8 +31,7 @@ import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.service.IDetalleOrdenService;
 import com.thcart.dyetechnology.model.service.IOrdenService;
 import com.thcart.dyetechnology.model.service.IProductoService;
-
-import javafx.scene.control.Alert;
+import com.thcart.dyetechnology.model.service.IUsuarioService;
 
 @Controller
 public class HomeController {
@@ -46,6 +48,9 @@ public class HomeController {
 
     @Autowired  
     IDetalleOrdenService detalleOrdenService;
+
+    @Autowired
+    IUsuarioService usuarioService;
 
     // Para almacenar los detalles de la Orden.
     // Y utilizar como variable Global...
@@ -78,7 +83,7 @@ public class HomeController {
     // PRUEBA!!!
     // AGREGAR PRODUCTOS AL CARRITO
     @PostMapping("/carrito")
-    public String addCarrito(@RequestParam Long productId, @RequestParam Integer cantidad, Model model, Principal principal) {
+    public String addCarrito(@RequestParam Long productId, @RequestParam Integer cantidad, Model model,RedirectAttributes redirect, Principal principal) {
 
         model.addAttribute("titulo", "DyE Technology - Carrito");
         DetalleOrden detalleOrden = new DetalleOrden();
@@ -91,9 +96,10 @@ public class HomeController {
 
         
         if(principal == null) {
+            redirect.addFlashAttribute("errorCarrito", "Debe iniciar sesión para continuar");
             LOGGER.info("Debe iniciar sesión");
             //AQUI COLOCAR UN MENSAGE DE SWEET ALERT !!
-            return "redirect:/home";
+            return "redirect:/detalleproducto/"+productId;
          }
         producto = optionalProducto.get();
         //
@@ -128,21 +134,17 @@ public class HomeController {
 	public String verCarrito(Model model, Principal principal) {
 
         model.addAttribute("titulo", "DyE Technology - Carrito");
-		
-        //if()
-       
-        if(!detalleOrdenService.existeUsuario(getUsuario(principal))){
+		Usuario usuarioID = usuarioService.buscarPorId(getUserId(principal));
             Usuario usuario = getUsuario(principal);
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println(usuario);
-            model.addAttribute("carrito", detalles);
+            System.out.println(""); //
+            System.out.println(""); //
+            System.out.println(usuarioID); 
+            System.out.println(""); //
+            System.out.println(usuario);    
+            model.addAttribute("carrito", detalleOrdenService.buscarPor(usuarioID));
             model.addAttribute("orden", orden);
-            return "carrito";
-        }
 
-		return "home";
+            return "carrito";
 	}
 
     // PARA QUITAR PRODUCTOS DE LA LISTA DE CARRITO
@@ -240,5 +242,13 @@ public class HomeController {
     private Usuario getUsuario(Principal principal) {
         Usuario usuario = ordenService.obtenerUsuarioPor(principal.getName());
         return usuario;
+    }
+
+    //
+    private Long getUserId(Principal principal) {
+        String userString = principal.toString();
+        int startIndex = userString.indexOf("id=");
+        int endIndex = userString.indexOf(",", startIndex);
+        return Long.valueOf(userString.substring(startIndex + 3, endIndex));
     }
 }

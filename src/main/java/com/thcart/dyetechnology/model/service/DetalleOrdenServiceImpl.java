@@ -22,10 +22,10 @@ public class DetalleOrdenServiceImpl implements IDetalleOrdenService {
         return detalleRepo.findAll();
     }
 
+    //BUSCAR POR USUARIO.
     @Override
-    public List<DetalleOrden> buscarPor(String criterio) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<DetalleOrden> buscarPor(Usuario usuario) {
+        return detalleRepo.buscarPor(usuario);
     }
 
     @Override

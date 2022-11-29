@@ -91,7 +91,7 @@ public class CarritoController
 
         //LOGGER.info("CARRITO: {}", carrito);
         return carrito;
-    }*/
+    }
 
     private String getEmail()
     {
@@ -99,4 +99,4 @@ public class CarritoController
         return authentication.getName();
     }
     
-}
+}*/

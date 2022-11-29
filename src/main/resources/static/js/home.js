@@ -55,4 +55,29 @@ $(document).ready(function () {
             confirmButtonText: 'Aceptar'
         });
     }
+    if ($("#errorCarrito").text() !== "") {
+        Swal.fire({
+            icon: 'error',
+            text: 'Debera iniciar sesión para poder agregar productos al carrito.',
+            backdrop: true,
+            title: '¡Error!',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            stopKeydownPropagation: false,
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonColor: '#218838',
+            confirmButtonText: 'Iniciar Sesión',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = "/login";
+            }
+       /* }).then((result) => {
+            if (result.isCancelled) {
+                location.href = "/home";
+            }*/
+        });
+    }
  });

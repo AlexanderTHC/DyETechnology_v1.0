@@ -9,7 +9,7 @@ public interface IDetalleOrdenService {
     
     public List<DetalleOrden> buscarTodos();
     
-    public List<DetalleOrden> buscarPor(String usuario);
+    public List<DetalleOrden> buscarPor(Usuario usuario);
     
     public DetalleOrden buscarPorId(Long id);
     
