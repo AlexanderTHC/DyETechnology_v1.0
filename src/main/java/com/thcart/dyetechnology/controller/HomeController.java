@@ -28,6 +28,7 @@ import com.thcart.dyetechnology.model.entities.DetalleOrden;
 import com.thcart.dyetechnology.model.entities.Orden;
 import com.thcart.dyetechnology.model.entities.Producto;
 import com.thcart.dyetechnology.model.entities.Usuario;
+import com.thcart.dyetechnology.model.repository.ICarritoRepository;
 import com.thcart.dyetechnology.model.service.IDetalleOrdenService;
 import com.thcart.dyetechnology.model.service.IOrdenService;
 import com.thcart.dyetechnology.model.service.IProductoService;
@@ -51,6 +52,10 @@ public class HomeController {
 
     @Autowired
     IUsuarioService usuarioService;
+
+    //CAMBIAR A SERVICES
+    @Autowired
+    ICarritoRepository carritoRepository;
 
     // Para almacenar los detalles de la Orden.
     // Y utilizar como variable Global...
@@ -134,14 +139,12 @@ public class HomeController {
 	public String verCarrito(Model model, Principal principal) {
 
         model.addAttribute("titulo", "DyE Technology - Carrito");
-		Usuario usuarioID = usuarioService.buscarPorId(getUserId(principal));
             Usuario usuario = getUsuario(principal);
             System.out.println(""); //
             System.out.println(""); //
-            System.out.println(usuarioID); 
-            System.out.println(""); //
+            System.out.println("Usuario encontrado: "); //
             System.out.println(usuario);    
-            model.addAttribute("carrito", detalleOrdenService.buscarPor(usuarioID));
+            model.addAttribute("carrito", carritoRepository.findAll()); //carritoRepository.findByUsuario(usuario));
             model.addAttribute("orden", orden);
 
             return "carrito";

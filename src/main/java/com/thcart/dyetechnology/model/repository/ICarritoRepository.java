@@ -17,6 +17,8 @@ public interface ICarritoRepository extends JpaRepository<Carrito, Integer>
 {
     List<Carrito> findByUsuario(Usuario usuario); 
 
+    List<Carrito> findAllById();
+
     @Query(value = "SELECT * FROM carritos WHERE usuario_id = :usuarioId AND producto_id = :productId", nativeQuery = true)
     Optional<Carrito> isProductInCart(@Param("usuarioId") Long usuarioId, @Param("productId") Long productId);
 }
