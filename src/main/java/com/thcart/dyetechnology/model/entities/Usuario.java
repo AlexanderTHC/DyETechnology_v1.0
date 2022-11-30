@@ -1,6 +1,9 @@
 package com.thcart.dyetechnology.model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -59,16 +62,22 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
     // 
+
+    // Carrito del usuario
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private List<Carrito> carrito = new ArrayList<>();
+
     
     public Usuario() {
         activo = true;
     }
 
     public Usuario(Long id, @NotEmpty @Size(max = 30) String nombre, @NotEmpty @Size(max = 30) String apellido,
-            @NotEmpty @Size(max = 30) String username, @NotEmpty String email, @NotEmpty String direccion,
-            @NotEmpty String dni, @NotEmpty String telefono,
+            @NotEmpty @Size(max = 30) String username, @NotEmpty String email, String direccion, String dni,
+            String telefono,
             @NotEmpty @Size(max = 110, min = 1, message = "La contraseña debe tener al menos 6 caracteres") String clave,
-            Rol rol, boolean activo, List<Producto> producto, List<Orden> ordenes) {
+            Rol rol, boolean activo, List<Producto> producto, List<Orden> ordenes, List<Carrito> carrito) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -82,6 +91,7 @@ public class Usuario {
         this.activo = activo;
         this.producto = producto;
         this.ordenes = ordenes;
+        this.carrito = carrito;
     }
 
     public Long getId() {
@@ -132,6 +142,14 @@ public class Usuario {
         this.direccion = direccion;
     }
 
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -148,7 +166,6 @@ public class Usuario {
         this.clave = clave;
     }
 
-
     public Rol getRol() {
         return rol;
     }
@@ -163,14 +180,6 @@ public class Usuario {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
     }
 
     public List<Producto> getProducto() {
@@ -189,12 +198,19 @@ public class Usuario {
         this.ordenes = ordenes;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", username=" + username + ", email=" + email + ", direccion=" + direccion + ", dni=" + dni + ", telefono=" + telefono + ", clave=" + clave + ", rol=" + rol + ", activo=" + activo + '}';
+    public List<Carrito> getCarrito() {
+        return carrito;
     }
 
-   
+    public void setCarrito(List<Carrito> carrito) {
+        this.carrito = carrito;
+    }
 
- 
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", username=" + username
+                + ", email=" + email + ", direccion=" + direccion + ", dni=" + dni + ", telefono=" + telefono
+                + ", clave=" + clave + ", rol=" + rol + ", activo=" + activo + ", producto=" + producto + ", ordenes="
+                + ordenes + ", carrito=" + carrito + "]";
+    }
 }

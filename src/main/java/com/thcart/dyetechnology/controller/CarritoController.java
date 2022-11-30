@@ -1,102 +1,72 @@
 package com.thcart.dyetechnology.controller;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.http.MediaType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thcart.dyetechnology.model.entities.Carrito;
-import com.thcart.dyetechnology.model.entities.Orden;
 import com.thcart.dyetechnology.model.entities.Producto;
 import com.thcart.dyetechnology.model.entities.Usuario;
-import com.thcart.dyetechnology.model.repository.ICarritoRepository;
 import com.thcart.dyetechnology.model.repository.IUsuarioRepository;
-import com.thcart.dyetechnology.model.service.CarritoServiceImpl;
 import com.thcart.dyetechnology.model.service.ProductoServiceImpl;
-import com.thcart.dyetechnology.model.service.UsuarioServiceImpl;
 
 
-/*@Controller
-@RequestMapping(value = "/carrito", produces = MediaType.APPLICATION_JSON_VALUE)
+@Controller
+@RequestMapping(value = "/carrito")
 public class CarritoController
 {
-    private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
-
     @Autowired
     private IUsuarioRepository usuarioRepository;
 
     @Autowired
     private ProductoServiceImpl productService;
 
-    @Autowired
-    private ICarritoRepository carritoRepository;
-*/
     
-   /* @GetMapping("/verCarrito")
-	public String verCarrito(Model model) 
+    @GetMapping(value = {"", "/"})
+    public String index(Model model, Principal principal)
     {
-        Usuario usuario = usuarioRepository.findByEmail(getEmail());
+        Usuario usuario = usuarioRepository.findByEmail(principal.getName()); // Obtener el Usuario a través del email
 
-        model.addAttribute("titulo", "DyE Technology - Carrito");
-		model.addAttribute("carrito", carritoRepository.findByUsuario(usuario));
-		return "carrito2";
-	}
-
-   
-    @PostMapping("/añadir")
-    public String add(@RequestParam Long productId, @RequestParam Integer cantidad)
-    {
-        Usuario usuario = usuarioRepository.findByEmail(getEmail());
-        Producto producto = productService.buscarPorId(productId);
-        //usuario.setRol(null); // Sino tira error xd
-
-        if(carritoRepository.isProductInCart(usuario.getId(), producto.getId()) == null)
-        {
-            Carrito carrito = new Carrito();
-            carrito.setProducto(producto);
-            carrito.setUsuario(usuario);
-            carrito.setCantidad(cantidad);
-            carritoRepository.save(carrito);
-        }
-        
-        return "redirect:/carrito/verCarrito";
+        model.addAttribute("carrito", usuario.getCarrito()); // Enviar el carrito del usuario
+        return "carrito";
     }
 
-
-    @PostMapping("/sumarcantidaddenasheeeee")
-    public @ResponseBody Carrito sumarcantidaddenasheeeee(Carrito fromJs)
+    @PostMapping(value = "/add", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}) // Añadir un producto al carrito del usuario
+    public String add(@RequestParam Long productoId, @RequestParam Integer cantidad, Principal principal)
     {
-        Carrito carrito = carritoRepository.findById(fromJs.getId()).get();
+        Usuario usuario = usuarioRepository.findByEmail(principal.getName()); // Obtener el Usuario a través del email
+        Producto producto = productService.buscarPorId(productoId); // Obtener el producto que se añadirá al carrito
+        List<Carrito> carrito = usuario.getCarrito(); // Obtener el carrito actual del usuario (lista)
 
-        carrito.setCantidad(fromJs.getCantidad());
-        carritoRepository.save(carrito);
+        Carrito item = new Carrito(); // Crear nuevo item de Carrito para añadirlo al carrito del usuario
+        item.setCantidad(cantidad);
+        item.setProducto(producto);
+        carrito.add(item); // Añadir item creado al carrito del usuario
 
-        //LOGGER.info("CARRITO: {}", carrito);
-        return carrito;
+        usuario.setCarrito(carrito); // Actualizar carrito del usuario con el nuevo producto añadido
+        usuarioRepository.save(usuario); // Guardar
+
+        return "redirect:/carrito/"; // Redireccionar a la vista de carrito
     }
 
-    private String getEmail()
+    @GetMapping("/quitar/{productoId}") // Quitar un producto del carrito del usuario
+    public String quitar(@PathVariable Long productoId, Principal principal)
     {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
+        Usuario usuario = usuarioRepository.findByEmail(principal.getName()); // Obtener el Usuario a través del email
+        List<Carrito> carrito = usuario.getCarrito(); // Obtener el carrito del usuario
+
+        carrito.removeIf(item -> item.getProducto().getId().equals(productoId)); // Buscar entre el carrito si algún producto coincide con el productoId y quitarlo de la lista
+        usuarioRepository.save(usuario); // Guardar datos del usuario
+
+        return "redirect:/carrito";
     }
-    
-}*/
+}

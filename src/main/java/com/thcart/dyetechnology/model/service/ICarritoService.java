@@ -11,8 +11,6 @@ public interface ICarritoService
 {
     public List<Carrito> buscarTodos();
     
-    public List<Carrito> buscarPorUsuario(Usuario usuario);
-    
     public Optional<Carrito> buscarPorId(Integer id);
     
     public void guardar(Carrito carrito);

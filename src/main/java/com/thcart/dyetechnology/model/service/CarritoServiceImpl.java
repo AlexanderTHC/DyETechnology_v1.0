@@ -24,12 +24,6 @@ public class CarritoServiceImpl implements ICarritoService
     }
     
     @Override
-    public List<Carrito> buscarPorUsuario(Usuario usuario)
-    {
-        return carritoRepository.findByUsuario(usuario);
-    }
-    
-    @Override
     public Optional<Carrito> buscarPorId(Integer id)
     {
         return carritoRepository.findById(id);

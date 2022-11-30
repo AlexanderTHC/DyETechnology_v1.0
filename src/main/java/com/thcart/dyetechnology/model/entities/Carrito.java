@@ -21,20 +21,16 @@ public class Carrito
     
     private Integer cantidad;
 
-    @ManyToOne
-    private Usuario usuario;
 
-    
     public Carrito() 
     {
         this.cantidad = 1;
     }
 
-    public Carrito(Integer id, Producto producto, Integer cantidad, Usuario usuario) {
+    public Carrito(Integer id, Producto producto, Integer cantidad) {
         this.id = id;
         this.producto = producto;
         this.cantidad = cantidad;
-        this.usuario = usuario;
     }
 
     public Integer getId() {
@@ -61,16 +57,8 @@ public class Carrito
         this.cantidad = cantidad;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     @Override
     public String toString() {
-        return "Carrito [id=" + id + ", producto=" + producto + ", cantidad=" + cantidad + ", usuario=" + usuario + "]";
+        return "Carrito [id=" + id + ", producto=" + producto + ", cantidad=" + cantidad + "]";
     }
 }

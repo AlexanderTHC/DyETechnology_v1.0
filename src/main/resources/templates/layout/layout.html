@@ -149,12 +149,11 @@ CSS -->
 
                     <a sec:authorize="!isAuthenticated()" type="button" class="btn btn-outline-dark me-2" th:href="@{/login}"><i class="fas fa-user"></i>
                         INGRESAR</a>
-                    <a th:href="@{/verCarrito}" id="button" type="button" class="btn btn-warning btn-cart"><i
+                    <a th:href="@{/carrito/}" id="button" type="button" class="btn btn-warning btn-cart"><i
                             class="fas fa-shopping-cart"></i></a>
 
                 </div>
-                <div id="tooltip" role="tooltip">0
-                    <div id="arrow" data-popper-arrow></div>
+                <div id="tooltip" role="tooltip">0<div id="arrow" data-popper-arrow></div>
                 </div>
             </div>
         </div>
