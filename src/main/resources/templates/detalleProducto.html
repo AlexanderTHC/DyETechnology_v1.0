@@ -33,13 +33,10 @@ and open the template in the editor.
                             </a>
                         </div>
                         <div class="col-lg-6">
-                            <form th:action="@{/carrito/add}" method="POST">
-                                <!-- METODO POR OCULTAR EL ID, MODIFICAR MAS ADELANTE SOLO DE PRUEBA!-->
+                            <form th:action="@{/carrito/agregar}" method="POST">
                                 <input type="hidden" th:value="${p.id}" name="productoId">
 
-                                <h2 class="card-title fw-bold" th:text="${p.nombre}">
-                                    Nombre producto
-                                </h2>
+                                <h2 class="card-title fw-bold" th:text="${p.nombre}"></h2>
 
                                 <ul class="list-group">
                                     <li class="list-group-item">

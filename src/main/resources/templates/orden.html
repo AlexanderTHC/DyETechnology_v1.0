@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html 
+    lang="es" 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+    <head>
+        <title th:text="${titulo}"></title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+
+    <body>
+        <div layout:fragment="contenido" class="conntenido">
+            <div class="container mt-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item active">Orden</li>
+                </ol>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-lg-2">
+                            <div class="col col-lg-8">
+                                <div class="mb-4">
+                                    <h5 class="card-title text-uppercase">Datos del cliente</h5>
+
+                                    <h6>Nombre: <span th:text="${usuario.nombre}"></span></h6>
+                                    <h6>Telefono: <span th:text="${usuario.telefono}"></span></h6>
+                                    <h6>Dirección: <span th:text="${usuario.direccion}"></span></h6>
+                                </div>
+
+                                <div>
+                                    <h5 class="card-title text-uppercase">Productos</h5>
+
+                                    <table class="table table-bordered">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th>Producto</th>
+                                                <th>Precio unitario</th>
+                                                <th>Cantidad</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="item: ${usuario.carrito}">
+                                                <td th:text="${item.producto.nombre}"></td>
+                                                <td>$ <span th:text="${#numbers.formatDecimal(item.producto.precio, 0, 'POINT', 0, 'DEFAULT')}"></span></td>
+                                                <td th:text="${item.cantidad}"></td>
+                                                <td>$ <span th:text="${#numbers.formatDecimal((item.cantidad * item.producto.precio), 0, 'POINT', 0, 'DEFAULT')}"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="col col-lg-4">
+                                <h2 class="card-title">Resumen</h2>
+
+                                <div class="border rounded">
+                                    <div class="p-3">
+                                        <h4>Total</h4>
+                                        <p class="fs-3">$ <span th:text="${#numbers.formatDecimal(#aggregates.sum(usuario.carrito.?[producto.precio != null].![(cantidad * producto.precio)]), 0, 'POINT', 0, 'DEFAULT')}"></span></p>
+                                    </div>
+
+                                    <a th:href="@{/orden/generar}" class="w-100 rounded-0 rounded-bottom btn btn-dark">Generar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:fragment="js"></script>
+    </body>
+</html>

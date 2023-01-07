@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thcart.dyetechnology.model.entities.Carrito;
-import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.repository.ICarritoRepository;
 
 
