@@ -44,5 +44,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
         usuarioRepo.activo(id);
     }
 
+    @Override
+    public Usuario buscarPorEmail(String email) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     
 }
