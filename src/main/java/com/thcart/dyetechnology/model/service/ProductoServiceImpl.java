@@ -50,5 +50,10 @@ public class ProductoServiceImpl implements IProductoService {
     public void activo(long id) {
     productoRepo.activo(id);    
     }
+
+    @Override
+    public void actualizar(Producto producto) {
+       productoRepo.save(producto);
+    }
     
 }

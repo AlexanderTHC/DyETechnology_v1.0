@@ -37,7 +37,7 @@ public class Producto {
     private String nombre;
     
     @NotBlank(message = "¡La descripción es requerida!")
-    @Size(max = 500) // => varchar(65)
+    @Size(max = 10000) // => varchar(65)
     private String descripcion;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -57,10 +57,10 @@ public class Producto {
     
     private boolean activo;
 
-    // ??
+    // 
     @ManyToOne
     private Usuario usuario;
-    // ??
+    // 
     
     public Producto() {
         activo = true;

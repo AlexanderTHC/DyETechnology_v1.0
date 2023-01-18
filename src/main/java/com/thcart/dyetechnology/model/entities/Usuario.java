@@ -22,11 +22,11 @@ public class Usuario {
     private Long id;
     
     @NotEmpty
-    @Size(max = 30)
+    @Size(max = 30, min = 3, message = "El nombre debe de contener un minimo de 3 caracteres")
     private String nombre;
     
     @NotEmpty
-    @Size(max = 30)
+    @Size(max = 30, min = 4, message = "El apellido debe de contener un minimo de 4 caracteres")
     private String apellido;
     
     @NotEmpty
@@ -36,13 +36,10 @@ public class Usuario {
     @NotEmpty
     private String email;
     
-    @NotEmpty
     private String direccion;
     
-    @NotEmpty
     private String dni;
     
-    @NotEmpty
     private String telefono;
    
     @NotEmpty
@@ -55,15 +52,36 @@ public class Usuario {
     
     private boolean activo;
 
-    // ?? 
+    // 
     @OneToMany(mappedBy = "usuario")
     private List<Producto> producto;
     
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
-    // ??
+    // 
+    
     public Usuario() {
         activo = true;
+    }
+
+    public Usuario(Long id, @NotEmpty @Size(max = 30) String nombre, @NotEmpty @Size(max = 30) String apellido,
+            @NotEmpty @Size(max = 30) String username, @NotEmpty String email, @NotEmpty String direccion,
+            @NotEmpty String dni, @NotEmpty String telefono,
+            @NotEmpty @Size(max = 110, min = 1, message = "La contraseña debe tener al menos 6 caracteres") String clave,
+            Rol rol, boolean activo, List<Producto> producto, List<Orden> ordenes) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.username = username;
+        this.email = email;
+        this.direccion = direccion;
+        this.dni = dni;
+        this.telefono = telefono;
+        this.clave = clave;
+        this.rol = rol;
+        this.activo = activo;
+        this.producto = producto;
+        this.ordenes = ordenes;
     }
 
     public Long getId() {

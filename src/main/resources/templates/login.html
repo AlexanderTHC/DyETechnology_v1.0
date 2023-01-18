@@ -22,16 +22,15 @@ and open the template in the editor.
             <div class="card text-center border border-info shadow-0">
                 <div class="card-header fs-3 fw-bold">Iniciar Sesión</div>
                 <div class="card-body">
-                  <form th:action="@{/login}" method="post" class="form">
+                  <form th:action="@{/login}" method="post" class="form-signin">
                     <div class="row mt-4">
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">E-Mail</label>
                                 <div class="input-group form-group">
                                     <span class="input-group-text bg-light iconFormColor"><i class='bx bxs-envelope' ></i></span>
-                                    <input id="password" class="form-control form-color-saj bg-light text-black"
-                                        type="text" required />
-                                    <div id="error-email"></div>
+                                    <input id="email" name="email" class="form-control form-color-saj bg-light text-black"
+                                        type="email"/>
                                 </div>
                             </div>
                         </div>
@@ -40,9 +39,8 @@ and open the template in the editor.
                                 <label for="password" class="form-label">Contraseña</label>
                                 <div class="input-group form-group">
                                     <span class="input-group-text bg-light iconFormColor"><i class='bx bxs-key' ></i></span>
-                                    <input id="password" class="form-control form-color-saj bg-light text-black"
-                                        type="password" required />
-                                    <div id="error-email"></div>
+                                    <input id="password" name="password" class="form-control form-color-saj bg-light text-black"
+                                        type="password" />
                                 </div>
                             </div>
                         </div>
@@ -56,7 +54,7 @@ and open the template in the editor.
                       </label>
                     </div>
                     
-                    <button class="w-100 btn btn-lg btn-info" type="submit">Ingresar</button>
+                    <button class="w-100 btn btn-lg btn-info" type="submit">Entrar</button>
   
                     <div class="text-info">
                       <hr>
@@ -85,7 +83,7 @@ and open the template in the editor.
                   </form>
                 </div>
                 <div class="card-footer text-start fs-5">¿No tienes cuenta? 
-                    <a class="btn btn-info" th:href="@{/register}">Registrarse</a>
+                    <a class="btn btn-info" th:href="@{/registrarse/nuevo}">Registrarse</a>
                 </div>
               </div>
 
@@ -94,6 +92,6 @@ and open the template in the editor.
             
         </div>
         
-        <script th:fragment="js"></script>
+        <script th:src="@{/js/login.js}" th:fragment="js"></script>
     </body>
 </html>

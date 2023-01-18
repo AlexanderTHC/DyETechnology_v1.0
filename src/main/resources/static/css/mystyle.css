@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 
+.product-img-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 14rem;
+}
+
+.product-img
+{
+    width: auto !important;
+    max-height: 100%;
+}
 
 .olvCon:hover {
   cursor: pointer;

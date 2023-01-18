@@ -26,13 +26,13 @@ public class Orden {
     private double total;
     private boolean activo;
 
-    // ??
+    // 
     @ManyToOne
     private Usuario usuario;
     
     @OneToOne(mappedBy = "orden")
     private DetalleOrden detalle;
-    //???
+    //
     
     public Orden() {
         activo = true;

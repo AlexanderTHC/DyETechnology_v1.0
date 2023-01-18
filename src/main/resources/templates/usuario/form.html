@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html 
+    lang="es" 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+<head>
+    <title th:text="${titulo}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/css/logindye.css}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <div layout:fragment="contenido" class="conntenido mb-3 mt-3">
+                
+<!--        <main class="form-signin w-100 m-auto h-auto">
+            
+            <nav aria-label="breadcrumb" class="main-breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"> <a>Home / Perfil</a> </li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar</li>
+                </ol>
+            </nav>
+            
+            <div class="card text-center border border-info shadow-0">
+                
+                <form th:action="@{/guardar}" th:object="${usuario}" method="post">
+                    <div class="card-header fs-3 fw-bold">Datos</div>
+                    <div class="card-body">
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <label for="nombreUser" class="form-label text-start">Nombre</label>
+                                    <div class="input-group form mb-3">
+                                        <span id="basic-addon3"></span>
+                                        <input id="nombreUser" type="text" class="form-control" th:field="*{nombre}"
+                                               th:errorclass="'form-control alert-danger'">
+                                        <small class="form-text text-danger" th:errors="*{nombre}"
+                                               th:if="${#fields.hasErrors('nombre')}"></small>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <label for="apellidoUser" class="form-label text-start">Apellido</label>
+                                    <div class="input-group form mb-3">
+                                        <span id="basic-addon3"></i></span>
+                                        <input id="apellidoUser" type="text" class="form-control" th:field="*{apellido}">
+                                        <small class="form-text text-danger"></small>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="username" class="form-label text-start">Username</label>
+                                    <div class="input-group form mb-3">
+                                        <span  id="basic-addon3"></span>
+                                        <input id="username" type="text" class="form-control" th:field="*{username}" >
+                                        <small class="form-text text-danger"></small>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-6">
+                                    <label for="celular" class="form-label text-start">Nro de celular</label>
+                                    <div class="input-group form mb-3">
+                                        <span  id="basic-addon3"></span>
+                                        <input id="celular" type="text" class="form-control" 
+                                               th:field="*{telefono}" placeholder="(000)000-0000" 
+                                               data-mask="(000)000-0000" data-mask-reverse="true" > 
+                                        <small class="form-text text-danger"></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-6">
+                                    <label for="direccion" class="form-label text-start">Direccion</label>
+                                    <div class="input-group form mb-3">
+                                        <span id="basic-addon3"></span>
+                                        <input id="direccion" type="text" class="form-control" 
+                                               th:field="*{direccion}" placeholder="Marconi 11xx">
+                                        <small class="form-text text-danger"></small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="email" class="form-label text-start">Email</label>
+                                    <div class="input-group form mb-3">
+                                        <span id="basic-addon3"></span>
+                                        <input id="email" type="email" class="form-control" th:field="*{email}"
+                                               plaplaceholder="username@gmail.com">
+                                        <small class="form-text text-danger"></small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer p-4 d-grid gap-2 d-md-block ">
+                                <button class="w-100 btn btn-lg btn-info" type="submit">
+                                    Guardar cambios
+                                </button>
+
+                                <a th:href="@{/perfil}" class="btn btn-secondary btn-lg w-100 mt-2">
+                                    Cancelar
+                                </a>
+                            </div>
+
+                    </div>
+
+                </form>
+                        
+            </div>
+
+        </main>-->
+
+            <main class="form-signin w-100 m-auto h-auto">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card">
+                            
+                            <form th:action="@{/guardar}" th:object="${usuario}" method="post" >
+                                
+                                <div class="card-header">
+                                    <h2 class="m-2" >Datos Personales</h2>
+                                </div>
+
+                                <div class="card-body p-4">
+                                    <div class="row">
+
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form">
+                                                <label for="nom" class="form-label" >Nombre</label>
+                                                <input id="nom" type="text" class="form-control" th:field="*{nombre}"
+                                                       th:errorclass="'form-control alert-danger'"/>
+                                                <small class="form-text text-danger" th:errors="*{nombre}" 
+                                                       th:if="${#fields.hasErrors('nombre')}"></small>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form">
+                                                <label for="ape" class="form-label" >Apellido</label>
+                                                <input id="ape" type="text" class="form-control" th:field="*{apellido}"
+                                                       th:errorclass="'form-control alert-danger'"/>
+                                                <small class="form-text text-danger" th:errors="*{apellido}" 
+                                                       th:if="${#fields.hasErrors('apellido')}"></small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form">
+                                                <label for="user" class="form-label" >Usuario</label>
+                                                <input id="user" type="text" class="form-control" th:field="*{username}"
+                                                       th:errorclass="'form-control alert-danger'"/>
+                                                <small class="form-text text-danger" th:errors="*{username}" 
+                                                       th:if="${#fields.hasErrors('username')}"></small>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form">
+                                                <label for="email" class="form-label" >Email</label>
+                                                <input id="email" type="email" class="form-control" th:field="*{email}"
+                                                       th:errorclass="'form-control alert-danger'"/>
+                                                <small class="form-text text-danger" th:errors="*{email}" 
+                                                       th:if="${#fields.hasErrors('email')}"></small>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form">
+                                                <label for="dir" class="form-label" >Dirección</label>
+                                                <input id="dir" type="text" class="form-control" th:field="*{direccion}"
+                                                       th:errorclass="'form-control alert-danger'"/>
+                                                <small class="form-text text-danger" th:errors="*{direccion}" 
+                                                       th:if="${#fields.hasErrors('direccion')}"></small>
+
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form">
+                                                <label for="dni" class="form-label" >DNI</label>
+                                                <input id="dni" type="text" class="form-control" th:field="*{dni}"
+                                                       th:errorclass="'form-control alert-danger'" data-mask="00.000.000"/>
+                                                <small class="form-text text-danger" th:errors="*{dni}" 
+                                                       th:if="${#fields.hasErrors('dni')}"></small>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form">
+                                            <label for="tel" class="form-label" >Telefono</label>
+                                            <input id="tel" type="text" class="form-control" th:field="*{telefono}"
+                                                   th:errorclass="'form-control alert-danger'" placeholder="(000)000-0000" 
+                                                   data-mask="(000)000-0000"/>
+                                            <small class="form-text text-danger" th:errors="*{telefono}" 
+                                                   th:if="${#fields.hasErrors('telefono')}"></small>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="card-footer p-4 d-grid gap-2 d-md-block ">
+                                    <button type="submit" class="btn btn-primary btn-success btn-block">
+                                        Guardar
+                                    </button>
+                                    <a th:href="@{/perfil}" class="btn btn-alert btn-secondary btn-block">
+                                        Cancelar
+                                    </a>
+                                </div>
+                                
+                            </form>       
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+    </div>
+
+    <script th:fragment="js"></script>
+
+</body>
+</html>
