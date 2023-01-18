@@ -141,20 +141,24 @@ CSS -->
                         <i class="fas fa-user"></i>
                       </button>
                       <ul class="dropdown-menu">
+<<<<<<< HEAD
                         <li><a class="dropdown-item" th:href="@{/perfil}">Mi Perfil</a></li>
                         <li><a class="dropdown-item" href="#">Mis Ordenes</a></li>
+=======
+                        <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                        <li><a class="dropdown-item" th:href="@{/misCompras}">Mis Compras</a></li>
+>>>>>>> origin/carritoPiola
                         <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
                       </ul>
                     
 
                     <a sec:authorize="!isAuthenticated()" type="button" class="btn btn-outline-dark me-2" th:href="@{/login}"><i class="fas fa-user"></i>
                         INGRESAR</a>
-                    <a th:href="@{/verCarrito}" id="button" type="button" class="btn btn-warning btn-cart"><i
+                    <a th:href="@{/carrito/}" id="button" type="button" class="btn btn-warning btn-cart"><i
                             class="fas fa-shopping-cart"></i></a>
 
                 </div>
-                <div id="tooltip" role="tooltip">0
-                    <div id="arrow" data-popper-arrow></div>
+                <div id="tooltip" role="tooltip">0<div id="arrow" data-popper-arrow></div>
                 </div>
             </div>
         </div>
@@ -166,7 +170,8 @@ CSS -->
     <span id="warning" th:text="${warning}" hidden="true"></span>
     <span id="sesionIniciada" th:text="${sesionIniciada}" hidden="true"></span>
     <span id="sesionFinalizada" th:text="${sesionFinalizada}" hidden="true"></span>
-
+    <span id="ordenGenerada" th:text="${ordenGenerada}" hidden="true"></span>
+    <span id="errorCarrito" th:text="${errorCarrito}" hidden="true"></span>
     <!-- ALERTAS -->
 
     <!-- END nav -->

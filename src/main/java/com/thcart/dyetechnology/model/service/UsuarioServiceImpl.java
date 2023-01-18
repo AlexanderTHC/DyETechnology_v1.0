@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.repository.IUsuarioRepository;
-import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
@@ -43,12 +42,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
     @Override
     public void activo(long id) {
         usuarioRepo.activo(id);
-    }
-
-    @Override
-    public Usuario buscarPorEmail(String email) {
-        
-        return usuarioRepo.buscarPorEmail(email);
     }
 
     

@@ -33,12 +33,10 @@ and open the template in the editor.
                             </a>
                         </div>
                         <div class="col-lg-6">
-                            <form th:action="@{/carrito}" method="POST">
-                                <!-- METODO POR OCULTAR EL ID, MODIFICAR MAS ADELANTE SOLO DE PRUEBA!-->
-                                <input type="hidden" th:value="${p.id}" name="id">
-                                <h2 class="card-title fw-bold" th:text="${p.nombre}">
-                                    Nombre producto
-                                </h2>
+                            <form th:action="@{/carrito/agregar}" method="POST">
+                                <input type="hidden" th:value="${p.id}" name="productoId">
+
+                                <h2 class="card-title fw-bold" th:text="${p.nombre}"></h2>
 
                                 <ul class="list-group">
                                     <li class="list-group-item">
@@ -60,7 +58,9 @@ and open the template in the editor.
                                      
                                     <div class="col-md-3 pull-left mt-2 pl-0 mb-3 cantidad_div">
                                         <label class="control-label cantidad mt-0">Cantidad</label>
-                                        <span class="bmd-form-group is-filled"><input class="form-control pl-2 cantidad_comprar" type="number" id="cantidad" name="cantidad" value="1"></span>
+                                        <span class="bmd-form-group is-filled">
+                                            <input class="form-control pl-2 cantidad_comprar" type="number" id="cantidad" name="cantidad" value="1">
+                                        </span>
                                         
                                     </div>
                                     <button type="submit" class="btn btn-dark btn-lg">
@@ -77,7 +77,7 @@ and open the template in the editor.
         <!-- /.container -->
     </div>
 
-    <script th:fragment="js"></script>
+    <script th:fragment="js" th:src="@{/js/home.js}"></script>
 </body>
 
 </html>

@@ -4,76 +4,81 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html 
-    lang="es"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    layout:decorate="~{layout/layout}"
-    >
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/layout}">
     <head>
         <title th:text="${titulo}"></title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
+
     <body>
         <div layout:fragment="contenido" class="conntenido">
-      
-              <!-- Page Content -->
-              <div class="container">
-          
-          
+
+            <!-- Page Content -->
+            <div class="container">
+
+
                 <!-- Page Heading/Breadcrumbs -->
-                <h1 class="mt-4 mb-3">
-                    DyE Technology <small>Carrito</small>
-                </h1>
-          
+                <h1 class="mt-4 mb-3">DyE Technology <small>Carrito</small></h1>
+
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-                  <li class="breadcrumb-item active">Carrito</li>
+                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item active">Carrito</li>
                 </ol>
-          
-                <!-- Blog Post -->
-                <div class="card mb-4">
-                  <div class="card-body">
-                    <div class="row">
-                     <div class="col-lg-9">
-                      <table id="tablaCarritos" class="table table-striped table-hover table-bordered table-sm">
-                        <thead>
-                          <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Precio</th>
-                            <th style="width:20%;" scope="col">Cantidad</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Acción</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr th:each="detOrd : ${carrito}">
-                            <td th:text="${detOrd.nombre}"></td>
-                            <td th:text="${detOrd.precio}"></td>
-                            <td th:text="${detOrd.cantidad}"></td>
-                            <td th:text="${detOrd.total}"></td>
-                            <td><a th:href="@{/delete/carrito/} + ${detOrd.producto.id}" class="btn btn-danger">Quitar</a></td>
-                          </tr>
-                        </tbody>
-                      </table>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-lg-2">
+                            <div class="col col-lg-8">
+                                <table id="tablaCarritos" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Precio</th>
+                                            <th style="width:20%;" scope="col">Cantidad</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <tr th:each="item: ${usuario.carrito}">
+                                            <td th:text="${item.producto.nombre}"></td>
+                                            <td class="text-nowrap">
+                                                $ <span th:text="${#numbers.formatDecimal(item.producto.precio, 0, 'POINT', 0, 'DEFAULT')}"></span>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control" min="1" th:max="${item.producto.cantidad}" th:value="${item.cantidad}" id="item_cambiarCantidad-btn" th:item-id="${item.id}">
+                                            </td>
+                                            <td class="text-nowrap">
+                                                $ <span th:text="${#numbers.formatDecimal((item.producto.precio * item.cantidad), 0, 'POINT', 0, 'DEFAULT')}" id="item_subTotal" th:item-id="${item.id}"></span>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/carrito/quitar/{id} (id = ${item.producto.id})}" class="btn btn-danger">Quitar</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="col col-lg-4">
+                                <h2 class="card-title">TOTAL</h2>
+
+                                <div>
+                                    <p class="fs-3">
+                                        $ <span th:text="${#numbers.formatDecimal(#aggregates.sum(usuario.carrito.?[producto.precio != null].![(cantidad * producto.precio)]), 0, 'POINT', 0, 'DEFAULT')}" id="carrito_total"></span>
+                                    </p>
+                                    
+                                    <a th:href="@{/orden/}" class="btn btn-dark">Ver Orden</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-          
-                    <div class="col-lg-3">
-                      <h2 class="card-title">SUBTOTAL</h2>
-          
-                      <ul class="list-group">
-                        <li class="list-group-item"><h5 th:text="${orden.total}">Total: $ 10</h5></li>
-                        <a th:href="@{/orden}" class="btn btn-dark">Ver Orden</a>
-                      </ul>
-                    </div>
-          
-                  </div>
                 </div>
-              </div>
-              <!-- /.container -->
-        </div>
-        
-        <script th:fragment="js"></script>
-    </body>
+            <!-- /.container -->
+            </div>
+
+            <script th:fragment="js"></script>
+            <script th:src="@{/js/carrito.js}"></script>
+      </body>
 </html>

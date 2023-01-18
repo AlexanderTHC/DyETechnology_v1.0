@@ -1,17 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.thcart.dyetechnology.model.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "ordenes")
@@ -30,12 +32,25 @@ public class Orden {
     @ManyToOne
     private Usuario usuario;
     
-    @OneToOne(mappedBy = "orden")
-    private DetalleOrden detalle;
-    //
-    
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orden_id", referencedColumnName = "id")
+    private List<OrdenItem> ordenItems = new ArrayList<>();
+
+
     public Orden() {
-        activo = true;
+    }
+
+    public Orden(Long id, String numero, Date fechaCreacion, Date fechaRecibida, double total, Usuario usuario,
+            List<OrdenItem> ordenItems, boolean activo) {
+        this.id = id;
+        this.numero = numero;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaRecibida = fechaRecibida;
+        this.total = total;
+        this.usuario = usuario;
+        this.ordenItems = ordenItems;
+        this.activo = activo;
     }
 
     public Long getId() {
@@ -78,14 +93,6 @@ public class Orden {
         this.total = total;
     }
 
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -94,18 +101,19 @@ public class Orden {
         this.usuario = usuario;
     }
 
-    public DetalleOrden getDetalle() {
-        return detalle;
+    public List<OrdenItem> getOrdenItems() {
+        return ordenItems;
     }
 
-    public void setDetalle(DetalleOrden detalle) {
-        this.detalle = detalle;
+    public void setOrdenItems(List<OrdenItem> ordenItems) {
+        this.ordenItems = ordenItems;
     }
-    
-    
-    @Override
-    public String toString() {
-        return "Orden{" + "id=" + id + ", numero=" + numero + ", fechaCreacion=" + fechaCreacion + ", fechaRecibida=" + fechaRecibida + ", total=" + total + ", activo=" + activo + '}';
+
+    public boolean isActivo() {
+        return activo;
     }
-    
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 }
