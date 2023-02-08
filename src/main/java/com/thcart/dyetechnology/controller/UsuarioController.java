@@ -5,6 +5,7 @@
 package com.thcart.dyetechnology.controller;
 
 import com.thcart.dyetechnology.model.entities.Usuario;
+import com.thcart.dyetechnology.model.repository.IUsuarioRepository;
 import com.thcart.dyetechnology.model.service.IUsuarioService;
 import java.security.Principal;
 import javax.servlet.http.HttpSession;
@@ -27,22 +28,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Micholini
  */
 @Controller
-@RequestMapping("/")
 @SessionAttributes({"usuario"})
 public class UsuarioController {
         
     @Autowired
     IUsuarioService usuarioService;
+
+    @Autowired
+    IUsuarioRepository usuarioRepository;
     
     @GetMapping("/perfil")
-    public String perfil(Model model, Principal principal, HttpSession session){
+    public String perfil(Model model, Principal principal, HttpSession session)
+    {
+        Usuario usuario = usuarioRepository.findByEmail(principal.getName());
         
-        Long idUser = Long.parseLong(session.getAttribute("usuario.id").toString());
-        Usuario usuario = usuarioService.buscarPorId(idUser);
-        
-        model.addAttribute("usuario", usuario);        
-        principal.getName();
-
+        model.addAttribute("usuario", usuario);
         return"usuario/perfil";
     }
     

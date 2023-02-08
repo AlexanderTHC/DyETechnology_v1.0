@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html 
     lang="es"
     xmlns="http://www.w3.org/1999/xhtml"
@@ -43,16 +39,16 @@ and open the template in the editor.
                             <tr>
                               <th scope="col">No. de Orden</th>
                               <th scope="col">Fecha</th>
-                              <th scope="col">Valor</th>
-                              <th scope="col">Acción</th>
+                              <th scope="col">Total</th>
+                              <th scope="col"></th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr th:each="orden: ${ordenes}">
-                              <td th:text="${orden.numero}"></td>
-                              <td th:text="${orden.fechaCreacion}" ></td>
-                              <td th:text="${orden.total}" ></td>
-                              <td><a th:href="@{/detalle/compra/} + ${orden.id}" class="btn btn-success">Ver Detalle</a></td>
+                              <td th:text="'#' + ${#numbers.formatInteger(orden.id,10)}"></td>
+                              <td th:text="${#dates.format(orden.fechaCreacion, 'dd/MM/yyyy')}"></td>
+                              <td th:text="'$ '+ ${#numbers.formatDecimal(orden.total, 0, 'POINT', 0, 'DEFAULT')}" ></td>
+                              <td><a th:href="@{/compras/{id} (id = ${orden.id})}" class="btn btn-success">Ver Detalle</a></td>
                             </tr>
                           </tbody>
                         </table>

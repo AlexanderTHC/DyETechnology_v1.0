@@ -17,8 +17,6 @@ public interface IOrdenService {
 
     public void activo(long id);
 
-    public String generarNumeroOrden();
-
     //OBTENER USUARIO POR
     public Usuario obtenerUsuarioPor(String emailUsuario);
 

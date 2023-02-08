@@ -4,31 +4,29 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html 
-    lang="es"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    layout:decorate="~{layout/layout}"
-    >
-    <head>
-        <title th:text="${titulo}"></title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-        <div layout:fragment="contenido" class="conntenido">
-            
-            <!-- Page Content -->
-            <div class="container">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout/layout}">
 
-            <!-- Page Heading/Breadcrumbs -->
+<head>
+  <title th:text="${titulo}"></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div layout:fragment="contenido" class="conntenido">
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3" th:each="orden:${ordenes}">
         DyE Technology <small>Detalle de Compra: #</small><small th:text="${orden.numero}">000000000</small>
       </h1>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a th:href="@{/}">Inicio</a></li>
-        <li class="breadcrumb-item"><a th:href="@{/misCompras}">Compras</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/compras}">Compras</a></li>
         <li class="breadcrumb-item active">Detalle de Compra</li>
       </ol>
 
@@ -36,34 +34,37 @@ and open the template in the editor.
       <div class="card mb-4 w-50">
         <div class="card-body">
           <div class="row">
-           <div class="col-lg-12">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Producto</th>                  
-                  <th scope="col">Precio</th>
-                  <th scope="col">Total</th>                  
-                </tr>
-              </thead>
-              <tbody>
-                <tr th:each="detalle:${detalles}">
-                  <td  th:text="${detalle.cantidad}"></td>
-                  <td th:text="${detalle.nombre}"></td>
-                  <td th:text="${detalle.precio}"></td>
-                  <td th:text="${detalle.total}"></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="col-lg-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="item: ${orden.ordenItems}">
+                    <td th:text="${#dates.format(orden.fechaCreacion, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${item.producto.nombre}"></td>
+                    <td th:text="${#numbers.formatDecimal(item.cantidad, 0, 'POINT', 0, 'DEFAULT')}"></td>
+                    <td th:text="'$ ' + ${#numbers.formatDecimal(item.precio, 0, 'POINT', 0, 'DEFAULT')}"></td>
+                    <td th:text="'$ ' + ${#numbers.formatDecimal(item.total, 0, 'POINT', 0, 'DEFAULT')}"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- /.container -->
+
   </div>
-  <!-- /.container -->
-            
-        </div>
-        
-        <script th:fragment="js"></script>
-    </body>
+
+  <script th:fragment="js"></script>
+</body>
+
 </html>

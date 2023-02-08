@@ -1,23 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 
-.product-img-container
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    height: 14rem;
+.product-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.product-img
-{
-    width: auto !important;
-    max-height: 100%;
+.product-img {
+  object-fit: contain;
+  width: auto;
+  height: 14rem;
 }
 
 .olvCon:hover {
   cursor: pointer;
 }
+
 .color-facebook {
   color: #0066ff !important;
 }
@@ -25,6 +23,7 @@
 .color-instagram {
   color: #f700ff !important;
 }
+
 .color-google {
   color: #ff0000 !important;
 }
@@ -129,5 +128,3 @@
   font-size: 16px !important;
   color: #cc3300 !important;
 }
-
-
