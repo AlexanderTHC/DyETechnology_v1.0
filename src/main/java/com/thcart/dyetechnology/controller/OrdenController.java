@@ -62,7 +62,7 @@ public class OrdenController
             total += detalle.getTotal(); // Sumar al total de la orden
         }
 
-        orden.setActivo(true);
+        orden.setActivo(false);
         orden.setFechaCreacion(new Date());
         orden.setUsuario(usuario);
         orden.setTotal(total);

@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 
-<html 
-    lang="es"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    layout:decorate="~{layout/layout}"
-    >
-    <head>
-        <title th:text="${titulo}"></title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-        <div layout:fragment="contenido" class="contenido ">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout/layout}">
 
-            <!-- Page Content -->
-            <div class="container">
-    
-    
-                <!-- Page Heading/Breadcrumbs -->
-                <h1 class="mt-4 mb-3">
-                    DyE Technology <small>Mis Ordenes</small>
-                </h1>
-    
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-                    <li class="breadcrumb-item"><a th:href="@{/}">Perfil</a></li>
-                    <li class="breadcrumb-item active">Mis Ordenes</li>
-                </ol>
-    
-                
-                <div class="card mb-4 w-50">
-                    <div class="card-body">
-                      <div class="row">
-                       <div class="col-lg-12 ">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th scope="col">No. de Orden</th>
-                              <th scope="col">Fecha</th>
-                              <th scope="col">Total</th>
-                              <th scope="col"></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr th:each="orden: ${ordenes}">
-                              <td th:text="'#' + ${#numbers.formatInteger(orden.id,10)}"></td>
-                              <td th:text="${#dates.format(orden.fechaCreacion, 'dd/MM/yyyy')}"></td>
-                              <td th:text="'$ '+ ${#numbers.formatDecimal(orden.total, 0, 'POINT', 0, 'DEFAULT')}" ></td>
-                              <td><a th:href="@{/compras/{id} (id = ${orden.id})}" class="btn btn-success">Ver Detalle</a></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-    
+<head>
+  <title th:text="${titulo}"></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div layout:fragment="contenido" class="contenido ">
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">
+        DyE Technology <small>Mis Ordenes</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/}">Perfil</a></li>
+        <li class="breadcrumb-item active">Mis Ordenes</li>
+      </ol>
+
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12 ">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No. de Orden</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="orden: ${ordenes}">
+                    <td th:text="'#' + ${#numbers.formatInteger(orden.id,10)}"></td>
+                    <td th:text="${#dates.format(orden.fechaCreacion, 'dd/MM/yyyy')}"></td>
+                    <td th:text="'$ '+ ${#numbers.formatDecimal(orden.total, 0, 'POINT', 0, 'DEFAULT')}"></td>
+                    <!--AGREGAR UN ESTADO ACONTINUACIÓN Y CAMBIAR EL COLOR DEL MISMO.-->
+                    <td th:text="${orden.activo} ? 'Recibido' : 'En espera'"
+                    th:classappend="${orden.activo} ? 'fw-bold text-success' : ' fw-bold text-warning'"></td>
+                    <td><a th:href="@{/compras/{id} (id = ${orden.id})}" class="btn btn-success">Ver Detalle</a></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <!-- /.container -->
-    
+          </div>
         </div>
-        <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>
-    </body>
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+  </div>
+  <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>
+</body>
+
 </html>

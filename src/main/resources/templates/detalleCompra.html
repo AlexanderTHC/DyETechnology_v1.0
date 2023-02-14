@@ -30,15 +30,23 @@ and open the template in the editor.
       <!-- Blog Post -->
       <div class="card mb-4 detalleOrdenCard">
         <div class="card-header" th:each="orden:${ordenes}">
-          <h3><i class="fa-solid fa-cart-flatbed"></i> <small class="fs-2" th:text="'Orden: #' + ${orden.id}">Orden #1</small> 
-            <small class="fs-5 fst-italic text-muted" th:text="'Generada '+ ${#dates.format(orden.fechaCreacion, 'dd-MM-yyyy HH:mm')}" > Generada 01/01/2023 23:30:16</small></h3>
+          <h3><i class="fa-solid fa-cart-flatbed"></i> <small class="fs-2" th:text="'Orden: #' + ${orden.id}">Orden
+              #1</small>
+            <small class="fs-5 fst-italic text-muted"
+              th:text="'Generada '+ ${#dates.format(orden.fechaCreacion, 'dd-MM-yyyy HH:mm')}"> Generada 01/01/2023
+              23:30:16</small>
+            <!--AGREGAR UN ESTADO ACONTINUACIÓN Y CAMBIAR EL COLOR DEL MISMO.-->
+            <small class="pull-right mt-2"> Estado: <small th:text="${orden.activo} ? 'Recibido' : 'En espera'"
+              th:classappend="${orden.activo} ? 'fw-bold text-success' : ' fw-bold text-warning'">En Espera.</small></small>
+          </h3>
+
         </div>
         <div class="card-body ">
           <div class="container">
             <div class="row justify-content-start ">
               <div class="col-6 informacionesCardCliente">
                 <div class="container">
-                  <h4 class="fw-bold"><i class="fa-solid fa-id-card"></i>  Datos del Cliente</h4>
+                  <h4 class="fw-bold"><i class="fa-solid fa-id-card"></i> Datos del Cliente</h4>
                   <hr>
                   <h6>Apellido y Nombre: </h6>
                   <h6>DNI: </h6>
@@ -60,8 +68,8 @@ and open the template in the editor.
 
             <div class="container">
               <h4><i class="fa-solid fa-cart-shopping"></i> Resumen de Compra</h4>
-              <table class="table table-hover table-detalleOrden">
-                <thead>
+              <table class="table table-hover table-detalleOrden mt-3 border border-info">
+                <thead class="table-info">
                   <tr>
                     <th scope="col">Producto</th>
                     <th scope="col">Precio Unitario</th>
@@ -99,7 +107,9 @@ and open the template in the editor.
                     </td>
                     <td></td>
                     <td></td>
-                    <td><strong>$0</strong></td>
+                    <td th:each="orden:${ordenes}"><strong
+                        th:text="'$ '+ ${#numbers.formatDecimal(orden.total, 0, 'POINT', 0, 'DEFAULT')}">$0</strong>
+                    </td>
                     </td>
                   </tr>
                 </tbody>
@@ -110,9 +120,11 @@ and open the template in the editor.
           </div>
         </div>
         <div class="card-footer">
+          <p class="text-muted"><strong>Incluye los Impuestos como el IVA.</strong>
           <button class="btn btn-info pull-right">
             Imprimir Orden
           </button>
+        </p>
         </div>
       </div>
     </div>
