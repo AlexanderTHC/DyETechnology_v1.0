@@ -86,7 +86,7 @@ public class HomeController {
         model.addAttribute("titulo", "DyE Technology - Detalle de la Compra");
 
         Orden orden = ordenRepository.findById(id).get();
-        model.addAttribute("orden", orden);
+        model.addAttribute("ordenes", orden);
 
         LOGGER.info("Compras: {}", orden);
 

@@ -168,23 +168,25 @@ html{
   height: 100%;
 }
 
-body{
+/*SOLUCION FOOTER AL AIRE LIBRE*/
+body {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100vh;
 }
 
+.footer {
+  padding: 1em 0;
+  text-align: center;
+  margin-top: auto;
+}
+/*SOLUCION FOOTER AL AIRE LIBRE*/
 header{
-
   flex: 0 0 auto;
 }
 
 .contenido{
   flex: 1 0 auto;
-}
-
-footer{
-  flex: 0 0 auto;
 }
 
 .provFot {

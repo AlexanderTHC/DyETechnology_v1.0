@@ -128,3 +128,11 @@
   font-size: 16px !important;
   color: #cc3300 !important;
 }
+
+/*DETALLE ORDEN */
+
+.detalleOrdenCard {
+  background-color: rgb(248, 248, 248) !important;
+}
+.table-detalleOrden {
+}
