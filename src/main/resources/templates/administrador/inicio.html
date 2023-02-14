@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+<head>
+    <title th:text="${titulo}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div layout:fragment="contenido" class="conntenido">
+
+        <div class="container">
+            <ol class="breadcrumb mt-4">
+                <li class="breadcrumb-item"><a th:href="@{/}">Inicio</a></li>
+                <li class="breadcrumb-item active">Administración</li>
+            </ol>
+        </div>
+
+        <div class="adminContent mt-5">
+
+            <!-- Bienvenida -->
+            <div class="text-center">
+                <h1>Bienvenido</h1>
+                <h5>¡Que tengas una excelente Jornada!</h5>
+            </div>
+
+            <hr>
+
+            <!-- Contador -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="counter dyetech">
+                            <div class="counter-icon">
+                                <i class="fa fa-briefcase"></i>
+                            </div>
+                            <div class="counter-content">
+                                <h3>Productos registrados</h3>
+                                <span class="counter-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="counter dyetech">
+                            <div class="counter-icon">
+                                <i class="fa-solid fa-cart-arrow-down"></i>
+                            </div>
+                            <div class="counter-content">
+                                <h3>Ordenes en Espera</h3>
+                                <span class="counter-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="counter dyetech">
+                            <div class="counter-icon">
+                                <i class="fa-solid fa-cart-flatbed"></i>
+                            </div>
+                            <div class="counter-content">
+                                <h3>Ordenes Entregadas</h3>
+                                <span class="counter-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Accesos Rapidos -->
+            <div class="text-center mt-5 mb-2">
+
+                <i class="fa-solid fa-arrow-up-right-from-square text-info fs-2"></i>
+                <h3> Accesos Rapidos</h3>
+
+            </div>
+
+            <!-- Page Content -->
+            <div class="container">
+
+
+                <div class="row text-center mb-5">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card text-center border border-info shadow-0 ">
+                                <div class="card-body">
+                                    <i class="fa-solid fa-table-list fs-1 mb-4"></i>
+                                    <h5 class="card-title">Listado de Ordenes</h5>
+                                </div>
+                                <a href="#" class="btn btn btn-info">Ingresar</a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card text-center border border-info shadow-0 ">
+                                <div class="card-body">
+                                    <i class="fa-solid fa-table-list fs-1 mb-4"></i>
+                                    <h5 class="card-title">Listado de Usuarios</h5>
+                                </div>
+                                <a href="#" class="btn btn btn-info">Ingresar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+
+
+                <!-- Page Features -->
+                <div class="row text-center mb-5">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card text-center border border-info shadow-0 ">
+                                <div class="card-body">
+                                    <i class="fa-solid fa-table-list fs-1 mb-4"></i>
+                                    <h5 class="card-title">Listado de Productos</h5>
+                                </div>
+                                <a href="#" class="btn btn btn-info">Ingresar</a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card text-center border border-info shadow-0 ">
+                                <div class="card-body">
+                                    <i class="fa-solid fa-table-list fs-1 mb-4"></i>
+                                    <h5 class="card-title">Listado de Categoria</h5>
+                                </div>
+                                <a href="#" class="btn btn btn-info">Ingresar</a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card text-center border border-info shadow-0 ">
+                                <div class="card-body">
+                                    <i class="fa-solid fa-table-list fs-1 mb-4"></i>
+                                    <h5 class="card-title">Listado de Sub-Categoria</h5>
+                                </div>
+                                <a href="#" class="btn btn btn-info">Ingresar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+    </div>
+
+
+    
+    <script th:fragment="js"></script>
+    <script th:src="@{/js/admin.js}"></script>
+</body>
+
+</html>

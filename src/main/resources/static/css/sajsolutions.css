@@ -157,35 +157,37 @@
 }
 
 /* HEADER */
-.bg-headnavdye{
+.bg-headnavdye {
   background-color: #00f3ff !important
 }
+
 /* HEADER */
 
 
 /* INICIO FOOTER */
-html{
+html {
   height: 100%;
 }
 
 /*SOLUCION FOOTER AL AIRE LIBRE*/
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
 }
 
-.footer {
-  padding: 1em 0;
-  text-align: center;
-  margin-top: auto;
+footer {
+  padding: 1em 0 !important;
+  text-align: center !important;
+  margin-top: auto !important;
 }
+
 /*SOLUCION FOOTER AL AIRE LIBRE*/
-header{
+header {
   flex: 0 0 auto;
 }
 
-.contenido{
+.contenido {
   flex: 1 0 auto;
 }
 
@@ -369,6 +371,7 @@ header{
 .whatsPassword {
   color: #7a0056 !important;
 }
+
 .whatsPassword:hover {
   color: #7a0056 !important;
 }
@@ -377,15 +380,115 @@ header{
   color: #7a0056 !important;
 }
 
-.form-color-saj:hover{
-  border-color:#ff00b3;
+.form-color-saj:hover {
+  border-color: #ff00b3;
 }
+
 .form-color-saj:focus {
-  border-color: #7a0056 !important; 
+  border-color: #7a0056 !important;
   -webkit-box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.075), 0 0 20px #00992b !important;
   box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075), 0 0 8px #00992b !important;
 
 }
+
 .caracteristicaColor {
   color: #7a0056 !important;
 }
+
+/* ADMINISTRADOR ZONE */
+.adminContent {
+  display: grid;
+  place-items: center;
+}
+
+.counter {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 22px 0 0;
+  margin: 0 10px;
+  position: relative;
+}
+
+.counter:before {
+  content: "";
+  border: 2px solid #575757;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+}
+
+.counter .counter-icon {
+  color: #00A69C;
+  font-size: 40px;
+  margin: 0 0 22px;
+}
+
+.counter .counter-content {
+  background-color: rgba(0, 166, 156, 0.9);
+  padding: 26px 18px 20px;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+}
+
+.counter .counter-content:before {
+  content: '';
+  background-color: #00A69C;
+  width: 25px;
+  height: 25px;
+  transform: translateX(-50%) rotate(45deg);
+  position: absolute;
+  left: 50%;
+  top: -13px;
+}
+
+.counter h3 {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin: 0 0 8px;
+}
+
+.counter .counter-value {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.counter.red .counter-icon {
+  color: #E44C4B;
+}
+
+.counter.red .counter-content,
+.counter.red .counter-content:before {
+  background-color: rgba(228, 76, 75, 0.9);
+}
+
+.counter.blue .counter-icon {
+  color: #00c8d3;
+}
+
+.counter.blue .counter-content,
+.counter.blue .counter-content:before {
+  background-color: rgba(2, 121, 129, 0.9);
+}
+
+.counter.purple .counter-icon {
+  color: #00c8d3;
+}
+
+.counter.dyetech .counter-content,
+.counter.dyetech .counter-content:before {
+  background-color: #00c8d3;
+}
+
+@media screen and (max-width:990px) {
+  .counter {
+    margin-bottom: 40px;
+  }
+}
+
+/* FIN ZONE ADMINISTRADOR */

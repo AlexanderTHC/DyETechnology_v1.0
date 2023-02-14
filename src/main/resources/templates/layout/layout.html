@@ -23,8 +23,8 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS  FONTAWESOME -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS  SLICK -->
@@ -137,17 +137,22 @@ CSS -->
 
                 <div class="text-end">
 
-                    <button sec:authorize="isAuthenticated()" class="btn btn-outline-dark dropdown-toggle me-2 rounded-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button sec:authorize="isAuthenticated()"
+                        class="btn btn-outline-dark dropdown-toggle me-2 rounded-5" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user"></i>
-                      </button>
-                      <ul class="dropdown-menu">
+                    </button>
+                    <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/perfil}">Mi perfil</a></li>
                         <li><a class="dropdown-item" th:href="@{/compras/}">Mis compras</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/inicio}">Admin</a></li>
+                        <hr>
                         <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
-                      </ul>
-                    
+                    </ul>
 
-                    <a sec:authorize="!isAuthenticated()" type="button" class="btn btn-outline-dark me-2" th:href="@{/login}"><i class="fas fa-user"></i>
+
+                    <a sec:authorize="!isAuthenticated()" type="button" class="btn btn-outline-dark me-2"
+                        th:href="@{/login}"><i class="fas fa-user"></i>
                         INGRESAR</a>
                     <a th:href="@{/carrito/}" id="button" type="button" class="btn btn-warning btn-cart"><i
                             class="fas fa-shopping-cart"></i></a>
@@ -289,9 +294,8 @@ CSS -->
         crossorigin="anonymous"></script>
 
     <!-- JQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
 
     <!-- DATATABLE JS -->
