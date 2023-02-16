@@ -492,3 +492,30 @@ header {
 }
 
 /* FIN ZONE ADMINISTRADOR */
+
+/* MACHETE */
+.machete {
+  border: solid 5px red;
+}
+.machete2{
+  border: solid 5px green;
+}
+
+.machete3{
+  border: solid 5px blue;
+}
+.machete4{
+/*  border: solid 5px purple;
+*/
+}
+.machete5{
+  border: solid 5px orange;
+}
+
+@media all and (max-width: 600px){
+  div{
+      width:100%;
+      height:auto;
+      margin-left:10px;
+  }
+}

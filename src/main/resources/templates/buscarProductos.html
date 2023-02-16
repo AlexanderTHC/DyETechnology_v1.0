@@ -4,76 +4,154 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html 
-    lang="es"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    layout:decorate="~{layout/layout}"
-    >
-    <head>
-        <title th:text="${titulo}"></title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-        <div layout:fragment="contenido" class="contenido ">
-            <div class="container">
-                <h1 class="mt-4 mb-3">
-                    DyE Technology <small>Productos</small>
-                </h1>
-    
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-                    <li class="breadcrumb-item"><a th:href="@{/}">Perfil</a></li>
-                    <li class="breadcrumb-item active">Buscar producto</li>
-                </ol>
-    
-                <!--  -->
-                <div class="row">
-                    <div class="col-4">
-                        <div class="mt-4 mb-2">
-                            <h2 th:text="${query}" class="m-0 fw-bold"></h2>
-                            <span th:text="${productos.size()} + ' resultados'"></span>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+<head>
+    <title th:text="${titulo}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div layout:fragment="contenido" class="contenido ">
+        <div class="container">
+            <h1 class="mt-4 mb-3">
+                DyE Technology <small>Productos</small>
+            </h1>
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/}">Perfil</a></li>
+                <li class="breadcrumb-item active">Buscar producto</li>
+            </ol>
+
+            <section class="mt-2 mb-2 pb-2 pt-2">
+                <div class="container machete">
+                    <!-- ENCABEZADO -->
+                    <div class="row mt-2 machete2">
+                        <div class="col-11">
+                            <p th:text="'Resultado para: '+${query}+'.'" class="m-0 fs-3 fw-bold"></p>
+                            <span class="fs-5" th:text="${productos.size()} + ' resultados.'"></span>
                         </div>
-
-                        <div class="p-4 rounded border mt-4">
-                            <div th:each="c: ${categorias}" class="mb-3">
-                                <h5 th:text="${c.nombre}" class="mb-1"></h5>
-
-                                <div th:each="sc: ${subcategorias}" class="ps-3 mb-2">
-                                    <a 
-                                        th:href="@{/buscar/?subcategoria={scId} (scId = ${sc.id})}"
-                                        th:if="${sc.categoria.id} == ${c.id}" 
-                                        th:text="${sc.nombre}"
-                                        class="text-black"
-                                    ></a>
+                        <div class="col-1">
+                            <div class="mb-3">
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Ordenar
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Mayor Precio</a></li>
+                                        <li><a class="dropdown-item" href="#">Menor Precio</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        
-                    <div class="col-8">
-                        <div class="mb-5 rounded border">
-                            <div th:each="producto: ${productos}" class="d-flex gap-5 p-4 border-bottom">
-                                <div>
-                                    <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}">
-                                        <img th:src="@{{img} (img = ${producto.imagen})}" alt="Imagen" style="width: 160px; height: 160px; object-fit: contain;">
-                                    </a>
+                    <!-- CONTENIDO -->
+                    <div class="row mt-3 machete3">
+                        <!-- FILTRO -->
+                        <div class="col-3 machete5 ">
+                            <div class="row">
+                                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                                    <div class="card-title">
+                                        <strong class="fs-5">Seleccionar Filtro:</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check m-1">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Default radio
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h2 class="fs-5">
-                                        <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}" th:text="${producto.nombre}" class="text-black text-decoration-none"></a>
-                                    </h2>
-                                    <p class="fs-4 fw-bold">$ <span th:text="${#numbers.formatDecimal(producto.precio, 0, 'DEFAULT', 0, 'POINT')}"></span></p>
+                            </div>
+                        </div>
+                        <!-- PRODUCTOS -->
+                        <div class="col-9 machete5">
+
+                            <div class="row text-center"
+                                >
+                                <div class="col-3" th:each="producto: ${productos}">
+                                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                                        <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}">
+                                            <img th:src="@{{img} (img = ${producto.imagen})}" alt="Imagen"
+                                                style="width: 160px; height: 160px; object-fit: contain;">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}"
+                                                    th:text="${producto.nombre}"
+                                                    class="text-black text-decoration-none"></a>
+                                            </h5>
+                                            <p class="card-text">
+                                            <p class="fs-4 fw-bold">$ <span
+                                                    th:text="${#numbers.formatDecimal(producto.precio, 0, 'DEFAULT', 0, 'POINT')}"></span>
+                                            </p>
+                                            </p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--  -->
+            </section>
+
+
+            <!--BUSCADOR DE ENZO-->
+            <div class="row">
+                <div class="col-4">
+                    <div class="mt-4 mb-2">
+                        <h2 th:text="${query}" class="m-0 fw-bold"></h2>
+                        <span th:text="${productos.size()} + ' resultados'"></span>
+                    </div>
+
+                    <div class="p-4 rounded border mt-4">
+                        <div th:each="c: ${categorias}" class="mb-3">
+                            <h5 th:text="${c.nombre}" class="mb-1"></h5>
+
+                            <div th:each="sc: ${subcategorias}" class="ps-3 mb-2">
+                                <a th:href="@{/buscar/?subcategoria={scId} (scId = ${sc.id})}"
+                                    th:if="${sc.categoria.id} == ${c.id}" th:text="${sc.nombre}" class="text-black"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-8">
+                    <div class="mb-5 rounded border">
+                        <div th:each="producto: ${productos}" class="d-flex gap-5 p-4 border-bottom">
+                            <div>
+                                <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}">
+                                    <img th:src="@{{img} (img = ${producto.imagen})}" alt="Imagen"
+                                        style="width: 160px; height: 160px; object-fit: contain;">
+                                </a>
+                            </div>
+                            <div>
+                                <h2 class="fs-5">
+                                    <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}"
+                                        th:text="${producto.nombre}" class="text-black text-decoration-none"></a>
+                                </h2>
+                                <p class="fs-4 fw-bold">$ <span
+                                        th:text="${#numbers.formatDecimal(producto.precio, 0, 'DEFAULT', 0, 'POINT')}"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.container -->
+            <!--  -->
         </div>
-        <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>
-    </body>
+        <!-- /.container -->
+    </div>
+    <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>
+</body>
+
 </html>
