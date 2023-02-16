@@ -13,6 +13,8 @@ public interface IProductoService {
     // Nos da la opcion de validar si el objeto que obtenemos si existe o no, dentro de la base de datos
     public Optional<Producto> get(Long id);
     // 
+
+    public List<Producto> buscarPorSubCategoria(Long id);
     
     public Producto buscarPorId(Long id);
     

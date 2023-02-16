@@ -152,3 +152,36 @@ $("#btnRegistrar").on("click", () => {
   $(".is-invalid").removeClass("is-invalid");
   $("span").closest(".error-span").remove();
 }*/
+
+
+
+// Buscar producto
+$(document).ready(function()
+{
+    $("#buscarProductos").autocomplete(
+    {
+        source: function(req, res) // Función para obtener la lista de productos
+        {
+            $.ajax(
+            {
+                url: `/_fetch-products/${req.term}`, // Url donde hará la petición
+                data: { term: req.term }, 
+                dataType: "json",
+                success: function(data) 
+                {
+                    res($.map(data, function(item)
+                    {
+                        return {
+                            value: item.id,
+                            label: item.nombre,
+                        }
+                    }));
+                }
+            });
+        },
+        select: function(event, ui) // Cuando el usuario selecciona un item de la lista
+        {
+            window.location.href = `/detalleproducto/${ui.item.value}`; // Redireccionar al producto
+        }
+    });
+});

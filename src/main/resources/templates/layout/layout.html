@@ -127,11 +127,13 @@ CSS -->
                     <!-- PRUEBAS DE ERROR (ADMINSITRADOR)-->
                 </ul>
 
-                <form action="#" class="searchform col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <form th:action="@{/buscar/}" class="searchform col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                     <div class="form-group d-flex">
-                        <input type="text" class="form-control form-control-lg pl-3" placeholder="Buscar Articulos...">
-                        <button type="submit" placeholder="" class="form-control search"><span
-                                class="fa fa-search"></span></button>
+                        <input type="text" class="form-control form-control-lg pl-3 rounded-0" id="buscarProductos" name="query" placeholder="Buscar artículos" autocomplete="off">
+                        
+                        <button type="submit" placeholder="" class="form-control search rounded-0">
+                            <span class="fa fa-search"></span>
+                        </button>
                     </div>
                 </form>
 
@@ -257,7 +259,7 @@ CSS -->
                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                         <h5 class="text-head-footer text-dark">SUSCRIBETE</h5>
 
-                        <form action="#" class="searchform col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                        <form action="#" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                             <div class="form-group d-flex">
                                 <input type="text" class="form-control pl-3 " placeholder="Ingrese su Correo...">
                                 <button type="submit" placeholder="" class="form-control search"><span
@@ -333,6 +335,8 @@ CSS -->
     <!-- BOXI ICONS JS-->
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
 
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
     <!-- Mis JS (TODA CLASE QUE SE LLAME JS, SE REEMPLAZA ESA BARRA, SE PODRA AGREGAR ESTILOS PROPIOS DE LA PAGINA Y QUE VA HACER CARGADOR EN LA SIGUIENTE LINEA) -->
     <script th:replace=":: js"></script>

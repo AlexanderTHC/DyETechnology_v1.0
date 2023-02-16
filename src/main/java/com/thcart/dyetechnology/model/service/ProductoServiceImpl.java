@@ -42,6 +42,11 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
+    public List<Producto> buscarPorSubCategoria(Long id) {
+        return productoRepo.buscarPorSubCategoria(id);
+    }
+
+    @Override
     public Optional<Producto> get(Long id) {
         return productoRepo.findById(id);
     }

@@ -10,15 +10,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.thcart.dyetechnology.model.entities.Categoria;
 import com.thcart.dyetechnology.model.entities.Orden;
+import com.thcart.dyetechnology.model.entities.Producto;
+import com.thcart.dyetechnology.model.entities.SubCategoria;
 import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.repository.ICarritoRepository;
 import com.thcart.dyetechnology.model.repository.IOrdenRepository;
 import com.thcart.dyetechnology.model.repository.IUsuarioRepository;
+import com.thcart.dyetechnology.model.service.CategoriaServiceImpl;
 import com.thcart.dyetechnology.model.service.IOrdenService;
 import com.thcart.dyetechnology.model.service.IProductoService;
 import com.thcart.dyetechnology.model.service.IUsuarioService;
+import com.thcart.dyetechnology.model.service.SubCategoriaServiceImpl;
 
 @Controller
 public class HomeController {
@@ -45,6 +52,14 @@ public class HomeController {
     // CAMBIAR A SERVICES
     @Autowired
     ICarritoRepository carritoRepository;
+
+    @Autowired
+    private CategoriaServiceImpl categoriaService;
+
+    @Autowired
+    private SubCategoriaServiceImpl subCategoriaService;
+
+
 
     @GetMapping({ "/", "/home" })
     public String home(Model model) {
@@ -91,5 +106,27 @@ public class HomeController {
         LOGGER.info("Compras: {}", orden);
 
         return "detalleCompra";
+    }
+
+
+    // Buscar producto
+    @GetMapping(value = "/_fetch-products/{query}", produces = {"application/json"})
+    private @ResponseBody List<Producto> searchProducts(@PathVariable String query)
+    {
+        return productoService.buscarPor(query);
+    }
+
+    @GetMapping("/buscar/")
+    public String searchProducts(@RequestParam(required = false) String query, @RequestParam(required = false) Long subcategoria, Model model)
+    {
+        List<Producto> productos = (subcategoria == null) ? productoService.buscarPor(query) : productoService.buscarPorSubCategoria(subcategoria);
+        List<Categoria> categorias = categoriaService.buscarTodos();
+        List<SubCategoria> subCategorias = subCategoriaService.buscarTodos();
+
+        model.addAttribute("productos", productos);
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("subcategorias", subCategorias);
+        model.addAttribute("query", query);
+        return "buscarProductos";
     }
 }

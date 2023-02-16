@@ -11,3 +11,8 @@ INSERT INTO `dyetechnology_db`.`productos` (`activo`, `cantidad`, `descripcion`,
 
 INSERT INTO `usuarios` (`activo`, `apellido`, `clave`, `direccion`, `dni`, `email`, `nombre`, `telefono`, `username`, `id_rol`) VALUES (1, 'Sosa', '$2a$10$sPhZgmkVpsgJxEjUf4QOFOTbwD/zmDXNICxpkCIwKnXPA1DeOSCg2', NULL, NULL, 'sosaalexander.joa@gmail.com', 'Alexander', NULL, 'zax', '1');
 INSERT INTO `usuarios` (`activo`, `apellido`, `clave`, `direccion`, `dni`, `email`, `nombre`, `telefono`, `username`, `id_rol`) VALUES (1, 'Gualtieri', '$2a$10$sPhZgmkVpsgJxEjUf4QOFOTbwD/zmDXNICxpkCIwKnXPA1DeOSCg2', NULL, NULL, 'elian.gualtieri@gmail.com', 'Elian', NULL, 'elian', '1');
+
+
+INSERT INTO `dyetechnology_db`.`categorias` (`activo`, `nombre`) VALUES (1, 'Auriculares');
+INSERT INTO `dyetechnology_db`.`categorias` (`activo`, `nombre`) VALUES (1, 'Teclados');
+INSERT INTO `dyetechnology_db`.`categorias` (`activo`, `nombre`) VALUES (1, 'Mouse');
