@@ -25,131 +25,77 @@ and open the template in the editor.
                 <li class="breadcrumb-item"><a th:href="@{/}">Perfil</a></li>
                 <li class="breadcrumb-item active">Buscar producto</li>
             </ol>
+        </div>
+        <div class="container">
+            
 
-            <section class="mt-2 mb-2 pb-2 pt-2">
-                <div class="container machete">
-                    <!-- ENCABEZADO -->
-                    <div class="row mt-2 machete2">
-                        <div class="col-11">
-                            <p th:text="'Resultado para: '+${query}+'.'" class="m-0 fs-3 fw-bold"></p>
-                            <span class="fs-5" th:text="${productos.size()} + ' resultados.'"></span>
-                        </div>
-                        <div class="col-1">
-                            <div class="mb-3">
-                                <div class="dropdown">
-                                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Ordenar
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Mayor Precio</a></li>
-                                        <li><a class="dropdown-item" href="#">Menor Precio</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- CONTENIDO -->
-                    <div class="row mt-3 machete3">
-                        <!-- FILTRO -->
-                        <div class="col-3 machete5 ">
-                            <div class="row">
-                                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-                                    <div class="card-title">
-                                        <strong class="fs-5">Seleccionar Filtro:</strong>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-check m-1">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Default radio
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- PRODUCTOS -->
-                        <div class="col-9 machete5">
-
-                            <div class="row text-center"
-                                >
-                                <div class="col-3" th:each="producto: ${productos}">
-                                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-                                        <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}">
-                                            <img th:src="@{{img} (img = ${producto.imagen})}" alt="Imagen"
-                                                style="width: 160px; height: 160px; object-fit: contain;">
-                                        </a>
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}"
-                                                    th:text="${producto.nombre}"
-                                                    class="text-black text-decoration-none"></a>
-                                            </h5>
-                                            <p class="card-text">
-                                            <p class="fs-4 fw-bold">$ <span
-                                                    th:text="${#numbers.formatDecimal(producto.precio, 0, 'DEFAULT', 0, 'POINT')}"></span>
-                                            </p>
-                                            </p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <!--BUSCADOR DE ENZO-->
             <div class="row">
-                <div class="col-4">
-                    <div class="mt-4 mb-2">
-                        <h2 th:text="${query}" class="m-0 fw-bold"></h2>
-                        <span th:text="${productos.size()} + ' resultados'"></span>
+                    <div class="col-md-12 order-md-first">
+                        <p th:text="'Resultado para: '+${query}+'.'" class="m-0 fs-3 fw-bold"></p>
+                        <span class="fs-5" th:text="${productos.size()} + ' resultados.'"></span>
+    
+                        <div class="mb-2 pull-right">
+                            <div class="dropdown">
+                                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Ordenar
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Mayor Precio</a></li>
+                                    <li><a class="dropdown-item" href="#">Menor Precio</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="p-4 rounded border mt-4">
-                        <div th:each="c: ${categorias}" class="mb-3">
-                            <h5 th:text="${c.nombre}" class="mb-1"></h5>
-
-                            <div th:each="sc: ${subcategorias}" class="ps-3 mb-2">
-                                <a th:href="@{/buscar/?subcategoria={scId} (scId = ${sc.id})}"
-                                    th:if="${sc.categoria.id} == ${c.id}" th:text="${sc.nombre}" class="text-black"></a>
+                <div class="col-md-3 order-md-last">
+                    <p>
+                        <button class="d-block d-md-none btn btn-primary btn-block mb-3" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+                            aria-controls="collapseExample">
+                            Filtros
+                        </button>
+                    </p>
+                    <div class="collapse d-md-block mb-3" id="collapseExample">
+                        <div class="card shadow p-3">
+                                <strong class="fs-5 card-title">Seleccionar Filtros:</strong>
+                            <div class="card-body">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Categorias
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-9 order-md-first">
+                    <div class="row text-center">
+                        <div class="col-lg-3 col-md-6 mb-4" th:each="p: ${productos}">
+                            <div class="card h-100 shadow bg-body-tertiary rounded">
+                                <div class="product-img-container">
+                                    <img class="card-img-top product-img" th:src="@{${p.imagen}}" alt="Imagen Producto">
+                                </div>
 
-                <div class="col-8">
-                    <div class="mb-5 rounded border">
-                        <div th:each="producto: ${productos}" class="d-flex gap-5 p-4 border-bottom">
-                            <div>
-                                <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}">
-                                    <img th:src="@{{img} (img = ${producto.imagen})}" alt="Imagen"
-                                        style="width: 160px; height: 160px; object-fit: contain;">
-                                </a>
-                            </div>
-                            <div>
-                                <h2 class="fs-5">
-                                    <a th:href="@{/detalleproducto/{id} (id = ${producto.id})}"
-                                        th:text="${producto.nombre}" class="text-black text-decoration-none"></a>
-                                </h2>
-                                <p class="fs-4 fw-bold">$ <span
-                                        th:text="${#numbers.formatDecimal(producto.precio, 0, 'DEFAULT', 0, 'POINT')}"></span>
-                                </p>
+                                <div class="card-body">
+                                    <p class="card-text fs-5 fw-bold" th:text="${p.nombre}"></p>
+                                    <p class="card-text fs-5 fw-bold" th:text="'$'+${p.precio}"></p>
+                                    <p class="card-text fs-5 fw-bold" th:text="${p.activo} ? 'En Stock' : 'Sin Stock'"
+                                        th:classappend="${p.activo} ? 'text-success' : 'text-danger'"></p>
+                                </div>
+                                <div class="card-footer">
+                                    <a th:href="@{/detalleproducto/} + ${p.id}" class="btn btn-success">Ver
+                                        producto</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--  -->
+
         </div>
-        <!-- /.container -->
     </div>
     <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>
 </body>
