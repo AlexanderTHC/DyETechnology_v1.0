@@ -20,4 +20,11 @@ public class AdminController {
         return "administrador/inicio";
     }
     
+    @GetMapping("admin/ordenes")
+    public String ordenes(Model model) {
+
+        model.addAttribute("titulo", "DyE Technology - Administración");
+        model.addAttribute("subtitulo", "Lista de Ordenes de Clientes");
+        return "administrador/listOrdenes";
+    }
 }
