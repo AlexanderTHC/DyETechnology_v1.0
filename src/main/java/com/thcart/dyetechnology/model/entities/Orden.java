@@ -14,43 +14,44 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "ordenes")
 public class Orden {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numero;
     private Date fechaCreacion;
     private Date fechaRecibida;
+    private String observaciones;
+    private String estado;
     private double total;
     private boolean activo;
 
-    // 
+    //
     @ManyToOne
     private Usuario usuario;
-    
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "orden_id", referencedColumnName = "id")
     private List<OrdenItem> ordenItems = new ArrayList<>();
 
-
     public Orden() {
     }
 
-    public Orden(Long id, String numero, Date fechaCreacion, Date fechaRecibida, double total, Usuario usuario,
-            List<OrdenItem> ordenItems, boolean activo) {
+    public Orden(Long id, String numero, Date fechaCreacion, Date fechaRecibida, String observaciones, String estado,
+            double total, boolean activo, Usuario usuario, List<OrdenItem> ordenItems) {
         this.id = id;
         this.numero = numero;
         this.fechaCreacion = fechaCreacion;
         this.fechaRecibida = fechaRecibida;
+        this.observaciones = observaciones;
+        this.estado = estado;
         this.total = total;
+        this.activo = activo;
         this.usuario = usuario;
         this.ordenItems = ordenItems;
-        this.activo = activo;
     }
 
     public Long getId() {
@@ -116,4 +117,21 @@ public class Orden {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
 }

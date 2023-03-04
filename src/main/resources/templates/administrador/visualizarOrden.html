@@ -37,7 +37,8 @@ and open the template in the editor.
               23:30:16</small>
             <!--AGREGAR UN ESTADO ACONTINUACIÓN Y CAMBIAR EL COLOR DEL MISMO.-->
             <small class="pull-right mt-2"> Estado: <small th:text="${orden.activo} ? 'Recibido' : 'En espera'"
-              th:classappend="${orden.activo} ? 'fw-bold text-success' : ' fw-bold text-warning'">En Espera.</small></small>
+                th:classappend="${orden.activo} ? 'fw-bold text-success' : ' fw-bold text-warning'">En
+                Espera.</small></small>
           </h3>
 
         </div>
@@ -46,7 +47,7 @@ and open the template in the editor.
             <div class="row justify-content-start" th:each="orden:${ordenes}">
               <div class="col-6 informacionesCardCliente">
                 <div class="container">
-                  <h4 class="fw-bold"><i class="fa-solid fa-id-card"></i> Tus Datos</h4>
+                  <h4 class="fw-bold"><i class="fa-solid fa-id-card"></i> Datos del Cliente</h4>
                   <hr>
                   <!--DATOS CLIENTES-->
                   <h6 class="fw-bold">Apellido y Nombre:
@@ -69,7 +70,8 @@ and open the template in the editor.
                   <h4 class="fw-bold"><i class="fa-solid fa-circle-info"></i> Información del Pedido</h4>
                   <hr>
                   <h6 class="fw-bold">Observaciones: </h6>
-                  <p th:text="${orden.observaciones}"></p>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, nobis. Tempora in, mollitia et iste
+                    ex vitae, odit enim, alias quibusdam officia deserunt?</p>
                 </div>
               </div>
             </div>
@@ -112,8 +114,17 @@ and open the template in the editor.
 
           </div>
         </div>
-        <div class="card-footer">
-          <p class="text-muted"><strong>Incluye los Impuestos como el IVA.</strong></p>
+        <div class="card-footer text-center" th:each="orden:${ordenes}">
+          <button class="btn btn-info">
+            Cancelar
+          </button>
+          <button class="btn btn-success" value="Aceptado" name="aceptado" id="aceptado">
+            Aceptar Orden
+          </button>
+          <button class="btn btn-danger" value="Cancelado" name="cancelado" id="cancelado">
+            Cancelar Orden
+          </button>
+          </p>
         </div>
       </div>
     </div>
@@ -125,27 +136,3 @@ and open the template in the editor.
 </body>
 
 </html>
-
-
-
-
-<!-- <div class="row">
-  <div class="col-lg-12">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Fecha</th>
-          <th scope="col">Producto</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ">
-          
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> -->

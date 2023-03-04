@@ -30,12 +30,12 @@ and open the template in the editor.
                     <div class="card-body">
                         <div class="row row-cols-1 row-cols-lg-2">
                             <div class="col col-lg-8">
-                                <table id="tablaCarritos" class="table table-bordered">
-                                    <thead>
+                                <table id="tablaCarritos" class="table table-bordered ">
+                                    <thead class="table-info">
                                         <tr>
                                             <th scope="col">Producto</th>
                                             <th scope="col">Precio</th>
-                                            <th style="width:20%;" scope="col">Cantidad</th>
+                                            <th style="width:10%;" scope="col">Cantidad</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">Acción</th>
                                         </tr>
@@ -54,7 +54,7 @@ and open the template in the editor.
                                                 $ <span th:text="${#numbers.formatDecimal((item.producto.precio * item.cantidad), 0, 'POINT', 0, 'DEFAULT')}" id="item_subTotal" th:item-id="${item.id}"></span>
                                             </td>
                                             <td>
-                                                <a th:href="@{/carrito/quitar/{id} (id = ${item.producto.id})}" class="btn btn-danger">Quitar</a>
+                                                <a th:href="@{/carrito/quitar/{id} (id = ${item.producto.id})}" class="btn btn-danger"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Quitar"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -69,7 +69,7 @@ and open the template in the editor.
                                         $ <span th:text="${#numbers.formatDecimal(#aggregates.sum(usuario.carrito.?[producto.precio != null].![(cantidad * producto.precio)]), 0, 'POINT', 0, 'DEFAULT')}" id="carrito_total"></span>
                                     </p>
                                     
-                                    <a th:href="@{/orden/}" class="btn btn-dark">Ver Orden</a>
+                                    <a th:href="@{/orden/}" class="btn btn-info">Comprar</a>
                                 </div>
                             </div>
                         </div>

@@ -4,24 +4,82 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html 
-    lang="es"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    layout:decorate="~{layout/layout}"
-    >
-    <head>
-        <title th:text="${titulo}"></title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-        <div layout:fragment="contenido" class="conntenido">
-            
-            <p>Página Plantilla</p>
-            
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+<head>
+    <title th:text="${titulo}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div layout:fragment="contenido" class="conntenido">
+
+        <!-- Page Content -->
+        <div class="container mb-5">
+
+
+            <!-- Page Heading/Breadcrumbs -->
+            <h1 class="mt-4 mb-3">
+                DyE Technologys <small>Ordenes</small>
+            </h1>
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/admin/inicio}">Home Administrador</a></li>
+                <li class="breadcrumb-item active">Lista Ordenes</li>
+            </ol>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card m-1">
+                        <div class="card-body bg-light">
+                            <table id="tablaOrdenes" class="table table-striped table-hover table-bordered table-sm"
+                                style="width: 100%;">
+                                <thead>
+
+                                    <!-- Tablas -->
+                                    <tr>
+                                        <th>Nro. Orden</th>
+                                        <th>Cliente</th>
+                                        <th>Fecha Creación</th>
+                                        <th>Fecha Recibida</th>
+                                        <th>Total</th>
+                                        <th>Estado</th>
+                                        <th class="bg-info">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="ord : ${ordenes}" class="text-center">
+                                        <td th:text="${ord.id}"></td>
+                                        <td th:text="${ord.usuario.email}"></td>
+                                        <td th:text="${ord.fechaCreacion}"></td>
+                                        <td th:text="${ord.fechaRecibida}"></td>
+                                        <td th:text="${ord.total}" class="bg-success text-light"></td>
+                                        <td th:text="${ord.activo} ? 'Recibido' : 'En Espera'"></td>
+                                        <td class="text-center">
+                                            <a th:href="@{/admin/visualizar/} + ${ord.id}"
+                                                class="btn btn-info text-light shadow rounded border border-1 border-dark"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visualizar">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
-        
-        <script th:fragment="js"></script>
-    </body>
+        <!-- /.container -->
+
+    </div>
+
+    <script th:src="@{/js/admin.js}" th:fragment="js"></script>
+</body>
+
 </html>

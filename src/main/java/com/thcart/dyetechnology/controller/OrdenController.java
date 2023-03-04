@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thcart.dyetechnology.model.entities.Carrito;
@@ -41,7 +43,8 @@ public class OrdenController
     }
 
     @GetMapping("/generar") // Generar una nueva orden
-    public String generate(Principal principal, RedirectAttributes redirect)
+    public String generate(Principal principal, RedirectAttributes redirect,
+    @ModelAttribute("observacion") String observacion)
     {
         Usuario usuario = usuarioRepository.findByEmail(principal.getName());
 
@@ -67,6 +70,9 @@ public class OrdenController
         orden.setUsuario(usuario);
         orden.setTotal(total);
         orden.setOrdenItems(detalles);
+        orden.setEstado("En espera");
+        //OBSERVACIONES
+        orden.setObservaciones(observacion);
         ordenRepository.save(orden); // Crear nueva orden
 
         // Vaciar carrito del usuario
