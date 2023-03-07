@@ -19,3 +19,15 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.btnContact{
+  padding-top: 11px;
+  margin: 11px 11px;
+  font-size: 21px;
+  border: none;
+  border-radius: 22px;
+}
+
+.top{
+  margin-top: 21px;
+}

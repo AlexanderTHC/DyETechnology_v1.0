@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{layout/layout}">
+
+<head>
+    <title th:text="${titulo}"></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- css -->
+    <link href="/css/logindye.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div layout:fragment="contenido" class="conntenido">
+
+        <!-- Mapa de Barranqueras -->
+        <div class="container col-md-6">
+            <br>
+            <div class="card text-center">
+                <div class="card-header">
+                    <h1 class="text-md-center">Resistencia</h1>
+                </div>
+                <div class="card-body">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d885.157239398065!2d-59.0390435!3d-27.449672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94450ba33177d15d%3A0x704016342a9bae9e!2sC.%20Lutringer%20C%203001-3099%2C%20Resistencia%2C%20Chaco!5e0!3m2!1ses-419!2sar!4v1678058015568!5m2!1ses-419!2sar"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contactos -->
+        <div class="container-fluid col-md-5 top">
+            <div class="row">        
+                <div class="d-grid gap-2 d-md-block">
+                    <button type="button" class="btn btn-success btn-lg btnContact">
+                        <i class="fa-brands fa-whatsapp fa-lg"></i>
+                        Contactanos a travez de Whatsapp
+                    </button>
+                    <button type="button" class="btn btn-danger btn-lg btnContact">
+                        <i class="fa-regular fa-envelope fa-lg"></i>
+                        Contactanos a travez de Gmail
+                    </button>
+                </div>
+                <!-- <div class="col-sm-6 mb-3 mb-sm-0">
+                    <button type="button" class="btn btn-danger btn-lg btnContact">
+                        <i class="fa-regular fa-envelope fa-lg"></i>
+                        Contactanos a travez de Gmail
+                    </button>
+                </div> -->
+            </div>
+        </div>
+        <br>
+
+    </div>
+
+    <script th:fragment="js"></script>
+</body>
+
+</html>
