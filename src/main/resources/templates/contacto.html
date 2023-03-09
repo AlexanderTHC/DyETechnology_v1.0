@@ -19,12 +19,12 @@ and open the template in the editor.
 <body>
     <div layout:fragment="contenido" class="conntenido">
 
-        <!-- Mapa de Barranqueras -->
+        <!-- Mapa de Resistencia -->
         <div class="container col-md-6">
             <br>
             <div class="card text-center">
                 <div class="card-header">
-                    <h1 class="text-md-center">Resistencia</h1>
+                    <h1 class="card-title">Resistencia</h1>
                 </div>
                 <div class="card-body">
                     <iframe
@@ -34,20 +34,44 @@ and open the template in the editor.
                     </iframe>
                 </div>
             </div>
+
+            <!-- separación -->
+
+            <br>
+            <div class="row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title text-center fw-bold"><i class="fa-regular fa-clock"></i> Horarios </i></h4>
+                      <h5 class="card-text text-center">Lunes a Domingo 09:00 a.m. - 21:00 p.m.</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title text-center fw-bold"> <i class="fa-solid fa-location-dot"></i></i> Dirección</i></h4>
+                      <h5 class="card-text text-center">Lustringuer 3086, Barberan.</h5>     
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
+
+        
 
         <!-- Contactos -->
         <div class="container-fluid col-md-5 top">
             <div class="row">        
                 <div class="d-grid gap-2 d-md-block">
-                    <button type="button" class="btn btn-success btn-lg btnContact">
+                    <a type="button" class="btn btn btn-lg btnContactWsp" href="https://wa.me/+543625153078"> 
                         <i class="fa-brands fa-whatsapp fa-lg"></i>
-                        Contactanos a travez de Whatsapp
-                    </button>
-                    <button type="button" class="btn btn-danger btn-lg btnContact">
+                        Contactanos a través de WhatsApp
+                    </a>
+                    <a type="button" class="btn btn btn-lg btnContactGmail" href="mailto:eliandan090@gmail.com">
                         <i class="fa-regular fa-envelope fa-lg"></i>
-                        Contactanos a travez de Gmail
-                    </button>
+                        Contactanos a través de Gmail
+                    </a>
                 </div>
                 <!-- <div class="col-sm-6 mb-3 mb-sm-0">
                     <button type="button" class="btn btn-danger btn-lg btnContact">
