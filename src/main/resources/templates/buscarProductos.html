@@ -25,9 +25,12 @@ and open the template in the editor.
                 <li class="breadcrumb-item"><a th:href="@{/}">Perfil</a></li>
                 <li class="breadcrumb-item active">Buscar producto</li>
             </ol>
-        </div>
-        <div class="container">
             
+            <!--  -->
+            <div>
+                <p class="m-0 fs-3">Resultados para '<strong th:text="${query}"></strong>'</p>
+                <span class="fs-5" th:text="${productos.size()} + ' resultados.'"></span>
+            </div>
 
             <div class="row">
                     <div class="col-md-12 order-md-first">
@@ -38,27 +41,43 @@ and open the template in the editor.
                             <div class="dropdown">
                                 <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    Ordenar
+                                    Ordenar por
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Mayor Precio</a></li>
-                                    <li><a class="dropdown-item" href="#">Menor Precio</a></li>
+                                    <li><button class="dropdown-item" onclick="addUrlParameter('priceOrder', 'ASC')">Menor precio</button></li>
+                                    <li><button class="dropdown-item" onclick="addUrlParameter('priceOrder', 'DESC')">Mayor precio</button></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                 <div class="col-md-3 order-md-last">
-                    <p>
-                        <button class="d-block d-md-none btn btn-primary btn-block mb-3" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-                            aria-controls="collapseExample">
-                            Filtros
-                        </button>
-                    </p>
+                    <div class="p-4 border rounded">
+                        <div class="mb-3 d-flex flex-column align-items-start">
+                            <p class="mb-1 fw-bold fs-5">Ordenar por</p>
+                            <button class="mb-1 p-0 bg-transparent border-0" onclick="addUrlParameter('priceOrder', 'ASC')">Menor precio</button>
+                            <button class="mb-1 p-0 bg-transparent border-0" onclick="addUrlParameter('priceOrder', 'DESC')">Mayor precio</button>
+                        </div>
+
+                        <div class="mb-3 d-flex flex-column align-items-start">
+                            <p class="mb-1 fw-bold fs-5">Categoría</p>
+
+                            <p th:each="categoria: ${categorias}" th:text="${categoria.nombre}"></p>
+                            <!-- <button class="mb-1 p-0 bg-transparent border-0" onclick="addUrlParameter('category', 'ASC')">Menor precio</button>
+                            <button class="mb-1 p-0 bg-transparent border-0" onclick="addUrlParameter('category', 'DESC')">Mayor precio</button> -->
+                        </div>
+                    </div>
+
+                    <!-- <button class="d-block d-md-none btn btn-primary btn-block mb-3" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        Filtros
+                    </button>
+
                     <div class="collapse d-md-block mb-3" id="collapseExample">
                         <div class="card shadow p-3">
-                                <strong class="fs-5 card-title">Seleccionar Filtros:</strong>
+                            <strong class="fs-5 card-title">Ordenar por</strong>
+
                             <div class="card-body">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
@@ -69,8 +88,10 @@ and open the template in the editor.
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
+
+
                 <div class="col-md-9 order-md-first">
                     <div class="row text-center">
                         <div class="col-lg-3 col-md-6 mb-4" th:each="p: ${productos}">
@@ -94,7 +115,6 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>

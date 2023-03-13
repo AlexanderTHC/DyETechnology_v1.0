@@ -16,3 +16,17 @@ INSERT INTO `usuarios` (`activo`, `apellido`, `clave`, `direccion`, `dni`, `emai
 INSERT INTO `dyetechnology_db`.`categorias` (`activo`, `nombre`) VALUES (1, 'Auriculares');
 INSERT INTO `dyetechnology_db`.`categorias` (`activo`, `nombre`) VALUES (1, 'Teclados');
 INSERT INTO `dyetechnology_db`.`categorias` (`activo`, `nombre`) VALUES (1, 'Mouse');
+
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'auricular 1', '1');
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'auricular 2', '2');
+
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'teclado 1', '1');
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'teclado 2', '2');
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'teclado 3', '3');
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'teclado 4', '4');
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'teclado 5', '5');
+
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'mouse 1', '1');
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'mouse 2', '2');
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'mouse 3', '3');
+INSERT INTO `dyetechnology_db`.`subcategorias` (`activo`, `nombre`, `id_categoria`) VALUES (1, 'mouse 4', '4');

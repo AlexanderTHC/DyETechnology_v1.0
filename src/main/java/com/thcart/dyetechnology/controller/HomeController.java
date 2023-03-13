@@ -20,6 +20,7 @@ import com.thcart.dyetechnology.model.entities.SubCategoria;
 import com.thcart.dyetechnology.model.entities.Usuario;
 import com.thcart.dyetechnology.model.repository.ICarritoRepository;
 import com.thcart.dyetechnology.model.repository.IOrdenRepository;
+import com.thcart.dyetechnology.model.repository.IProductoRepository;
 import com.thcart.dyetechnology.model.repository.IUsuarioRepository;
 import com.thcart.dyetechnology.model.service.CategoriaServiceImpl;
 import com.thcart.dyetechnology.model.service.IOrdenService;
@@ -36,6 +37,9 @@ public class HomeController {
 
     @Autowired
     IProductoService productoService;
+
+    @Autowired
+    IProductoRepository productoRepository;
 
     @Autowired
     IOrdenRepository ordenRepository;
@@ -66,6 +70,18 @@ public class HomeController {
         model.addAttribute("titulo", "DyE Technology - Inicio");
         model.addAttribute("subtitle", "Tienda DyE Technology Oficial");
         model.addAttribute("productos", productoService.buscarTodos());
+
+        // String query = "a";
+        // Long categoryId = null;
+        // String priceOrder = "";
+        // double minPrice = .0;
+        // double maxPrice = .0;       
+        // List<Producto> productos = productoRepository.buscarProductos(query, categoryId, minPrice, maxPrice, priceOrder);
+        // for(Producto producto: productos)
+        // {
+        //     System.out.println(producto.toString());
+        // }
+        
 
         return "home";
     }
@@ -117,9 +133,30 @@ public class HomeController {
     }
 
     @GetMapping("/buscar/")
-    public String searchProducts(@RequestParam(required = false) String query, @RequestParam(required = false) Long subcategoria, Model model)
+    public String searchProducts(
+                                    @RequestParam(defaultValue = "") String query, 
+                                    @RequestParam(required = false, defaultValue = "0") String categoryId,
+                                    @RequestParam(required = false, defaultValue = "0") String minPrice,
+                                    @RequestParam(required = false, defaultValue = "0") String maxPrice,
+                                    @RequestParam(required = false, defaultValue = "ASC") String priceOrder,
+                                    Model model)
     {
-        List<Producto> productos = (subcategoria == null) ? productoService.buscarPor(query) : productoService.buscarPorSubCategoria(subcategoria);
+        //List<Producto> productos = (subcategoria == null) ? productoService.buscarPor(query) : productoService.buscarPorSubCategoria(subcategoria);
+
+        //List<Producto> productos = productoService.buscarPor(query);
+        List<Producto> productos = productoRepository.buscarProductos
+        (
+            query, 
+            !categoryId.equals("0") ? Long.parseLong(categoryId) : null, 
+            !minPrice.equals("0") ? Double.parseDouble(minPrice) : null, 
+            !maxPrice.equals("0") ? Double.parseDouble(maxPrice) : null, 
+            priceOrder
+        );
+
+        // System.out.println("MIN: " + (!minPrice.equals("0") ? Double.parseDouble(minPrice) : null)); 
+        // System.out.println("MAX: " + Double.parseDouble(maxPrice));
+        // System.out.println("ORDER: " + priceOrder);
+
         List<Categoria> categorias = categoriaService.buscarTodos();
         List<SubCategoria> subCategorias = subCategoriaService.buscarTodos();
 
