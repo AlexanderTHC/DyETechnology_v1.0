@@ -33,23 +33,10 @@ and open the template in the editor.
             </div>
 
             <div class="row">
-                    <div class="col-md-12 order-md-first">
-                        <p th:text="'Resultado para: '+${query}+'.'" class="m-0 fs-3 fw-bold"></p>
-                        <span class="fs-5" th:text="${productos.size()} + ' resultados.'"></span>
-    
-                        <div class="mb-2 pull-right">
-                            <div class="dropdown">
-                                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Ordenar por
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><button class="dropdown-item" onclick="addUrlParameter('priceOrder', 'ASC')">Menor precio</button></li>
-                                    <li><button class="dropdown-item" onclick="addUrlParameter('priceOrder', 'DESC')">Mayor precio</button></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-12 order-md-first">
+                    <p th:text="'Resultado para: '+${query}+'.'" class="m-0 fs-3 fw-bold"></p>
+                    <span class="fs-5" th:text="${productos.size()} + ' resultados.'"></span>
+                </div>
 
                 <div class="col-md-3 order-md-last">
                     <div class="p-4 border rounded">
@@ -62,33 +49,27 @@ and open the template in the editor.
                         <div class="mb-3 d-flex flex-column align-items-start">
                             <p class="mb-1 fw-bold fs-5">Categoría</p>
 
-                            <p th:each="categoria: ${categorias}" th:text="${categoria.nombre}"></p>
-                            <!-- <button class="mb-1 p-0 bg-transparent border-0" onclick="addUrlParameter('category', 'ASC')">Menor precio</button>
-                            <button class="mb-1 p-0 bg-transparent border-0" onclick="addUrlParameter('category', 'DESC')">Mayor precio</button> -->
+                            <button 
+                                th:each="c: ${categorias}" 
+                                th:text="${c.nombre}"
+                                th:onclick="|addUrlParameter('categoryId', '${c.id}')|"
+                                class="mb-1 p-0 bg-transparent border-0">
+                            </button>
+
+                            <!-- <div th:each="c: ${categorias}" class="mb-3">
+                                <h5 th:text="${c.nombre}" class="mb-1"></h5>
+
+                                <div th:each="sc: ${subcategorias}" class="ps-3 mb-2">
+                                    <button 
+                                        th:if="${sc.categoria.id} == ${c.id}"
+                                        th:text="${sc.nombre}"
+                                        th:onclick="|addUrlParameter('categoryId', '${c.id}')|"
+                                        class="mb-1 p-0 bg-transparent border-0"
+                                    ></button>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
-
-                    <!-- <button class="d-block d-md-none btn btn-primary btn-block mb-3" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-                        aria-controls="collapseExample">
-                        Filtros
-                    </button>
-
-                    <div class="collapse d-md-block mb-3" id="collapseExample">
-                        <div class="card shadow p-3">
-                            <strong class="fs-5 card-title">Ordenar por</strong>
-
-                            <div class="card-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Categorias
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
 
 
