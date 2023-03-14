@@ -66,4 +66,13 @@ public class UsuarioController {
         return "usuario/form";
     }
 
+    @GetMapping("usuarios/listado")
+    public String listUsuario(Model model){
+
+        model.addAttribute("titulo", "DyE Technology - Usuarios");
+
+        model.addAttribute("usuarios", usuarioService.buscarTodos());
+
+        return "usuario/show";
+    }
 }

@@ -114,21 +114,35 @@ and open the template in the editor.
 
           </div>
         </div>
-        <div class="card-footer text-center" th:each="orden:${ordenes}">
-          <button class="btn btn-info">
-            Cancelar
-          </button>
-          <button class="btn btn-success" value="Aceptado" name="aceptado" id="aceptado">
-            Aceptar Orden
-          </button>
-          <button class="btn btn-danger" value="Cancelado" name="cancelado" id="cancelado">
-            Cancelar Orden
-          </button>
-          </p>
+        <div class="card-footer" th:each="orden:${ordenes}">
+          <form method="post" th:object="${orden}">
+            <div class="container">
+            <div class="row align-items-center text-center">
+              <div class="col">
+                <button class="btn btn-info">
+                  Cancelar
+                </button>
+
+              </div>
+              <div class="col">
+                <select class="form-select" aria-label="Acciones">
+                  <option selected>Acciones</option>
+                  <option value="1">En Espera</option>
+                  <option value="2">Aceptado</option>
+                  <option value="3">Cancelado</option>
+                </select>
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-success">Confirmar</button>
+              </div>
+            </div>
+          </div>
+          </form>
         </div>
       </div>
     </div>
-    <!-- /.container -->
+  </div>
+  <!-- /.container -->
 
   </div>
 
