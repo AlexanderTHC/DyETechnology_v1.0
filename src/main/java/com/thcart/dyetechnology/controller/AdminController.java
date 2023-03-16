@@ -66,7 +66,8 @@ public class AdminController {
                 break;
             case 3:
                 orden.setEstado("Cancelado"); 
-                break:   
+                orden.setActivo(false);
+                break;
             default:
                 break;
         }

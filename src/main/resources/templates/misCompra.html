@@ -44,12 +44,12 @@
                 </thead>
                 <tbody>
                   <tr th:each="orden: ${ordenes}">
+                    <input type="text" id="estado" th:value="${orden.estado}" class="invisible position-absolute">
                     <td th:text="'#' + ${#numbers.formatInteger(orden.id,10)}"></td>
                     <td th:text="${#dates.format(orden.fechaCreacion, 'dd/MM/yyyy')}"></td>
                     <td th:text="'$ '+ ${#numbers.formatDecimal(orden.total, 0, 'POINT', 0, 'DEFAULT')}"></td>
                     <!--AGREGAR UN ESTADO ACONTINUACIÓN Y CAMBIAR EL COLOR DEL MISMO.-->
-                    <td th:text="${orden.activo} ? 'Recibido' : 'En espera'"
-                    th:classappend="${orden.activo} ? 'fw-bold text-success' : ' fw-bold text-warning'"></td>
+                    <td th:text="${orden.estado}" id="estadoText"></td>
                     <td><a th:href="@{/compras/{id} (id = ${orden.id})}" class="btn btn-success">Ver Detalle</a></td>
                   </tr>
                 </tbody>

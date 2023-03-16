@@ -36,8 +36,8 @@ and open the template in the editor.
               th:text="'Generada '+ ${#dates.format(orden.fechaCreacion, 'dd-MM-yyyy HH:mm')}"> Generada 01/01/2023
               23:30:16</small>
             <!--AGREGAR UN ESTADO ACONTINUACIÓN Y CAMBIAR EL COLOR DEL MISMO.-->
-            <small class="pull-right mt-2"> Estado: <small th:text="${orden.activo} ? 'Recibido' : 'En espera'"
-              th:classappend="${orden.activo} ? 'fw-bold text-success' : ' fw-bold text-warning'">En Espera.</small></small>
+            <small class="pull-right mt-2"> Estado: <small class="estado" id="estadoText" th:text="${orden.estado} + '.'"></small></small> 
+            <input type="text" id="estado" th:value="${orden.estado}" class="invisible position-absolute">
           </h3>
 
         </div>
@@ -121,31 +121,7 @@ and open the template in the editor.
 
   </div>
 
-  <script th:fragment="js"></script>
+  <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>
 </body>
 
 </html>
-
-
-
-
-<!-- <div class="row">
-  <div class="col-lg-12">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Fecha</th>
-          <th scope="col">Producto</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ">
-          
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> -->

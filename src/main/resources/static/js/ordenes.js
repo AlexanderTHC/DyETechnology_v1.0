@@ -21,3 +21,20 @@ $(document).ready(function () {
     
     $('.money').mask('#.##0,00', {reverse: true});
 });
+
+
+$(document).ready(function () {
+    let estado = $("#estado").val();
+    console.log("Estado: " + estado);
+    const classEstado = document.querySelector('#estadoText');
+    
+
+    if (estado == "Aceptado") {
+        classEstado.className = 'fw-bold text-success';
+    } else if (estado == "Cancelado") {
+        classEstado.className = 'fw-bold text-danger';
+    } else {
+        classEstado.className = 'fw-bold text-warning';
+    }
+
+});

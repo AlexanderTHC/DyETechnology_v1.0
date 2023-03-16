@@ -29,7 +29,7 @@ and open the template in the editor.
                 <li class="breadcrumb-item"><a th:href="@{/admin/inicio}">Home Administrador</a></li>
                 <li class="breadcrumb-item active">Lista Ordenes</li>
             </ol>
-
+            
             <div class="row">
                 <div class="col-12">
                     <div class="card m-1">
@@ -51,12 +51,13 @@ and open the template in the editor.
                                 </thead>
                                 <tbody>
                                     <tr th:each="ord : ${ordenes}" class="text-center">
+                                        <input type="text" id="estado" th:value="${ord.estado}" class="invisible position-absolute">
                                         <td th:text="${ord.id}"></td>
                                         <td th:text="${ord.usuario.email}"></td>
                                         <td th:text="${ord.fechaCreacion}"></td>
                                         <td th:text="${ord.fechaRecibida}"></td>
                                         <td th:text="${ord.total}" class="bg-success text-light"></td>
-                                        <td th:text="${ord.activo} ? 'Recibido' : 'En Espera'"></td>
+                                        <td th:text="${ord.estado}" id="estadoText"></td>
                                         <td class="text-center">
                                             <a th:href="@{/admin/visualizar/} + ${ord.id}"
                                                 class="btn btn-info text-light shadow rounded border border-1 border-dark"

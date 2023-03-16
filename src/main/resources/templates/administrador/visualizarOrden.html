@@ -36,9 +36,12 @@ and open the template in the editor.
               th:text="'Generada '+ ${#dates.format(orden.fechaCreacion, 'dd-MM-yyyy HH:mm')}"> Generada 01/01/2023
               23:30:16</small>
             <!--AGREGAR UN ESTADO ACONTINUACIÓN Y CAMBIAR EL COLOR DEL MISMO.-->
-            <small class="pull-right mt-2"> Estado: <small th:text="${orden.activo} ? 'Recibido' : 'En espera'"
+            <small class="pull-right mt-2"> Estado: <small class="estado" id="estadoText" th:text="${orden.estado} + '.'"></small></small> 
+            <input type="text" id="estado" th:value="${orden.estado}" class="invisible position-absolute">
+            
+            <!-- small class="pull-right mt-2"> Estado: <small th:text="${orden.activo} ? 'Recibido' : 'En espera'"
                 th:classappend="${orden.activo} ? 'fw-bold text-success' : ' fw-bold text-warning'">En
-                Espera.</small></small>
+                Espera.</small></-small> -->
           </h3>
 
         </div>
@@ -125,7 +128,7 @@ and open the template in the editor.
 
               </div>
               <div class="col">
-                <select class="form-select" aria-label="Acciones">
+                <select name="estado" class="form-select" aria-label="Acciones">
                   <option selected>Acciones</option>
                   <option value="1">En Espera</option>
                   <option value="2">Aceptado</option>
@@ -146,7 +149,7 @@ and open the template in the editor.
 
   </div>
 
-  <script th:fragment="js"></script>
+  <script th:src="@{/js/admin.js}" th:fragment="js"></script>
 </body>
 
 </html>
