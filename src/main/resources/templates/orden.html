@@ -59,12 +59,18 @@
                             </div>
                         </div>
 
+
                         <div class="col col-lg-4">
-                            <div class="form-floating" modelAttribute="observacion">
-                                <textarea path="observacion" class="form-control" placeholder="Coloque alguna Observación en este Cuadro."
-                                    id="floatingTextarea2" style="height: 100px" name="observaciones" ></textarea>
-                                <label class="fw-bold" for="floatingTextarea2">Observación</label>
-                            </div>
+                            <form th:action="@{/orden/generar}" th:object="${orden}" method="post">
+                                <div class="form-floating">
+                                    <textarea class="form-control"
+                                        placeholder="Coloque alguna Observación en este Cuadro." id="floatingTextarea2"
+                                        style="height: 100px" name="observaciones"></textarea>
+                                    <label class="fw-bold" for="floatingTextarea2">Observación</label>
+                                </div>
+                                <button type="submit" value="Submit" class="btn btn-success">Confirmar</button>
+                            </form>
+
                             <br>
                             <h2 class="card-title">Resumen</h2>
                             <div class="border rounded">
@@ -75,17 +81,20 @@
                                     </p>
                                 </div>
 
-                                <a th:href="@{/orden/generar}"
-                                    class="w-100 rounded-0 rounded-bottom btn btn-info fw-bold">Confirmar</a>
+
+                                <!-- <a th:href="@{/orden/generar}"
+                                    classo="w-100 rounded-0 rounded-bottom btn btn-info fw-bold">Confirmar</a> -->
                             </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script th:fragment="js"></script>
+    <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>
 </body>
 
 </html>

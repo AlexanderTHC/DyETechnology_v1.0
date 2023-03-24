@@ -4,14 +4,18 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thcart.dyetechnology.model.entities.Carrito;
@@ -39,16 +43,20 @@ public class OrdenController
         Usuario usuario = usuarioRepository.findByEmail(principal.getName()); // Obtener el Usuario a través del email
 
         model.addAttribute("usuario", usuario);
+        model.addAttribute("orden", new Orden());
         return "orden";
     }
-
-    @GetMapping("/generar") // Generar una nueva orden
-    public String generate(Principal principal, RedirectAttributes redirect,
-    @ModelAttribute("observacion") String observacion)
+    @PostMapping("/generar") // Generar una nueva orden
+    public String generate(@ModelAttribute Orden orden, Principal principal, RedirectAttributes redirect,
+    @RequestParam(name = "observaciones", required = true) String observacion)
     {
         Usuario usuario = usuarioRepository.findByEmail(principal.getName());
 
-        Orden orden = new Orden(); // Nueva orden
+        if(usuario.getDireccion().isEmpty()) {
+            redirect.addFlashAttribute("errorUsuario", "error");
+            return "redirect:/";
+        } else {
+
         List<OrdenItem> detalles = new ArrayList<>(); // Lista de detalles
         double total = 0.0d; // Almacena el total de la orden
 
@@ -65,6 +73,8 @@ public class OrdenController
             total += detalle.getTotal(); // Sumar al total de la orden
         }
 
+       
+
         orden.setActivo(false);
         orden.setFechaCreacion(new Date());
         orden.setUsuario(usuario);
@@ -78,9 +88,25 @@ public class OrdenController
         // Vaciar carrito del usuario
         usuario.setCarrito(null);
         usuarioRepository.save(usuario);
-
+        }
         // Redireccionar
         redirect.addFlashAttribute("ordenGenerada", true);
         return "redirect:/";
     }
+
+    // @PostMapping(value = "/observacion", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    // public @ResponseBody Map<String, Object> observation(
+    // @RequestParam Long id, 
+    // @RequestParam String observation, 
+    // Principal principal)
+    // {
+
+    //     Orden orden = ordenRepository.findById(id).get();
+
+    //     orden.setObservaciones(observation);
+    //     ordenRepository.save(orden);
+      
+
+    //     return json;
+    // }
 }

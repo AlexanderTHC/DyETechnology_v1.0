@@ -9,6 +9,21 @@ $(document).ready(function(){
 
   /* ALERTS */
 $(document).ready(function () {
+    if ($("#errprUsuario").text() !== "") {
+        Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'Faltan Datos para confirmar la Compra del Producto, Revisa tus datos en "Mi Perfil"',
+            backdrop: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            stopKeydownPropagation: false,
+            showConfirmButton: true,
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: 'Aceptar'
+        });
+    }
     if ($("#sesionFinalizada").text() !== "") {
          Swal.fire({
              icon: 'success',
