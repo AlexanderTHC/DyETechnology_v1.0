@@ -9,11 +9,11 @@ $(document).ready(function(){
 
   /* ALERTS */
 $(document).ready(function () {
-    if ($("#errprUsuario").text() !== "") {
+    if ($("#errorUsuario").text() !== "") {
         Swal.fire({
             icon: 'error',
             title: '¡Error!',
-            text: 'Faltan Datos para confirmar la Compra del Producto, Revisa tus datos en "Mi Perfil"',
+            text: 'Faltan Datos para confirmar la Compra del Producto, Revisa tus datos en "Mi Perfil".',
             backdrop: true,
             allowOutsideClick: false,
             allowEscapeKey: false,
@@ -58,7 +58,7 @@ $(document).ready(function () {
     if ($("#ordenGenerada").text() !== "") {
         Swal.fire({
             icon: 'success',
-            text: 'La orden se genero con éxito',
+            text: 'La orden se genero con éxito, un Administrador revisara la Orden y se te informara del Estado del mismo.',
             backdrop: true,
             title: '¡Éxito!',
             allowOutsideClick: false,

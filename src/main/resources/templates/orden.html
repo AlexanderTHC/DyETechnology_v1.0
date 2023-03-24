@@ -62,39 +62,37 @@
 
                         <div class="col col-lg-4">
                             <form th:action="@{/orden/generar}" th:object="${orden}" method="post">
-                                <div class="form-floating">
-                                    <textarea class="form-control"
-                                        placeholder="Coloque alguna Observación en este Cuadro." id="floatingTextarea2"
-                                        style="height: 100px" name="observaciones"></textarea>
-                                    <label class="fw-bold" for="floatingTextarea2">Observación</label>
+                                <div>
+                                    <h4 class="card-title">Agregar Observación</h4>
+                                    <div class="form-floating">
+                                        <textarea class="form-control"
+                                            placeholder="Coloque alguna Observación en este Cuadro."
+                                            id="floatingTextarea2" style="height: 100px"
+                                            name="observaciones"></textarea>
+                                        <label class="fw-bold" for="floatingTextarea2">Observación</label>
+                                    </div>
                                 </div>
-                                <button type="submit" value="Submit" class="btn btn-success">Confirmar</button>
+
+                                <div class="mt-2">
+                                    <div class="border rounded">
+                                        <div class="p-3">
+                                            <h4 class="fw-bold">Total</h4>
+                                            <p class="fs-3">$ <span
+                                                    th:text="${#numbers.formatDecimal(#aggregates.sum(usuario.carrito.?[producto.precio != null].![(cantidad * producto.precio)]), 0, 'POINT', 0, 'DEFAULT')}"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" value="Submit" class="btn btn-success mt-2">Confirmar</button>
                             </form>
-
-                            <br>
-                            <h2 class="card-title">Resumen</h2>
-                            <div class="border rounded">
-                                <div class="p-3">
-                                    <h4 class="fw-bold">Total</h4>
-                                    <p class="fs-3">$ <span
-                                            th:text="${#numbers.formatDecimal(#aggregates.sum(usuario.carrito.?[producto.precio != null].![(cantidad * producto.precio)]), 0, 'POINT', 0, 'DEFAULT')}"></span>
-                                    </p>
-                                </div>
-
-
-                                <!-- <a th:href="@{/orden/generar}"
-                                    classo="w-100 rounded-0 rounded-bottom btn btn-info fw-bold">Confirmar</a> -->
-                            </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script th:src="@{/js/ordenes.js}" th:fragment="js"></script>
+    <script th:fragment="js"></script>
 </body>
 
 </html>
