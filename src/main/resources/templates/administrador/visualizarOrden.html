@@ -23,7 +23,7 @@ and open the template in the editor.
 
       <ol class="breadcrumb mt-4">
         <li class="breadcrumb-item"><a th:href="@{/}">Inicio</a></li>
-        <li class="breadcrumb-item"><a th:href="@{/compras}">Compras</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/admin/ordenes}">Lista Ordenes</a></li>
         <li class="breadcrumb-item active">Detalle de Compra</li>
       </ol>
 
@@ -57,13 +57,16 @@ and open the template in the editor.
                     <small class="fw-light" th:text="${orden.usuario.apellido} + ' ' + ${orden.usuario.nombre}"></small>
                   </h6>
                   <h6 class="fw-bold">DNI:
-                    <small class="fw-light" th:text="${orden.usuario.dni}"></small>
+                    <small class="fw-light" th:text="${orden.usuario.dni != ''} ? ${orden.usuario.dni} : '¡No hay datos!'"
+                    th:classappend="${orden.usuario.dni != ''} ?  'fw-light' : 'text-danger fw-bold'"></small>
                   </h6>
                   <h6 class="fw-bold">Dirección:
-                    <small class="fw-light" th:text="${orden.usuario.direccion}"></small>
+                    <small class="fw-light" th:text="${orden.usuario.direccion != ''} ? ${orden.usuario.direccion} : '¡No hay datos!'"
+                    th:classappend="${orden.usuario.direccion != ''} ?  'fw-light' : 'text-danger fw-bold'"></small>
                   </h6>
                   <h6 class="fw-bold">Nro. Telefono:
-                    <small class="fw-light" th:text="${orden.usuario.telefono}"></small>
+                    <small class="fw-light" th:text="${orden.usuario.telefono != ''} ? ${orden.usuario.telefono} : '¡No hay datos!'"
+                    th:classappend="${orden.usuario.telefono != ''} ?  'fw-light' : 'text-danger fw-bold'"></small>
                   </h6>
                   <!--FIN DATOS CLIENTES-->
                 </div>
@@ -73,7 +76,8 @@ and open the template in the editor.
                   <h4 class="fw-bold"><i class="fa-solid fa-circle-info"></i> Información del Pedido</h4>
                   <hr>
                   <h6 class="fw-bold">Observaciones: </h6>
-                  <p th:text="${orden.observaciones}"></p>
+                  <p th:text="${orden.observaciones != ''} ?  ${orden.observaciones} : '¡No hay datos!'"
+                  th:classappend="${orden.observaciones != ''} ?  'fw-light' : 'text-danger fw-bold'"></p>
                 </div>
               </div>
             </div>

@@ -26,9 +26,11 @@
                                 <h6 class="fw-bold">Apellido y Nombre: <span class="fw-light"
                                         th:text="${usuario.apellido} + ' '+ ${usuario.nombre}"></span></h6>
                                 <h6 class="fw-bold">Telefono: <span class="fw-light"
-                                        th:text="${usuario.telefono}"></span></h6>
+                                        th:text="${usuario.telefono != ''} ? ${usuario.telefono} : '¡No hay datos!'"
+                                        th:classappend="${usuario.telefono != ''} ? '' : 'text-danger fw-bold'"></span></h6>
                                 <h6 class="fw-bold">Dirección: <span class="fw-light"
-                                        th:text="${usuario.direccion}"></span></h6>
+                                        th:text="${usuario.direccion != ''} ? ${usuario.direccion} : '¡No hay datos!'"
+                                        th:classappend="${usuario.direccion != ''} ? '' : 'text-danger fw-bold'"></span></h6>
                             </div>
 
                             <div>

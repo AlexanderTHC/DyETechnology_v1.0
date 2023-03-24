@@ -14,6 +14,7 @@ and open the template in the editor.
 </head>
 
 <body>
+    <span id="warning" th:text="${warning}" hidden="true"></span>
     <div layout:fragment="contenido" class="conntenido">
 
         <!-- Page Content -->
@@ -57,7 +58,7 @@ and open the template in the editor.
                                         <td th:text="${ord.fechaCreacion}"></td>
                                         <td th:text="${ord.fechaRecibida}"></td>
                                         <td th:text="${ord.total}" class="bg-success text-light"></td>
-                                        <td th:text="${ord.estado}" id="estadoText"></td>
+                                        <td th:text="${ord.estado}"></td>
                                         <td class="text-center">
                                             <a th:href="@{/admin/visualizar/} + ${ord.id}"
                                                 class="btn btn-info text-light shadow rounded border border-1 border-dark"

@@ -36,7 +36,8 @@ and open the template in the editor.
               th:text="'Generada '+ ${#dates.format(orden.fechaCreacion, 'dd-MM-yyyy HH:mm')}"> Generada 01/01/2023
               23:30:16</small>
             <!--AGREGAR UN ESTADO ACONTINUACIÓN Y CAMBIAR EL COLOR DEL MISMO.-->
-            <small class="pull-right mt-2"> Estado: <small class="estado" id="estadoText" th:text="${orden.estado} + '.'"></small></small> 
+            <small class="pull-right mt-2"> Estado: <small class="estado" id="estadoText"
+                th:text="${orden.estado} + '.'"></small></small>
             <input type="text" id="estado" th:value="${orden.estado}" class="invisible position-absolute">
           </h3>
 
@@ -46,20 +47,26 @@ and open the template in the editor.
             <div class="row justify-content-start" th:each="orden:${ordenes}">
               <div class="col-6 informacionesCardCliente">
                 <div class="container">
-                  <h4 class="fw-bold"><i class="fa-solid fa-id-card"></i> Tus Datos</h4>
+                  <h4 class="fw-bold"><i class="fa-solid fa-id-card"></i> Datos del Cliente</h4>
                   <hr>
                   <!--DATOS CLIENTES-->
                   <h6 class="fw-bold">Apellido y Nombre:
                     <small class="fw-light" th:text="${orden.usuario.apellido} + ' ' + ${orden.usuario.nombre}"></small>
                   </h6>
                   <h6 class="fw-bold">DNI:
-                    <small class="fw-light" th:text="${orden.usuario.dni}"></small>
+                    <small class="fw-light"
+                      th:text="${orden.usuario.dni != ''} ? ${orden.usuario.dni} : '¡No hay datos!'"
+                      th:classappend="${orden.usuario.dni != ''} ?  'fw-light' : 'text-danger fw-bold'"></small>
                   </h6>
                   <h6 class="fw-bold">Dirección:
-                    <small class="fw-light" th:text="${orden.usuario.direccion}"></small>
+                    <small class="fw-light"
+                      th:text="${orden.usuario.direccion != ''} ? ${orden.usuario.direccion} : '¡No hay datos!'"
+                      th:classappend="${orden.usuario.direccion != ''} ?  'fw-light' : 'text-danger fw-bold'"></small>
                   </h6>
                   <h6 class="fw-bold">Nro. Telefono:
-                    <small class="fw-light" th:text="${orden.usuario.telefono}"></small>
+                    <small class="fw-light"
+                      th:text="${orden.usuario.telefono != ''} ? ${orden.usuario.telefono} : '¡No hay datos!'"
+                      th:classappend="${orden.usuario.telefono != ''} ?  'fw-light' : 'text-danger fw-bold'"> </small>
                   </h6>
                   <!--FIN DATOS CLIENTES-->
                 </div>
@@ -69,7 +76,8 @@ and open the template in the editor.
                   <h4 class="fw-bold"><i class="fa-solid fa-circle-info"></i> Información del Pedido</h4>
                   <hr>
                   <h6 class="fw-bold">Observaciones: </h6>
-                  <p th:text="${orden.observaciones}"></p>
+                  <p th:text="${orden.observaciones != ''} ?  ${orden.observaciones} : '¡No hay datos!'"
+                    th:classappend="${orden.observaciones != ''} ?  'fw-light' : 'text-danger fw-bold'"></p>
                 </div>
               </div>
             </div>

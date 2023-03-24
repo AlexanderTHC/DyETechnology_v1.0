@@ -1,3 +1,20 @@
+$(document).ready(function () {
+    if ($("#warning").text() !== "") {
+        Swal.fire({
+            icon: 'warning',
+            title: '¡Advertencia!',
+            text: 'Se modificó con éxito la Orden del Cliente.',
+            backdrop: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            stopKeydownPropagation: false,
+            showConfirmButton: true,
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+ });
 
 $(document).ready(function () {
     $('.counter-value').each(function () {

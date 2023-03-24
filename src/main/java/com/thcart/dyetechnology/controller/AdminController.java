@@ -1,5 +1,6 @@
 package com.thcart.dyetechnology.controller;
 
+import java.net.http.HttpClient.Redirect;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import com.thcart.dyetechnology.model.entities.Orden;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thcart.dyetechnology.model.service.IOrdenService;
 
@@ -53,7 +55,7 @@ public class AdminController {
     }
 
     @PostMapping("admin/visualizar/{id}")
-    public String cambiarEstado(@PathVariable("id") Long id, Model model,
+    public String cambiarEstado(@PathVariable("id") Long id, Model model, RedirectAttributes redirect,
     @RequestParam(name = "estado", required = true) int estado) {
 
         Orden orden = ordenService.buscarPorId(id);
@@ -73,6 +75,8 @@ public class AdminController {
         }
         orden.setFechaRecibida(new Date());
         ordenService.guardar(orden)  ;
+        
+        redirect.addFlashAttribute("warning", "se modificó con éxito.");
     
         return "redirect:/admin/ordenes";
     }

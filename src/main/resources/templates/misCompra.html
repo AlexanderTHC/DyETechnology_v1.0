@@ -49,7 +49,7 @@
                     <td th:text="${#dates.format(orden.fechaCreacion, 'dd/MM/yyyy')}"></td>
                     <td th:text="'$ '+ ${#numbers.formatDecimal(orden.total, 0, 'POINT', 0, 'DEFAULT')}"></td>
                     <!--AGREGAR UN ESTADO ACONTINUACIÓN Y CAMBIAR EL COLOR DEL MISMO.-->
-                    <td th:text="${orden.estado}" id="estadoText"></td>
+                    <td th:text="${orden.estado}"></td>
                     <td><a th:href="@{/compras/{id} (id = ${orden.id})}" class="btn btn-success">Ver Detalle</a></td>
                   </tr>
                 </tbody>
