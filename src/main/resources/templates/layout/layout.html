@@ -106,7 +106,7 @@ CSS -->
                         </ul>
                     </div>
 
-                    <li><a href="#" class="nav-link px-2 text-cat-saj ">CONTACTOS</a></li>
+                    <li><a th:href="@{/contacto}" class="nav-link px-2 text-cat-saj ">CONTACTO</a></li>
                 </ul>
 
                 <form th:action="@{/buscar/}" class="searchform col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -189,13 +189,10 @@ CSS -->
 
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a href="#!" class="text-informacion">HOME</a>
+                                <a th:href="@{/}" class="text-informacion">HOME</a>
                             </li>
                             <li>
-                                <a href="#!" class="text-informacion">CONTACTO</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="text-informacion">¿DÓNDE NOS UBICAMOS?</a>
+                                <a th:href="@{/contacto}" class="text-informacion">CONTACTO - DIRECCIÓN</a>
                             </li>
                         </ul>
                     </div>

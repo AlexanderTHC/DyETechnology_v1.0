@@ -86,6 +86,12 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/contacto")
+    public String contacto(Model model) {
+        model.addAttribute("titulo", "DyE Technology - Inicio");
+        return "contacto";
+    }
+
     @GetMapping("detalleproducto/{id}")
     public String detalleProducto(@PathVariable("id") long id, Model model) {
         LOGGER.info("ID producto enviado como parametro {}", id);

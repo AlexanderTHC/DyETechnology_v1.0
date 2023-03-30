@@ -19,3 +19,55 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.btnContactWsp{
+  padding-top: 11px;
+  margin: 11px 11px;
+  font-size: 21px;
+  border: none;
+  border-radius: 22px;
+  background-color: rgb(37,211,102);
+  color: rgb(255,255,255);
+  transition-duration: 500ms;
+  
+}
+
+.btnContactWsp:hover{
+  background-color: rgb(255,255,255);
+  color: rgb(16,57,40);
+}
+
+.btnContactGmail{
+  padding-top: 11px;
+  margin: 11px 11px;
+  font-size: 21px;
+  border: none;
+  border-radius: 22px;
+  background-color: rgb(234,67,53);
+  color: rgb(255,255,255);
+  transition-duration: 500ms;
+}
+
+.btnContactGmail:hover{
+  background-color: rgb(255,255,255);
+  color: rgb(234,67,53);
+}
+
+.top{
+  margin-top: 21px;
+}
+
+.map-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+
+.map-responsive iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+}
