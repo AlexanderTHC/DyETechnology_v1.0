@@ -185,3 +185,10 @@ $(document).ready(function()
         }
     });
 });
+
+function addUrlParameter(name, value) 
+{
+    let params = new URLSearchParams(window.location.search);
+    params.set(name, value);
+    window.location.search = params.toString();
+}
