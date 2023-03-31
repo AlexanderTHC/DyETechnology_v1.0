@@ -30,7 +30,7 @@ and open the template in the editor.
 
 
             <div class="card bg-light">
-                <form th:action="@{/productos/nuevo}" method="post" th:object="${producto}" class="was-validated">
+                <form th:action="@{/productos/nuevo}" method="post" th:object="${producto}" class="was-validated" enctype="multipart/form-data">
                     <div class="card-header">
                         <h5 th:text="${subtitulo}" class="fw-bold">Nuevo Producto</h5>
                     </div>
@@ -85,7 +85,7 @@ and open the template in the editor.
                                         <span class="input-group-text bg-light"><i
                                                 class="fas fa-dollar-sign text-black"></i></span>
                                         <input id="precio" type="text" class="form-control" th:field="*{precio}"
-                                            th:errorclass="'form-control alert-danger'" data-mask="#.##0,00"
+                                            th:errorclass="'form-control alert-danger'" data-mask="#,##0"
                                             data-mask-reverse="true" />
                                         <small class="form-text text-danger" th:errors="*{precio}"
                                             th:if="${#fields.hasErrors('precio')}"></small>
@@ -123,7 +123,7 @@ and open the template in the editor.
                             </div>
 
                             <!-- UTILIZAR POR EL MOMENTO -->
-                            <div class="row row-cols-1 mb-2">
+                            <!-- <div class="row row-cols-1 mb-2">
                                 <div class="col col-sm-6">
                                     <label for="img" class="form-label text-black">Imagen</label>
                                     <div class="input-group form">
@@ -131,6 +131,16 @@ and open the template in the editor.
                                         <input id="img" type="url" class="form-control" 
                                                placeholder="Ejemplo: https://www.google.com/tu-imagen.png or https://www.google.com/tu-imagen.jpg"
                                                th:field="*{imagen}"/>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="row row-cols-1 mb-2">
+                                <div class="col col-sm-6">
+                                    <label for="img" class="form-label text-black">Subir imagen</label>
+                                    <div class="input-group form">
+                                        <span class="input-group-text bg-light"> <i class="far fa-file-image text-black"></i></span>
+                                        <input id="img" type="file" class="form-control" name="imageFile"/>
                                     </div>
                                 </div>
                             </div>

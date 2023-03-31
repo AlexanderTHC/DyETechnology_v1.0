@@ -67,7 +67,7 @@ and open the template in the editor.
                                     <tr th:each="p : ${productos}">
                                         <td th:text="${p.id}"></td>
                                         <td class="noExl">
-                                            <img alt="Sin Imagen" th:src="@{${p.imagen}}" height="100px" />
+                                            <img alt="Sin Imagen" th:src="@{/assets/{img} (img = ${p.imagen})}" height="100px" />
                                         </td>
                                         <td th:text="${p.upc}" class="text-codebarJLN"></td>
                                         <td th:text="${p.nombre}"></td>
