@@ -169,7 +169,7 @@ and open the template in the editor.
                                             <div class="form">
                                                 <label for="email" class="form-label" >Email</label>
                                                 <input id="email" type="email" class="form-control" th:field="*{email}"
-                                                       th:errorclass="'form-control alert-danger'"/>
+                                                       th:errorclass="'form-control alert-danger'" disabled>
                                                 <small class="form-text text-danger" th:errors="*{email}" 
                                                        th:if="${#fields.hasErrors('email')}"></small>
 

@@ -43,7 +43,7 @@ and open the template in the editor.
                             </div>
                             <div class="counter-content">
                                 <h3>Productos registrados</h3>
-                                <span class="counter-value">0</span>
+                                <span class="counter-value" th:text="${productos.size()}"></span>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@ and open the template in the editor.
                             </div>
                             <div class="counter-content">
                                 <h3>Ordenes en Espera</h3>
-                                <span class="counter-value">0</span>
+                                <span class="counter-value" th:text="${ordenes.size()}"></span>
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ and open the template in the editor.
                                 <a th:href="@{/categorias/listado}" class="btn btn btn-info">Ingresar</a>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <!-- <div class="col-4">
                             <div class="card text-center border border-info shadow-0 ">
                                 <div class="card-body">
                                     <i class="fa-solid fa-table-list fs-1 mb-4"></i>
@@ -141,7 +141,7 @@ and open the template in the editor.
                                 </div>
                                 <a th:href="@{/subcategorias/listado}" class="btn btn btn-info">Ingresar</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>

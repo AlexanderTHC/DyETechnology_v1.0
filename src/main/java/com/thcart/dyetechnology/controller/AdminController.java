@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 import com.thcart.dyetechnology.model.entities.Orden;
+import com.thcart.dyetechnology.model.repository.IProductoRepository;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,6 +25,10 @@ public class AdminController {
     
     @Autowired
     private IOrdenService ordenService;
+
+    @Autowired
+    private IProductoRepository productoRepository;
+
     
 
     @GetMapping("admin/inicio")
@@ -30,6 +36,9 @@ public class AdminController {
 
         model.addAttribute("titulo", "DyE Technology - Administración");
         model.addAttribute("subtitulo", "Bienvenido a DyE Technology - Administración");
+
+        model.addAttribute("productos", productoRepository.findAll());
+        model.addAttribute("ordenes", ordenService.buscarTodos());
 
         return "administrador/inicio";
     }

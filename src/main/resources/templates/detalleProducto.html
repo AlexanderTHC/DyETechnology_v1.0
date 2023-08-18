@@ -24,12 +24,12 @@ and open the template in the editor.
             </ol>
 
             <!-- Blog Post -->
-            <div class="card mb-4" th:each="p : ${productos}">
+            <div class="card imgmb-4" th:each="p : ${productos}">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 text-center">
                             <a href="#">
-                                <img class="img-fluid rounded" th:src="@{${p.imagen}}" alt="" />
+                                <img class="img-fluid rounded" th:src="@{'/assets/' + ${p.imagen}}" alt="" />
                             </a>
                         </div>
                         <div class="col-lg-6">
